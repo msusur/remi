@@ -1,0 +1,63 @@
+﻿{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "GERRIT_BRANCH",
+          "value" : "master"
+        },
+        {
+          "name" : "DEPLOY_TARGET",
+          "value" : "pl_rc"
+        }
+      ]
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by upstream project \"deploy-multi-master-pl_rc\" build number 4",
+          "upstreamBuild" : 4,
+          "upstreamProject" : "deploy-multi-master-pl_rc",
+          "upstreamUrl" : "job/deploy-multi-master-pl_rc/"
+        }
+      ]
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : null,
+  "duration" : 81158,
+  "estimatedDuration" : 62355,
+  "executor" : null,
+  "fullDisplayName" : "merge.cswebapi-deploy #6",
+  "id" : "2015-05-12_18-13-15",
+  "keepLog" : false,
+  "number" : 6,
+  "result" : "SUCCESS",
+  "timestamp" : 1431450795000,
+  "url" : "https://build.com/job/merge.cswebapi-deploy/6/",
+  "builtOn" : "build-win44",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ]
+}

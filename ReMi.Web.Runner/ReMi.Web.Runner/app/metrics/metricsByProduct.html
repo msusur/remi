@@ -1,0 +1,36 @@
+<div data-ng-controller="metricsByProduct as vm">
+    <section class="mainbar">
+        <section class="matter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div data-ng-if="!vm.product || vm.product.ReleaseTrack != 'Automated'">
+                            <div data-remi-chart="" data-state="vm.state.isBusy" data-charts="vm.charts.scheduledRelease"
+                                 data-measurement="vm.scheduledReleaseMeasurements" data-chart-title="Scheduled Releases Metrics for {{vm.product.Name}}">
+                            </div>
+                        </div>
+                        <div data-ng-if="vm.product && vm.product.ReleaseTrack == 'Automated'">
+                            <div data-remi-chart="" data-state="vm.state.isBusy" data-charts="vm.charts.automatedReleases"
+                                 data-measurement="vm.automatedReleaseMeasurements" data-chart-title="Automated Releases Metrics for {{vm.product.Name}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div data-remi-chart="" data-state="vm.state.isBusy" data-charts="vm.charts.deployJobTiming"
+                             data-measurement="vm.deployJobTimingMeasurements" data-chart-title="Deploy Job Metrics for {{vm.product.Name}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>
+                            <div data-remi-chart="" data-state="vm.state.isBusy" data-charts="vm.charts.overallTimes"
+                                 data-measurement="vm.overallTimeMeasurements" data-chart-title="Overall Times for {{vm.product.Name}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>

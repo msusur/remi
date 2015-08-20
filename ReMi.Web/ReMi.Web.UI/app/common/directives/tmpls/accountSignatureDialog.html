@@ -1,0 +1,40 @@
+<div class="modal fade sm" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="true">
+    <div class="modal-dialog" data-ng-class="signatureContent">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true" data-ng-click="cancel()">&times;</button>
+                <h4 class="modal-title" style="text-align: center !important;">Account signature</h4>
+            </div>
+            <div class="modal-body">
+                <div class="warning-text alert alert-warning alert-dismissable">
+                  <strong>Warning!</strong> This action requires your account signature.
+                </div>
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="user" data-ng-model="userName" data-ng-disabled="state.isBusy"  required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" name="password" data-ng-model="password" data-ng-enter="sign()" data-ng-disabled="state.isBusy"  required />
+                        </div>
+                    </div>
+                    <div class="form-group" data-ng-show="description && description!=''">
+                        <label class="col-sm-2 control-label">Comment</label>
+                        <div class="col-sm-10">
+                            <div text-angular data-ng-model="descriptionValue"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <img data-ng-show="state.isBusy" src="/content/images/progress.gif" />
+                <button type="button" data-ng-disabled="state.isBusy" class="btn btn-primary" data-ng-click="sign()">Sign</button>
+                <button type="button" data-ng-disabled="state.isBusy" class="btn btn-default" data-ng-click="cancel()">Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,163 @@
+<div class="row" data-ng-controller="pluginsConfiguration as vm">
+    <tabset style="margin-top: 5px">
+        <tab data-ng-repeat="plugin in vm.parent.plugins"
+             heading="{{plugin.PluginKey}}"
+             active="vm.activeTab[plugin.PluginKey].isCurrent"
+             data-ng-click="vm.setActiveTab(vm.parent.plugins, plugin)">
+            <div class="col-lg-12">
+                <div class="widget wlightblue">
+                    <div data-remi-widget-header="" title="{{plugin.PluginKey}}">
+                    </div>
+                    <div class="widget-content">
+                        <p class="plugin-configuration-label">Global configuration</p>
+                        <form role="form" class="form form-horizontal plugin-configuration"
+                              data-ng-init="isReadonly = plugin.IsGlobalConfigurationReadonly">
+                            <div data-ng-repeat="config in plugin.GlobalConfigurationTemplates">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{config.Description}}</label>
+                                    <div class="col-sm-10" data-ng-switch="config.Type"
+                                         data-ng-init="model = plugin.GlobalConfiguration"
+                                         data-ng-include="'inputTypes.html'">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12 text-right">
+                                    <button class="btn btn-default"
+                                            data-ng-if="!isReadonly"
+                                            data-ng-click="vm.getGlobalPluginConfiguration(plugin)">
+                                        Cancel</button>
+                                    <button class="btn btn-info"
+                                            data-ng-if="!isReadonly"
+                                            data-ng-class="{ disabled: !plugin.haveChanges }"
+                                            data-ng-click="vm.saveGlobalConfiguration(plugin)">
+                                        Save</button>
+                                </div>
+                            </div>
+                        </form>
+                        <br/>
+                        <div data-ng-if="plugin.PackageConfiguration">
+                            <p class="plugin-configuration-label">Package configuration</p>
+                            <form role="form" class="form form-horizontal"
+                                  data-ng-init="isReadonly = plugin.IsPackageConfigurationReadonly">
+                                <accordion>
+                                    <accordion-group data-ng-repeat="package in vm.packages">
+                                        <accordion-heading>
+                                            <span class="package-label">{{package.Name}}</span>, {{package.BusinessUnit}}
+                                        </accordion-heading>
+                                        <div data-ng-repeat="config in plugin.PackageConfigurationTemplates">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">{{config.Description}}</label>
+                                                <div class="col-sm-10"
+                                                     data-ng-switch="config.Type"
+                                                     data-ng-init="model = plugin.PackageConfiguration[package.ExternalId]"
+                                                     data-ng-include="'inputTypes.html'">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12 text-right">
+                                                <button class="btn btn-default"
+                                                        data-ng-if="!isReadonly"
+                                                        data-ng-click="vm.getPackagePluginConfiguration(plugin, package)">Cancel</button>
+                                                <button class="btn btn-info"
+                                                        data-ng-if="!isReadonly"
+                                                        data-ng-class="{ disabled: !plugin.PackageConfiguration[package.ExternalId].haveChanges }"
+                                                        data-ng-click="vm.savePackageConfiguration(plugin, package)">Save</button>
+                                            </div>
+                                        </div>
+                                    </accordion-group>
+                                </accordion>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="widget-foot">
+                        <button type="button" class="btn btn-default pull-right" data-ng-click="vm.loadPluginConfiguration(plugin)">
+                            <span class="glyphicon glyphicon-refresh"></span>
+                            Refresh
+                        </button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="list-loader" data-ng-show="vm.state.isBusy">
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</div>
+<script type="text/ng-template" id="inputTypes.html">
+    <input data-ng-switch-when="String"
+            class="form-control" type="text"
+            data-ng-change="vm.valueHasChanged(plugin, package)"
+            data-ng-disabled="isReadonly"
+            data-ng-model="model[config.PropertyName]" />
+    <textarea data-ng-switch-when="LongString"
+            class="form-control" rows="5" style="resize: vertical"
+            data-ng-change="vm.valueHasChanged(plugin, package)"
+            data-ng-disabled="isReadonly"
+            data-ng-model="model[config.PropertyName]"></textarea>
+    <input data-ng-switch-when="Password"
+            class="form-control" type="password"
+            data-ng-change="vm.valueHasChanged(plugin, package)"
+            data-ng-disabled="isReadonly"
+            data-ng-model="model[config.PropertyName]" />
+    <input data-ng-switch-when="Int"
+            class="form-control" type="number"
+            data-ng-change="vm.valueHasChanged(plugin, package)"
+            data-ng-disabled="isReadonly"
+            data-ng-model="model[config.PropertyName]" />
+    <select data-ng-switch-when="Enum"
+            class="form-control"
+            data-ng-change="vm.valueHasChanged(plugin, package)"
+            data-ng-model="model[config.PropertyName]"
+            data-ng-disabled="isReadonly"
+            data-ng-options="e.Name as e.Description for e in config.Enums">
+    </select>
+    <select data-ng-switch-when="Select"
+            class="form-control"
+            data-ng-change="vm.valueHasChanged(plugin, package)"
+            data-ng-model="model[config.PropertyName]"
+            data-ng-disabled="isReadonly"
+            data-ng-options="e.Value as e.Description for e in config.Select">
+    </select>
+    <div data-ng-switch-when="Json">
+        <div data-ace-editor="" data-ng-model="model[config.PropertyName]"
+             data-ng-change="vm.valueHasChanged(plugin, package)"
+             data-ng-disabled="isReadonly"
+             style="border-radius: 4px; border: solid 1px #ccc; height: 100px">
+             style="border-radius: 4px; border: solid 1px #ccc; height: 100px">
+        </div>
+    </div>
+    <div data-ng-switch-when="NameValueCollection"
+         class="name-value-collection-input">
+        <div class="col-sm-12 col-sm-padding-no-left text-right name-value-row">
+            <button class="btn btn-success" data-ng-click="vm.addNameValue(model[config.PropertyName], plugin, package, config.PropertyName)"
+                data-ng-disabled="isReadonly">
+                <i class="fa fa-plus"></i> Add New
+            </button>
+        </div>
+        <div data-ng-repeat="nameValue in model[config.PropertyName]" class="name-value-row">
+            <div class="col-sm-3 col-sm-padding-no-left">
+                <input class="form-control" type="readonly"
+                    data-ng-disabled="isReadonly"
+                    data-ng-change="vm.valueHasChanged(plugin, package)"
+                    data-ng-model="nameValue.Name" />
+            </div>
+            <div class="col-sm-8 col-sm-padding-no-left">
+                <input class="form-control" type="text"
+                    data-ng-disabled="isReadonly"
+                    data-ng-change="vm.valueHasChanged(plugin, package)"
+                    data-ng-model="nameValue.Value" />
+            </div>
+            <div class="col-sm-1 col-sm-padding-no-left text-right">
+                <button class="btn btn-default btn-remove" data-ng-click="vm.removeNameValue(model[config.PropertyName], nameValue, plugin, package)"
+                    data-ng-disabled="isReadonly">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        <div>
+    </div>
+</script>
+
+
+

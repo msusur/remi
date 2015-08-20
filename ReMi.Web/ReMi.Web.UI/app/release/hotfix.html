@@ -1,0 +1,52 @@
+<div class="release-plan">
+    <div id="testid" class="row" data-ng-show="vm.state.isBindedToRelease">
+        <div class="col-md-6">
+            <div data-ng-include="'/app/release/releasePlan/releaseParticipant.html'"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="widget wlightblue check-list">
+                <div data-remi-widget-header="" title="Release Description" data-allow-collapse="true">
+                </div>
+                <div class="widget-content text-info without-vertical-padding">
+                    <div data-linkify="" data="vm.currentReleaseWindow.Description" data-editor="vm.showDescriptionEditor" data-editdisabled="vm.isClosed" class="linkify-widget"></div>
+                </div>
+                <div class="widget-foot">
+                    <div class="list-loader" data-ng-show="vm.state.isBusy">
+                    </div>
+                    <button class="btn btn-default" data-ng-disabled="vm.disableSaveDescription || vm.isClosed" data-ng-click="vm.saveDescription()">Save</button>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" data-ng-show="vm.state.isBindedToRelease">
+        <div class="col-md-6">
+            <div data-ng-include="'/app/release/releasePlan/releaseApprovers.html'"></div>
+        </div>
+        <div class="col-md-6">
+            <div data-ng-include="'/app/release/releaseExecution/signOff.html'"></div>
+        </div>
+    </div>
+    <div class="row" data-ng-show="vm.state.isBindedToRelease">
+        <div class="col-md-12">
+            <div data-ng-include="'/app/release/releasePlan/releaseTask.html'"></div>
+        </div>
+    </div>
+    <div class="row" data-ng-show="vm.state.isBindedToRelease">
+        <div class="col-md-8">
+            <div data-ng-include="'/app/release/releasePlan/checkList.html'"></div>
+        </div>
+        <div class="col-md-4" data-ng-if="vm.hasPlugin('DeploymentTool')">
+            <div data-ng-include="'/app/release/releasePlan/releaseJobs.html'"></div>
+        </div>
+    </div>
+    <div class="row" data-ng-show="vm.state.isBindedToRelease">
+        <div class="col-md-6">
+            <div data-ng-include="'/app/release/releaseExecution/releaseProcess.html'"></div>
+        </div>
+    </div>
+    <div class="row" data-ng-show="vm.state.isBindedToRelease">
+        <div class="col-md-12">
+            <div data-ng-include="'/app/release/releaseExecution/deploymentJobsMeasurements.html'"></div>
+        </div>
+    </div></div>

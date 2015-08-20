@@ -1,0 +1,70 @@
+<section class="mainbar" data-ng-controller="login as vm">
+    <section class="matter">
+        <div class="container">
+            <div class="row" data-ng-hide="vm.isLoggedIn">
+                <div class="alert alert-info">
+                    <h4>Please fill account details</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="widget wlightblue">
+                    <div data-remi-widget-header title="Login"></div>
+                    <div class="widget-content user">
+                        <form name="loginForm" data-ng-submit="vm.login()" novalidate="novalidate" data-ng-hide="vm.isLoggedIn">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input data-ng-model="vm.username" data-ng-disabled="vm.state.isBusy" type="text" class="control-group" name="username" placeholder="Enter user name..." autocomplete="off" />
+                                    <input data-ng-model="vm.password" data-ng-disabled="vm.state.isBusy" type="password" class="control-group" name="password" placeholder="Enter password..." autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>
+                                        <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" />
+                                        <button data-ng-disabled="vm.state.isBusy" type="submit" class="btn btn-primary">Login</button>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <div class="row" data-ng-show="vm.isLoggedIn">
+                            <div class="col-md-12">
+                                <p>
+                                    <span>Login: {{vm.username}}</span>
+                                </p>
+                                <p>
+                                    <button data-ng-click="vm.logout()" type="button" class="btn btn-primary">Logout</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="selectDefaultProductModal" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 400px;">
+                <div class="modal-header">
+                    <h4 class="modal-title">Select default product</h4>
+                </div>
+                <div class="modal-body" style="padding-bottom: 30px;">
+                    <div class="col-sm-12">
+                        <select class="form-control" id="productSelect" data-ng-model="vm.defaultProduct" data-ng-options="p.Name for p in vm.products"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="list-loader" data-ng-show="vm.state.isBusySettingDefaultProduct">
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary" data-ng-click="vm.selectDefaultProduct()">Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,46 @@
+<div class="row" data-ng-controller="pluginsPackageConfiguration as vm">
+    <div class="col-sm-12">
+        <div class="widget wlightblue">
+            <div data-remi-widget-header="" title="Package Plugins"></div>
+            <div class="widget-content">
+                <form role="form" class="form form-horizontal">
+                    <table class="table table-condensed table-striped package-plugins-table">
+                        <thead>
+                            <tr>
+                                <th>Package</th>
+                                <th data-ng-repeat="(type, plugins) in vm.parent.packagePlugins.PluginTypes">{{type | formatenum:vm.parent.pluginTypes}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="package in vm.parent.packagePlugins.Packages">
+                                <td>
+                                    <p>{{package.Name}}</p>
+                                    <p class="business-unit-label">{{package.BusinessUnit}}</p>
+                                </td>
+                                <td data-ng-repeat="(type, plugins) in vm.parent.packagePlugins.PluginTypes">
+                                    <select class="form-control"
+                                            data-tooltip-html-unsafe="<p style='font-weight: bold'>{{type | formatenum:vm.parent.pluginTypes}}</p><p>{{package.Name}}</p><p class='business-unit-label'>{{package.BusinessUnit}}</p>"
+                                            data-tooltip-placement="left"
+                                            data-ng-model="vm.parent.packagePlugins.PackagePluginConfiguration[package.ExternalId][type].PluginId"
+                                            data-ng-options="p.PluginId as p.PluginKey for p in plugins"
+                                            data-ng-change="vm.packagePluginChanged(package, type)">
+                                        <option value="">None</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="widget-foot">
+                <button type="button" class="btn btn-default pull-right" data-ng-click="vm.refreshPackagePlugins()">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                    Refresh
+                </button>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="list-loader" data-ng-show="vm.state.isBusy">
+        </div>
+    </div>
+</div>

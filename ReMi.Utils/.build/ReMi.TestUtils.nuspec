@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ReMi.TestUtils</id>
+    <version>1.0.0.0</version>
+    <authors>Wonga Technology Limited</authors>
+    <owners>Wonga Technology Limited</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ReMi Core</description>
+    <releaseNotes>Package ReMi Utils for tests</releaseNotes>
+    <copyright>Copyright Wonga Technology Limited 2015</copyright>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="ReMi.Core" version="1.0.0.0" />
+        <dependency id="ReMi.Utils" version="1.0.0.0" />
+        <dependency id="Autofac" version="3.4.0" />
+        <dependency id="AutoMapper" version="3.3.1" />
+        <dependency id="Common.Logging" version="2.2.0" />
+        <dependency id="Common.Logging.Core" version="2.2.0" />
+        <dependency id="Common.Logging.Log4Net1210" version="2.2.0" />
+        <dependency id="EntityFramework" version="6.1.2" />
+        <dependency id="log4net" version="1.2.10" />
+        <dependency id="Newtonsoft.Json" version="5.0.1" />
+        <dependency id="RestSharp" version="104.4.0" />
+        <dependency id="Moq" version="4.2.1402.2112" />
+        <dependency id="NUnit" version="2.6.3" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

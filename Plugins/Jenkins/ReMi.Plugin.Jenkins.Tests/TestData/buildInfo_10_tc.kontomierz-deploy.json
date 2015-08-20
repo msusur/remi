@@ -1,0 +1,63 @@
+﻿{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "GERRIT_BRANCH",
+          "value" : "master"
+        },
+        {
+          "name" : "DEPLOY_TARGET",
+          "value" : "pl_rc"
+        }
+      ]
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by upstream project \"deploy-multi-master-pl_rc\" build number 4",
+          "upstreamBuild" : 4,
+          "upstreamProject" : "deploy-multi-master-pl_rc",
+          "upstreamUrl" : "job/deploy-multi-master-pl_rc/"
+        }
+      ]
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : null,
+  "duration" : 17721,
+  "estimatedDuration" : 15255,
+  "executor" : null,
+  "fullDisplayName" : "tc.kontomierz-deploy #10",
+  "id" : "2015-05-12_18-11-15",
+  "keepLog" : false,
+  "number" : 10,
+  "result" : "SUCCESS",
+  "timestamp" : 1431450675000,
+  "url" : "https://build.com/job/tc.kontomierz-deploy/10/",
+  "builtOn" : "build-win20a",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ]
+}

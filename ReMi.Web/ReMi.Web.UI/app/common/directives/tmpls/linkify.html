@@ -1,0 +1,8 @@
+<div class="linkify-container" style="margin-top: 6px;" data-ng-bind-html="data | remilinky:'_blank'">
+</div>
+<div data-ng-hide="editdisabled" style="margin-bottom: 5px;">
+    <button class="btn-default" data-ng-click="toggleEditPlaceHolder()">Edit</button>
+</div>
+<div data-ng-show="editor" style="margin-bottom: 5px;">
+    <textarea rows="8" class="form-control linkify-control" data-ng-model="data"></textarea>
+</div>

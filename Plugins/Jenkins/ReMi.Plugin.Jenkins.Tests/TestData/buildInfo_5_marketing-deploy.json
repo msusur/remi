@@ -1,0 +1,63 @@
+﻿{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "GERRIT_BRANCH",
+          "value" : "master"
+        },
+        {
+          "name" : "DEPLOY_TARGET",
+          "value" : "pl_rc"
+        }
+      ]
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by upstream project \"deploy-multi-master-pl_rc\" build number 4",
+          "upstreamBuild" : 4,
+          "upstreamProject" : "deploy-multi-master-pl_rc",
+          "upstreamUrl" : "job/deploy-multi-master-pl_rc/"
+        }
+      ]
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : null,
+  "duration" : 24108,
+  "estimatedDuration" : 310608,
+  "executor" : null,
+  "fullDisplayName" : "marketing-deploy #5",
+  "id" : "2015-05-12_18-09-30",
+  "keepLog" : false,
+  "number" : 5,
+  "result" : "SUCCESS",
+  "timestamp" : 1431450570000,
+  "url" : "https://build.com/job/marketing-deploy/5/",
+  "builtOn" : "build-win44",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ]
+}

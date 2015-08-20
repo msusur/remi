@@ -1,0 +1,269 @@
+﻿{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "DEPLOY_TARGET",
+          "value" : "pl_rc"
+        },
+        {
+          "name" : "GERRIT_BRANCH",
+          "value" : "master"
+        }
+      ]
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by user anonymous",
+          "userId" : null,
+          "userName" : "anonymous"
+        }
+      ]
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : null,
+  "duration" : 363141,
+  "estimatedDuration" : 303058,
+  "executor" : null,
+  "fullDisplayName" : "deploy-multi-master-pl_rc #4",
+  "id" : "2015-05-12_18-08-40",
+  "keepLog" : false,
+  "number" : 4,
+  "result" : "SUCCESS",
+  "timestamp" : 1431450520000,
+  "url" : "https://build.com/job/deploy-multi-master-pl_rc/4/",
+  "builtOn" : "build-win20a",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ],
+  "subBuilds" : [
+    {
+      "abort" : false,
+      "buildNumber" : 16,
+      "duration" : "49 sec",
+      "icon" : "blue.png",
+      "jobName" : "ops-deploy",
+      "parentBuildNumber" : 4,
+      "parentJobName" : "deploy-multi-master-pl_rc",
+      "phaseName" : "core",
+      "result" : "SUCCESS",
+      "retry" : false,
+      "url" : "job/ops-deploy/16/"
+    },
+    {
+      "abort" : false,
+      "buildNumber" : 5,
+      "duration" : "24 sec",
+      "icon" : "blue.png",
+      "jobName" : "marketing-deploy",
+      "parentBuildNumber" : 4,
+      "parentJobName" : "deploy-multi-master-pl_rc",
+      "phaseName" : "services",
+      "result" : "SUCCESS",
+      "retry" : false,
+      "url" : "job/marketing-deploy/5/"
+    },
+    {
+      "abort" : false,
+      "buildNumber" : 6,
+      "duration" : "23 sec",
+      "icon" : "blue.png",
+      "jobName" : "segmentengine-deploy",
+      "parentBuildNumber" : 4,
+      "parentJobName" : "deploy-multi-master-pl_rc",
+      "phaseName" : "services",
+      "result" : "SUCCESS",
+      "retry" : false,
+      "url" : "job/segmentengine-deploy/6/"
+    },
+    {
+      "abort" : false,
+      "buildNumber" : 10,
+      "duration" : "17 sec",
+      "icon" : "blue.png",
+      "jobName" : "tc.kontomierz-deploy",
+      "parentBuildNumber" : 4,
+      "parentJobName" : "deploy-multi-master-pl_rc",
+      "phaseName" : "components phase 1",
+      "result" : "SUCCESS",
+      "retry" : false,
+      "url" : "job/tc.kontomierz-deploy/10/"
+    },
+    {
+      "abort" : false,
+      "buildNumber" : 8,
+      "duration" : "30 sec",
+      "icon" : "blue.png",
+      "jobName" : "tc.timezone-deploy",
+      "parentBuildNumber" : 4,
+      "parentJobName" : "deploy-multi-master-pl_rc",
+      "phaseName" : "components phase 1",
+      "result" : "SUCCESS",
+      "retry" : false,
+      "url" : "job/tc.timezone-deploy/8/"
+    },
+    {
+      "abort" : false,
+      "buildNumber" : 6,
+      "duration" : "1 min 21 sec",
+      "icon" : "blue.png",
+      "jobName" : "merge.cswebapi-deploy",
+      "parentBuildNumber" : 4,
+      "parentJobName" : "deploy-multi-master-pl_rc",
+      "phaseName" : "merge apis",
+      "result" : "SUCCESS",
+      "retry" : false,
+      "url" : "job/merge.cswebapi-deploy/6/"
+    },
+    {
+      "abort" : false,
+      "buildNumber" : 6,
+      "duration" : "40 sec",
+      "icon" : "blue.png",
+      "jobName" : "merge.callback-deploy",
+      "parentBuildNumber" : 4,
+      "parentJobName" : "deploy-multi-master-pl_rc",
+      "phaseName" : "merge apis",
+      "result" : "SUCCESS",
+      "retry" : false,
+      "url" : "job/merge.callback-deploy/6/"
+    }
+  ]
+}

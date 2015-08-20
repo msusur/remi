@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <connectionStrings xdt:Transform="InsertIfMissing" />
+  <connectionStrings>
+    <add name="QaStatsConnection" providerName="System.Data.SqlClient" connectionString="Data Source=localhost;Initial Catalog=remi_db;Integrated Security=True" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)" />
+  </connectionStrings>
+  <entityFramework xdt:Transform="InsertIfMissing">
+    <!-- requires SQLServer 2012 installed locally -->
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="Data Source=localhost;Initial Catalog=remi_db;Integrated Security=True" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+</configuration>

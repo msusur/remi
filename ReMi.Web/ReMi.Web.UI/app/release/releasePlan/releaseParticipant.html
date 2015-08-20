@@ -1,0 +1,53 @@
+<div class="widget wlightblue" data-ng-controller="releaseParticipant as rpvm">
+    <div data-remi-widget-header="" title="People supporting current release" data-allow-collapse="true">
+    </div>
+    <div class="widget-content text-info">
+        <div class="long-table-wrapper">
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th class="text-center">Confirmed</th>
+                        <th data-access-control="RemoveReleaseParticipantCommand" data-restriction-mode="hide">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="p in rpvm.releaseParticipants">
+                        <td>{{p.Account.FullName}}</td>
+                        <td>{{p.Account.Email}}</td>
+                        <td>{{p.Account.Role.Description}}</td>
+                        <td class="text-center">
+                            <input type="checkbox" data-ng-model="p.IsParticipationConfirmed" disabled data-ng-show="!p.manualConfirmationAllowed" />
+                            <button class="btn btn-default btn-xs" data-ng-show="p.manualConfirmationAllowed" data-ng-click="rpvm.confirmParticipation(p)" data-ng-disabled="vm.isClosed"
+                                data-access-control="ApproveReleaseParticipationCommand" data-restriction-mode="disable">Confirm</button>
+                        </td>
+                        <td data-access-control="RemoveReleaseParticipantCommand" data-restriction-mode="hide">
+                            <button data-confirmation="" data-removing-item="{{p.Account.FullName}}" data-removing-subject="release paricipant" class="btn btn-default btn-xs" data-ng-click="rpvm.removeReleaseParticipant(p)" data-ng-disabled="vm.isClosed">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="list-loader" data-ng-show="rpvm.state.isBusy">
+            </div>
+        </div>
+    </div>
+    <div class="widget-foot">
+        <div class="row">
+            <div class="col-xs-6">
+                <button class="btn btn-default" data-ng-disabled="vm.isClosed || rpvm.state.isBusy || !rpvm.state.bindedToReleaseWindow"
+                        data-account-search="" data-multi-select="true" data-get-selected="rpvm.getSelectedAccounts()" data-on-submit="rpvm.addReleaseParticipants(data)" data-dialog-title="Release participants"
+                        data-access-control="AddReleaseParticipantCommand" data-restriction-mode="hide">
+                    Add Participants</button>
+            </div>
+            <div class="col-xs-6">
+                <button class="btn btn-default pull-right" data-ng-click="rpvm.refreshList()" data-ng-disabled="rpvm.state.isBusy || vm.isClosed || !rpvm.state.bindedToReleaseWindow">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                    Update
+                   
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

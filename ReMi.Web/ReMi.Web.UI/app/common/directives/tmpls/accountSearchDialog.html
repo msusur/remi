@@ -1,0 +1,73 @@
+<div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="true" id="addreleaseParticipantsModal">
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-ng-click="cancel()" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{dialogTitle || 'Select accounts'}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form form-horizontal" role="form">
+                        <!--<label class="col-sm-2 control-label">Filter:</label>-->
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="filterCriteria" data-ng-keyup="searchByFilter()" data-ng-model="filterCriteria" data-ng-trim="false" placeholder="Filter by name or email address  (need 4 characters to use advanced search)"/>
+                        </div>
+                    </form>
+                </div>
+                <div class=" wrap-space-top3">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-condensed table-striped static-header" style="width: 100%;">
+                                <colgroup>
+                                    <col style="width: 27%" />
+                                    <col style="width: 27%" />
+                                    <col style="width: 26%" />
+                                    <col style="width: 20%" />
+                                    <col style="width: 15px" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th class="text-center">Selected</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="long-table-wrapper" style="height: 300px;">
+                                <table class="table table-condensed table-striped" style="width: 100%">
+                                    <colgroup>
+                                        <col style="width: 27%" />
+                                        <col style="width: 27%" />
+                                        <col style="width: 26%" />
+                                        <col style="width: 20%" />
+                                    </colgroup>
+
+                                    <tr data-ng-repeat="p in showAccounts | orderBy:'Account.Email'">
+                                        <td>{{p.Account.FullName}} <i class="glyphicon glyphicon-lock" data-ng-show="p.Account.IsBlocked"></i></td>
+                                        <td>{{p.Account.Email}}</td>
+                                        <td>{{p.Account.Role.Description}}</td>
+                                        <td class="text-center">
+                                            <a class="btn btn-xs" data-ng-disabled="p.Account.IsBlocked" data-ng-click="setSelected(p)" data-ng-class="{'btn-default': isMultiSelect(), 'btn-selected': p.selected && isMultiSelect(), 'btn-primary': !isMultiSelect()}">
+                                                <i data-ng-show="isMultiSelect() && p.selected" class="glyphicon glyphicon-check"></i>
+                                                <i data-ng-show="isMultiSelect() && !p.selected" class="glyphicon glyphicon-unchecked"></i>
+                                                <span>Select</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <img data-ng-show="state.isBusy" src="/content/images/progress.gif" />
+                <button class="btn btn-primary" data-ng-click="submit()" data-ng-disabled="state.isBusy" data-ng-show="isMultiSelect()">Submit</button>
+                <button class="btn btn-default" data-ng-click="cancel()" data-ng-disabled="state.isBusy">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

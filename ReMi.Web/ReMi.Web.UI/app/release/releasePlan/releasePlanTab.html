@@ -1,0 +1,59 @@
+<div class="release-plan-tab release-plan">
+    <div id="testid" class="row" data-ng-show="vm.state.isBindedToRelease">
+        <div class="col-md-6" data-ng-if="vm.currentReleaseWindow.ReleaseType != 'Automated'">
+            <div data-ng-include="'/app/release/releasePlan/releaseParticipant.html'"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="widget wlightblue check-list">
+                <div data-remi-widget-header="" title="Release Description" data-allow-collapse="true">
+                </div>
+                <div class="widget-content text-info without-vertical-padding">
+                    <div data-linkify="" data="vm.currentReleaseWindow.Description" data-editor="vm.showDescriptionEditor" data-editdisabled="vm.isClosed" class="linkify-widget"></div>
+                </div>
+                <div class="widget-foot">
+                    <div class="list-loader" data-ng-show="vm.state.isBusy">
+                    </div>
+                    <button class="btn btn-default" data-ng-disabled="vm.disableSaveDescription || vm.isClosed" data-ng-click="vm.saveDescription()">Save</button>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" data-ng-show="vm.state.isBindedToRelease">
+        <div class="col-md-6" data-ng-if="vm.currentReleaseWindow.ReleaseType != 'Automated'">
+            <div data-ng-include="'/app/release/releasePlan/releaseApprovers.html'"></div>
+        </div>
+        <div class="col-md-6">
+            <div data-ng-include="'/app/release/releasePlan/signOff.html'"></div>
+        </div>
+    </div>
+    <div class="row" data-ng-show="vm.state.isBindedToRelease" data-ng-if="vm.currentReleaseWindow.ReleaseType != 'Automated'">
+        <div class="col-md-12">
+            <div data-ng-include="'/app/release/releasePlan/releaseTask.html'"></div>
+        </div>
+    </div>
+    <div class="row" data-ng-show="vm.state.isBindedToRelease" data-ng-if="vm.currentReleaseWindow.ReleaseType != 'Automated'">
+        <div data-ng-class="{'col-md-8' : vm.currentReleaseWindow.ReleaseType != 'Hotfix' && !vm.isCurrentReleaseWindowMaintenance, 'col-md-12' : vm.currentReleaseWindow.ReleaseType == 'Hotfix' || vm.isCurrentReleaseWindowMaintenance}">
+            <div data-ng-include="'/app/release/releasePlan/checkList.html'"></div>
+        </div>
+        <div class="col-md-4" data-ng-if="vm.hasPlugin('DeploymentTool') && vm.currentReleaseWindow.ReleaseType != 'Hotfix' && !vm.isCurrentReleaseWindowMaintenance">
+            <div data-ng-include="'/app/release/releasePlan/releaseJobs.html'"></div>
+        </div>
+    </div>
+
+    <div class="row" data-ng-if="vm.state.isBindedToRelease && vm.hasPlugin('QaStats')">
+        <div class="col-md-12">
+            <div data-ng-include="'/app/release/releasePlan/releaseQAStatus.html'"></div>
+        </div>
+    </div>
+     <div class="row" data-ng-show="vm.state.isBindedToRelease && vm.hasPlugin('ReleaseContent')">
+        <div class="col-md-12">
+            <div data-ng-include="'/app/release/releasePlan/releaseContent.html'"></div>
+        </div>
+    </div>
+    <div class="row" data-ng-if="vm.state.isBindedToRelease && vm.hasPlugin('SourceControl')">
+        <div class="col-md-12">
+            <div data-ng-include="'/app/release/releasePlan/releaseChanges.html'"></div>
+        </div>
+    </div>
+</div>

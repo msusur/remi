@@ -1,0 +1,96 @@
+<div class="widget wlightblue" data-ng-controller="commands as commandsVm">
+    <div data-remi-widget-header="" title="Command Permissions" data-allow-collapse="true"></div>
+    <div class="widget-content user">
+        <div class="list-long-container">
+            <div class="list-wide-panel" style="padding-right: 5px;">
+                <table class="table table-condensed table-striped table-col-striped" style="margin-top: 110px !important">
+                    <thead>
+                        <tr style="line-height: 200px">
+                            <th><span style="font-weight: bold">Group</span></th>
+                            <th><span style="font-weight: bold">Command</span></th>
+                            <th style="text-align: center" data-access-control="SaveCommandPermissionRuleCommand" data-restriction-mode="hide"><span style="font-weight: bold">Rules</span></th>
+                            <th data-ng-repeat="role in commandsVm.roles" class="text-vertical"><span>{{role.Description}}</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="command in commandsVm.commands">
+                            <td data-ng-if="command.Count" rowspan="{{command.Count}}">{{command.Group}}</td>
+                            <td style="border-right: none">{{command.Description}}</td>
+                            <td style="padding: 0; width: 80px; text-align: center; border-left: none"
+                                data-access-control="SaveCommandPermissionRuleCommand" data-restriction-mode="hide">
+                                <button type="button" class="btn btn-default" style="margin: 2px; padding: 3px 5px;"
+                                        data-ng-click="commandsVm.editRule(command)"
+                                        data-ng-class="{ 'active': command.HasRuleApplied }">
+                                    Edit Rule</button>
+                            </td>
+                            <td data-ng-repeat="role in commandsVm.roles" style="padding: 2px 3px; width: 30px">
+                                <div class="btn-group" style="margin: 0">
+                                    <button type="button" class="btn btn-default" style="margin: 0; padding: 3px 4px; width: 24px"
+                                        title="{{role.Description + '\n' + command.Description}}"
+                                        data-ng-click="commandsVm.changeCommandRole(command, role)"
+                                        data-ng-class="{ 'active': command[role.ExternalId] }"
+                                        data-access-control="AddCommandToRoleCommand"
+                                        data-restriction-mode="disable">
+                                        <i class="fa" style="margin: auto"
+                                            data-ng-class="{ 'fa-check': command[role.ExternalId],  'fa-square-o': !command[role.ExternalId] }"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="list-loader" data-ng-show="commandsVm.state.isBusy">
+            </div>
+        </div>
+    </div>
+    <div class="widget-foot">
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal fade" id="commandRuleEditor">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Rule Editor</h4>
+                </div>
+                <div class="modal-body" data-ng-show="!commandsVm.currentRule">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-success" data-ng-click="commandsVm.generateNewRule()"><i class="fa fa-plus"></i>Add Rule</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body" data-ng-show="commandsVm.currentRule">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-danger" data-ng-click="commandsVm.deleteRule()"><i class="fa fa-remove"></i>Remove Rule</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div data-rule-editor="" data-rule="commandsVm.currentRule" data-is-busy="commandsVm.state.ruleState.isBusy"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-info" data-ng-click="commandsVm.testBusinessRule()"><i class="fa fa-dashboard"></i>Run Test</button>
+                                <button class="btn btn-primary" data-ng-click="commandsVm.savePermissionRule()"><i class="fa fa-save"></i>Save</button>
+                                <button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle-o"></i>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-loader" data-ng-show="commandsVm.state.ruleState.isBusy">
+            </div>
+        </div>
+    </div>
+</div>
+
+

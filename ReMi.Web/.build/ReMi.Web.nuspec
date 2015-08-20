@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>ReMi.Web</id>
+    <version>1.0.0.0</version>
+    <authors>Release Engineering team</authors>
+    <owners>Lisa Lambert</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ReMi Web UI</description>
+    <releaseNotes>Package for deployment of ReMi UI</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+  </metadata>
+</package>

@@ -1,0 +1,19 @@
+<div class="modal fade sm" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="true" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-hidden="true" data-ng-click="cancel()">&times;</button>
+                <h4 class="modal-title" style="text-align: left;">{{actionRisk}} confirmation</h4>
+            </div>
+            <div class="modal-body wrap-space-bottom">
+                <div>
+                    <h6 style="text-align: left;">{{confirmationText}}</h6>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-ng-click="approve()">Yes</button>
+                <button type="button" name="cancelConfirmation" class="btn btn-default" data-ng-click="cancel()">No</button>
+            </div>
+        </div>
+    </div>
+</div>

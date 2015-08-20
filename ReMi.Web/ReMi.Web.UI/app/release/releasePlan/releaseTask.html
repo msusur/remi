@@ -1,0 +1,177 @@
+<div class="widget wlightblue release-task" data-ng-controller="releaseTask as vm" data-ng-init="vm.init('false')">
+    <div data-remi-widget-header="" title="Pre and Post release tasks" data-allow-collapse="true">
+    </div>
+    <div class="widget-content text-info">
+        <div class="list-long-container">
+            <div class="container div-table div-table-striped">
+                <div class="row div-table-header">
+                    <div class="col-sm-1 text-center">Move</div>
+                    <div class="col-sm-1 text-center">Risk</div>
+                    <div class="col-sm-1">Type</div>
+                    <div class="col-sm-3">Description</div>
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-2 text-center" data-ng-if="vm.parent.hasPlugin('HelpDesk')">HelpDesk</div>
+                        <div class="col-sm-2">Assignee (confirmed)</div>
+                        <div class="col-sm-2">Length of run</div>
+                        <div class="col-sm-2">Where tested</div>
+                        <div class="col-sm-2">Down Time</div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                </div>
+                <div class="div-table-body">
+                    <div class="row" data-ng-repeat="p in vm.releaseTasks" id="{{p.ExternalId}}"
+                        data-draggable-row="" data-draggable-elem-selector=".draggable" data-drop-area-selector=".drop-area"
+                        data-on-drag="vm.dragging.drag(p)" data-on-drop="vm.dragging.drop(p)" data-on-drag-end="vm.dragging.dragEnd()"
+                        data-access-control="UpdateReleaseTasksOrderCommand">
+                        <div class="col-sm-1 text-center draggable" data-ng-class="{completed: p.IsCompleted}">
+                            {{$index + 1}}.
+                            <i class="fa fa-arrows"></i>
+                        </div>
+                        <div class="col-sm-1 text-center" data-ng-class="{completed: p.IsCompleted}">
+                            <i data-risk-priority-icon="" data-priority="p.Risk" style="width: 16px; height: 16px;"></i>
+                        </div>
+                        <div class="col-sm-1" data-ng-class="{completed: p.IsCompleted}">{{p.Type | formatenum:vm.releaseTaskTypes}}</div>
+                        <div class="col-sm-3" data-ng-class="{completed: p.IsCompleted}" data-ng-bind-html="p.Description | linky:'_blank'"></div>
+                        <div class="col-sm-6 row">
+                            <div class="col-sm-2 text-center" data-ng-class="{completed: p.IsCompleted}" data-ng-if="vm.parent.hasPlugin('HelpDesk')">
+                                <a target="blank" data-ng-show="!!p.HelpDeskReference" data-ng-href="{{p.HelpDeskUrl}}">#{{p.HelpDeskReference}}</a>
+                            </div>
+                            <div class="release-task-assignee col-sm-2" data-ng-class="{completed: p.IsCompleted}">
+                                <input type="checkbox" disabled data-ng-model="p.IsConfirmed" data-ng-show="!vm.isManualConfirmationAllowed(p)"/>
+                                <button class="btn btn-default btn-xs" data-ng-show="vm.isManualConfirmationAllowed(p)"
+                                    data-ng-click="vm.confirmTask(p)" data-ng-disabled="vm.isClosed"
+                                    data-access-control="ConfirmReleaseTaskReceiptCommand" data-restriction-mode="disable">
+                                    Confirm</button>
+                                {{p.Assignee}}
+                            </div>
+                            <div class="col-sm-2" data-ng-class="{completed: p.IsCompleted}">{{p.LengthOfRun}} {{ !!p.LengthOfRun ? "mins." : "" }}</div>
+                            <div class="col-sm-2" data-ng-class="{completed: p.IsCompleted}">{{p.WhereTested}}</div>
+                            <div class="col-sm-1" style="text-align: center;">
+                                <input type="checkbox" data-ng-model="p.RequireSiteDown" disabled />
+                            </div>
+                            <div class="col-sm-3 text-right" data-ng-show="!p.IsCompleted && !vm.isClosed" style="padding-right: 20px">
+                                <button class="btn btn-default btn-xs" data-ng-click="vm.editReleaseTask(p)"
+                                    data-access-control="UpdateReleaseTaskCommand" data-restriction-mode="hide">
+                                    Edit</button>
+                                <button data-confirmation="" data-removing-subject="releaseTask" data-removing-item="ReMI"
+                                    class="btn btn-default btn-xs ng-isolate-scope" data-ng-click="vm.removeReleaseTask(p)"
+                                    data-access-control="DeleteReleaseTaskCommand" data-restriction-mode="hide">
+                                    Remove</button>
+                                <button class="btn btn-default btn-xs"
+                                    data-ng-if="(vm.releaseType == 'Hotfix' || vm.releaseType == 'ChangeRequest') && !p.IsCompleted"
+                                    data-ng-click="vm.completeReleaseTask(p)" data-access-control="CompleteReleaseTaskCommand" data-restriction-mode="hide">
+                                    Complete</button>
+                            </div>
+                        </div>
+                        <div class="drop-area"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-loader" data-ng-show="vm.state.isBusy">
+            </div>
+        </div>
+        <div class="modal fade" id="releaseTaskModal" tabindex="-1" data-backdrop="static" data-keyboard="true" data-focus-modal-editor="#releasetask-description">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-hidden="true" data-ng-click="vm.hideCurrentReleaseTaskModal()">&times;</button>
+                        <h4 class="modal-title">Release task</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" id="releaseTaskModalForm" class="form-horizontal" data-file-upload="options">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="releasetask-type-select">Type</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="releasetask-type-select" data-ng-model="vm.currentTask.Type" name="currentTaskType" data-ng-options="c.Value as c.Text for c in vm.releaseTaskTypes" required></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="releasetask-risk-select">Risk</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="releasetask-risk-select" data-ng-model="vm.currentTask.Risk" name="currentTaskRisk" data-ng-options="c.Value as c.Text for c in vm.releaseTaskRisks" required></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="releasetask-description">Description</label>
+                                <div class="col-sm-9">
+                                    <textarea id="releasetask-description" data-ng-model="vm.currentTask.Description" name="currentTaskDescription" class="form-control" rows="2" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" data-ng-if="vm.parent.hasPlugin('HelpDesk')">
+                                <label class="col-sm-3 control-label" for="releasetask-description">HelpDesk ticket</label>
+                                <div class="col-sm-9">
+                                    <label class="control-label" data-ng-show="vm.currentOperationType=='edit' && !!vm.currentTask.HelpDeskReference">
+                                        <a target="blank" data-ng-href="{{vm.currentTask.HelpDeskUrl}}">{{vm.currentTask.HelpDeskReference}} (click to open)
+                                        </a>
+                                    </label>
+                                    <div class="checkbox" data-ng-show="!vm.currentTask.HelpDeskReference">
+                                        <label>
+                                            <input type="checkbox" id="releasetask-createHelpDeskTicket" data-ng-model="vm.currentTask.CreateHelpDeskTicket">
+                                            Create ticket
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="releasetask-assignee">Assignee</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <p id="releasetask-assignee" class="form-control-static input-look">{{ vm.currentTask.Assignee }}</p>
+                                        <span class="input-group-addon"
+                                            data-account-search="" data-multi-select="false" data-get-selected="vm.getSelectedAssignees()" data-on-submit="vm.selectAssignee(data)" data-dialog-title="Assignee for task">
+                                            <i class="glyphicon glyphicon-folder-open"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox" data-ng-enabled="vm.currentOperationType=='create'">
+                                        <label>
+                                            <input type="checkbox" id="releasetask-require-site-down" data-ng-model="vm.currentTask.RequireSiteDown">
+                                            Require site down
+                                       
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="releasetask-risk-select">Where tested</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="releasetask-whereTested-select" data-ng-model="vm.currentTask.WhereTested" name="currentTaskWhereTested" data-ng-options="c.Value as c.Text for c in vm.releaseTaskEnvironments"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="releasetask-risk-select">Length of run (min)</label>
+                                <div class="col-sm-9">
+                                    <input type="number" id="releasetask-length-of-run" data-ng-model="vm.currentTask.LengthOfRun" class="form-control" min="1" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" alt="" />
+                        <button class="btn btn-primary" data-ng-disabled="vm.state.isBusy || vm.isClosed" data-ng-click="vm.saveReleaseTask(this)">{{vm.currentOperationTypeActionTitle()}}</button>
+                        <button class="btn btn-default" data-ng-disabled="vm.state.isBusy" data-ng-click="vm.hideCurrentReleaseTaskModal(this)">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="widget-foot">
+        <div class="row">
+            <div class="col-xs-6">
+                <button class="btn btn-default" data-ng-click="vm.createReleaseTask()" data-ng-disabled="!vm.state.bindedToReleaseWindow || vm.state.isBusy || vm.isClosed"
+                    data-access-control="CreateReleaseTaskCommand" data-restriction-mode="hide">
+                    Create new task</button>
+            </div>
+            <div class="col-xs-6">
+                <button class="btn btn-default pull-right" data-ng-click="vm.refreshReleaseTasks()" data-ng-disabled="!vm.state.bindedToReleaseWindow || vm.state.isBusy || vm.isClosed">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                    Update
+                </button>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

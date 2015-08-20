@@ -1,0 +1,16 @@
+<span class="pull-right" data-cal-date="true" data-cal-view="month" data-ng-click="">{{$month.name}}</span>
+<div data-ng-if="$month.events.length > 0">
+    <small class="cal-events-num badge badge-important pull-left">{{$month.events.length}}</small>
+    <div id="cal-day-tick" data-ng-show="$month.showTick && !$month.showEvents"
+        data-ng-mouseover="$month.showTick = true" data-ng-mouseleave="$month.showTick = false"
+        data-ng-click="cal.yearData.expandEvents($month)"
+        data-ng-contextmenu="cal.invokeContextmenu($month.startDate, event, $event)">
+        <i class="icon-chevron-down glyphicon glyphicon-chevron-down"></i>
+    </div>
+</div>
+<div style="width: 100%; height: 100%; position: absolute;"
+    data-ng-click="cal.yearData.expandEvents($month)"
+    data-ng-contextmenu="cal.invokeContextmenu($month.startDate, event, $event)"
+     data-ng-mouseover="$month.showTick = $month.events.length > 0"
+     data-ng-mouseleave="$month.showTick = false">
+</div>

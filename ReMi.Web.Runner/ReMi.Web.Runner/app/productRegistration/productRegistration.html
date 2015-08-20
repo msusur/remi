@@ -1,0 +1,249 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="widget wlightblue" data-ng-controller="productRegistration as vm">
+                <div data-remi-widget-header="" title="Product Registrations"></div>
+                <div class="widget-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-condensed table-striped request-registrations">
+                                <colgroup>
+                                    <col style="width: 10%;" />
+                                    <col style="width: 30%;" />
+                                    <col style="width: auto;" />
+                                    <col style="width: 10%;" />
+                                    <col style="width: 15%;" />
+                                    <col style="width: 15%;" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Description</th>
+                                        <th>Type</th>
+                                        <th>CreatedOn</th>
+                                        <th>CreatedBy</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="r in vm.registrations | orderBy:vm.registrationsSorter" data-ng-class="{'completed' : r.Status == 'Completed'}">
+                                        <td><i class="fa" data-ng-class="{'fa-square-o' : r.Status != 'Completed', 'fa-check-square-o' : r.Status == 'Completed'}"></i>{{r.Status}}</td>
+                                        <td>{{r.Description}}</td>
+                                        <td>{{r.ProductRequestType}}</td>
+                                        <td>{{r.CreatedOn | formatdatetime}}</td>
+                                        <td>{{r.CreatedBy}}</td>
+                                        <td>
+                                            <div class="pull-right">
+                                                <button type="button" class="btn btn-default btn-xs" data-ng-click="vm.showProductRegistrationModal(r)" title="Edit request {{r.Description}}"
+                                                    data-access-control="UpdateProductRequestRegistrationCommand" data-restriction-mode="hide"><i class="fa fa-edit"></i>Edit</button>
+                                                <button type="button" class="btn btn-default btn-xs"
+                                                    data-ng-click="vm.showRemovingReasonModal(r)" title="Remove request {{r.Description}}"
+                                                    data-access-control="DeleteProductRequestRegistrationCommand" data-restriction-mode="hide">
+                                                    Remove</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-foot">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <button data-access-control="CreateProductRequestRegistrationCommand" data-restriction-mode="hide" class="btn btn-default" data-ng-disabled="vm.state.isBusy" data-ng-click="vm.showProductRegistrationModal()">New Registration</button>
+                        </div>
+                        <div class="col-xs-6">
+                        </div>
+                    </div>
+                </div>
+                <div class="list-loader" data-ng-show="vm.state.isBusy">
+                </div>
+
+                <!-- regitration edit modal //-->
+                <div class="modal fade" id="productRegistrationModal" tabindex="-1" data-backdrop="static" data-keyboard="true">
+                    <div class="modal-dialog" style="width: 960px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" aria-hidden="true" data-ng-click="vm.hideProductRegistrationModal()">&times;</button>
+                                <h4 class="modal-title">Request For Product Registration</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form" name="productRegistrationModalForm" class="form-horizontal" novalidate="">
+                                    <div class="form-group no-bottom-padding">
+                                        <label class="col-sm-2 control-label" for="description">Description</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="description" type="text" data-ng-model="vm.currentProductRegistration.Description" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="select-type">Choose type</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" id="select-type" data-ng-model="vm.currentProductRegistration.selectedRequestedType"
+                                                data-ng-disabled="!!vm.currentProductRegistration.ExternalId"
+                                                data-ng-options="tp.Name for tp in vm.requestTypes" data-ng-change="vm.selectedRequestedTypeChanged()" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="long-table-wrapper400">
+                                                <table class="table table-condensed table-striped request-registration-list">
+                                                    <colgroup>
+                                                        <col style="width: 5px" />
+                                                        <col style="width: 5px" />
+                                                        <col style="width: auto" />
+                                                        <col style="width: 130px" />
+                                                        <col style="width: 15px" />
+                                                        <col style="width: 40px" />
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr data-ng-repeat-start="g in vm.currentProductRegistration.RequestType.RequestGroups | orderBy: 'Name'" class="request-group-header">
+                                                            <td><i class="fa fa-caret-down"></i></td>
+                                                            <td colspan="5">{{g.Name}}</td>
+                                                        </tr>
+                                                        <tr data-ng-repeat="t in g.RequestTasks | orderBy: 'Question'" class="request-task">
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>{{t.Question}}</td>
+                                                            <td><span class="small">{{t.LastChangedBy}}
+                                                                <br data-ng-if="!!t.LastChangedBy">
+                                                                {{t.LastChangedOn | formatdatetime}}</span></td>
+                                                            <td>
+                                                                <input id="TaskCheck{{t.ExternalId}}" name="TaskCheck{{t.ExternalId}}"
+                                                                    data-ng-model="t.IsCompleted" data-ng-change="vm.currentTaskChanged(t)" type="checkbox" data-ng-class="{ 'disabled' : !t.dirty && !!t.IsCompleted }" />
+                                                                <label for="TaskCheck{{t.ExternalId}}" class="disabled"></label>
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn check-list-button" data-ng-class="{'btn-primary': t.Comment, 'btn-default': !t.Comment}"
+                                                                    data-tooltip-placement="left" data-tooltip="{{t.Comment}}" data-ng-click="vm.showCommentModal(t)">
+                                                                    <i class="fa fa-comment-o"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr data-ng-repeat-end="" class="hidden">
+                                                            <td colspan="6"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="pull-right">
+                                                <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" alt="" />
+                                                <span class="label label-danger" data-ng-show="productRegistrationModalForm.$invalid">Form contains invalid data!</span>
+                                                <button class="btn btn-primary" data-ng-click="vm.saveProductRegistrationModal()" data-ng-disabled="vm.state.isBusy || productRegistrationModalForm.$invalid">Save</button>
+                                                <button class="btn btn-default" data-ng-click="vm.hideProductRegistrationModal()" data-ng-disabled="vm.state.isBusy" type="reset">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!--                            <div class="modal-footer">
+                                <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" alt="" />
+
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- confirm //-->
+                <div class="modal fade" id="confirmDialog" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="true" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" aria-hidden="true" data-ng-click="vm.cancelConfirmation()">&times;</button>
+                                <h4 class="modal-title" style="text-align: left;">{{vm.confirmation.title}}</h4>
+                            </div>
+                            <div class="modal-body wrap-space-bottom">
+                                <div>
+                                    <h6 style="text-align: left;">{{vm.confirmation.text}}</h6>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-ng-click="vm.approveConfirmation()">Yes</button>
+                                <button type="button" class="btn btn-default" data-ng-click="vm.cancelConfirmation()">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- comment modal //-->
+                <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="true" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" aria-hidden="true" data-ng-click="vm.hideCommentModal()">&times;</button>
+                                <h4 class="modal-title">Comment</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form" class="form-horizontal" data-ng-model-options="{ updateOn: 'blur' }">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control check-list-textarea" data-ng-model="vm.currentTask.Comment" rows="3"
+                                                data-ng-change="vm.currentTaskChanged(vm.currentTask)"
+                                                data-ng-model-options="{ updateOn: 'blur' }"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-ng-click="vm.saveCommentModal()">Save</button>
+                                <button type="button" class="btn btn-default" data-ng-click="vm.hideCommentModal()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- removing reason modal //-->
+                <div class="modal fade" id="removingReasonModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="true" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" aria-hidden="true" data-ng-click="vm.hideRemovingReasonModal()">&times;</button>
+                                <h4 class="modal-title">Why do you want to remove '{{vm.currentProductRegistration.Description}}'?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form" class="form-horizontal" data-ng-model-options="{ updateOn: 'blur' }">
+                                    <div class="form-group container">
+                                        <div class="row">
+                                            <label class="col-sm-2 control-label text-right" for="removingReasonSelect">Reason: </label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" id="removingReasonSelect" data-ng-model="vm.removingReason.removingReason"
+                                                    data-ng-options="r.Name as r.Description for r in vm.localData.enums.RemovingReason" required>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <label class="col-sm-2 control-label text-right" for="removeReasonComment">Comment: </label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control check-list-textarea" id="removeReasonComment" data-ng-model="vm.removingReason.comment" rows="3"
+                                                    data-ng-model-options="{ updateOn: 'blur' }"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" alt="" />
+                                <button type="button" class="btn btn-primary"
+                                    data-ng-click="vm.deleteProductRegistration(vm.currentProductRegistration)"
+                                    data-ng-disabled="vm.state.isBusy">
+                                    Remove</button>
+                                <button type="button" class="btn btn-default"
+                                    data-ng-click="vm.hideRemovingReasonModal()"
+                                    data-ng-disabled="vm.state.isBusy">
+                                    Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,25 @@
+<div class="release-plan-tab release-plan">
+    <div class="row" data-ng-show="vm.state.isBindedToRelease">
+        <div class="col-md-6" data-ng-show="vm.currentReleaseWindow.ReleaseType != 'Automated'">
+            <div data-ng-include="'/app/release/releaseExecution/releaseTask.html'"></div>
+        </div>
+        <div class="col-md-6">
+            <div data-ng-include="'/app/release/releaseExecution/signOff.html'"></div>
+        </div>
+    </div>
+    <div class="row" data-ng-show="vm.state.isBindedToRelease">
+
+        <div class="col-md-6">
+            <div data-ng-include="'/app/release/releaseExecution/releaseProcess.html'"></div>
+        </div>
+    </div>
+    <div class="row" data-ng-if="vm.state.isBindedToRelease
+        && vm.hasPlugin('DeploymentTool')
+        && vm.currentReleaseWindow.ReleaseType != 'Hotfix'
+        && !vm.isCurrentReleaseWindowMaintenance
+        && vm.currentReleaseWindow.ReleaseType != 'Automated'">
+        <div class="col-md-12">
+            <div data-ng-include="'/app/release/releaseExecution/deploymentJobsMeasurements.html'"></div>
+        </div>
+    </div>
+</div>

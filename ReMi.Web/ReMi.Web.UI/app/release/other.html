@@ -1,0 +1,8 @@
+<tabset>
+    <tab heading="Release Plan" active="vm.activeTab.plan" data-ng-click="vm.activeTab.setActive('plan')">
+        <div data-ng-include="'/app/release/releasePlan/releasePlanTab.html'"></div>
+    </tab>
+    <tab heading="Release Execution"  active="vm.activeTab.exec" data-ng-click="vm.activeTab.setActive('exec')">
+        <div data-ng-include="'/app/release/releaseExecution/releaseExecutionTab.html'"></div>
+    </tab>             
+</tabset>

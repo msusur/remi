@@ -1,0 +1,59 @@
+<div class="container">
+    <div data-ng-show="viewMode == 'code'" class="cssFade">
+        <div class="row" style="margin-bottom: 3px;">
+            <div class="col-sm-12 text-right">
+                <button class="btn btn-info" style="width: 125px" data-ng-click="switchViewMode()">
+                    <i class="fa fa-dashboard"></i>Test Data
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" style="">
+                {{ruleDesc.Description}}:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" style="">
+                <div class="rule-editor" style="border-radius: 4px; border: solid 1px #ccc; height: 200px"></div>
+            </div>
+        </div>
+    </div>
+    <div data-ng-show="viewMode == 'testData'" class="cssFade">
+        <div class="row" style="margin-bottom: 3px;">
+            <div class="col-sm-12 text-right">
+                <button class="btn btn-info" style="width: 125px" data-ng-click="switchViewMode()">
+                    <i class="fa fa-code"></i>Script editor
+                </button>
+            </div>
+        </div>
+        <div  style="max-height: 500px; overflow-x: hidden; overflow-y: auto">
+            <div class="row">
+                <div class="col-sm-12" style="">
+                    Account Test Data:
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" style="">
+                    <div class="account-test-data" style="border-radius: 4px; border: solid 1px #ccc; height: 200px"></div>
+                </div>
+            </div>
+            <div data-ng-repeat="parameter in ruleDesc.Parameters">
+                <div class="row">
+                    <div class="col-sm-12" style="">
+                        Parameter: {{parameter.Name}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="">
+                        Type: {{parameter.Type}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="">
+                        <div class="{{parameter.ExternalId}}" style="border-radius: 4px; border: solid 1px #ccc; height: 200px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

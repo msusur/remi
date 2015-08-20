@@ -1,0 +1,116 @@
+<div data-ng-controller="report as vm">
+    <div class="widget wlightblue">
+        <div data-remi-widget-header="" title="ReMi reports" data-allow-collapse="true"></div>
+        <div class="widget-content" style="padding-bottom: 0 !important; padding-top: 0 !important;">
+            <div class="row">
+                <div class="col-md-3 report-parameters">
+                    <div class="row report-type">
+                        <div class="col-md-12">
+                            <select class="form-control"
+                                    data-ng-change="vm.refreshReport()"
+                                    data-ng-model="vm.currentReport"
+                                    data-ng-options="p.ReportName for p in vm.reports">
+                            </select>
+                        </div>
+                    </div>
+                    <p>Report Parameters:</p>
+                    <form class="form">
+                        <div data-ng-repeat="r in vm.currentReport.ReportParameters track by $index" style="margin-bottom: 1%;">
+                            <label class="control-label" for="report-parameter+{{$index}}">{{r.Description}}:</label>
+                            <div data-ng-if="r.Type!='Report.Packages' && r.Type!='datetime'">
+                                <input type="text" class="form-control" name="report-parameter+{{$index}}" data-ng-model="r.Value" required />
+                            </div>
+                            <div data-ng-if="r.Type.toLowerCase()=='datetime'">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" id="report-datetime-parameter-{{$index}}" role="button" data-toggle="dropdown" data-target="#">
+                                        <div class="input-group">
+                                            <p class="form-control-static input-look">{{ r.Value | date:'dd MMM yyyy HH:mm' }}</p>
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <li data-datetimepicker="" data-ng-model="r.Value"
+                                            data-datetimepicker-config="{ dropdownSelector: '#report-datetime-parameter-{{$index}}', minView: 'minute' }"
+                                            data-min-view-option="r.Description" />
+                                    </ul>
+                                </div>
+                            </div>
+                            <div data-ng-if="r.Type=='Report.Packages'">
+                                <div data-tree-list="vm.businessUnits" id="report-product-select+{{$index}}"
+                                    data-options="{
+                                        childrenArrayProperty:'Packages',
+                                        parentNameProperty:'Description',
+                                        allowCheck: true,
+                                        childNameProperty:'Name'}"
+                                    style="height: 150px; overflow: auto;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 1% !important; margin-top: 2%;">
+                            <div class="col-md-6" style="padding-top: 1%;">
+                                <div data-ng-show="vm.dateParametersPresent">
+                                    <label for="use-utc-time-zone" class="pull-left">Use UTC Time: </label>
+                                    <input id="use-utc-time-zone" type="checkbox" data-ng-model="vm.useUtcTime" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-primary pull-right" data-ng-click="vm.buildReport()">Build Report</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="col-md-9">
+                    <div class="row" data-ng-if="vm.report">
+                        <div class="col-md-9">
+                            <div class="row report-type">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" style="text-align: center;">
+                                        <b>{{vm.report.name}}</b>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="list-long-container" style="margin-top: 3%;">
+                                            <table data-datatable="ng" data-dt-options="vm.report.options" data-dt-columns-defs="vm.report.columns" class="table table-striped">
+                                                <thead>
+                                                    <th data-ng-repeat="columnName in vm.report.columnNames">{{columnName}}</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-ng-repeat="record in vm.report.content">
+                                                        <td data-ng-repeat="val in record track by $index" data-ng-bind-html="val"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button data-ng-click="vm.downloadReportCsv()" class="btn btn-primary pull-right" style="margin-top: 2%; margin-bottom: 1%;">Download CSV</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style="">
+                            <div class="row report-type">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" style="text-align: center;">
+                                        <b>Current Report Parameters</b>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div data-ng-repeat="p in vm.report.parameters">
+                                            <p class="panel-title"><strong>{{p.Description}}:</strong></p>
+                                            <p data-ng-if="vm.checkArrayParameter(p.Value)">
+                                                <span data-ng-repeat="item in p.Value" class="badge badge-info" style="margin-right: 5px">{{item}}</span>
+                                            </p>
+                                            <p data-ng-if="!vm.checkArrayParameter(p.Value)">
+                                                <span class="badge badge-info">{{p.Value}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

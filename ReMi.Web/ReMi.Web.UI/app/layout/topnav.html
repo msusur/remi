@@ -1,0 +1,50 @@
+<nav class="navbar navbar-fixed-top navbar-inverse" data-ng-controller="topnav as vm">
+    <div class="navbar-header">
+        <a href="/" class="navbar-brand"><span class="brand-title">{{vm.title}}</span></a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <div class="wrap-space-top">
+            <form class="form-inline pull-right wrap-space-right3 account-info topnav-element" role="form">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <div class="form-group" data-ng-if="vm.isLoggedIn">
+                            <button type="button" class="btn btn-default dropdown-toggle topnav-business-unit-btn" data-toggle="dropdown" aria-expanded="false">
+                                {{vm.businessUnit.Name}} / {{vm.package.Name}} <i class="fa fa-caret-down topnav-dropdown-caret"></i>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                <li class="dropdown-submenu" data-ng-repeat="bu in vm.businessUnits">
+                                    <a tabindex="-1">{{bu.Description}}</a>
+                                    <ul class="dropdown-menu">
+                                        <li data-ng-repeat="package in bu.Packages">
+                                            <a tabindex="-1" data-ng-click="vm.productChanged(bu, package)">{{package.Name}}</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-group wrap-space-left">
+                            <a class="form-control-static" href="/#/apiDescription">API Reference</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-group wrap-space-left" data-ng-show="vm.isLoggedIn">
+                            <a class="btn btn-info" href="#/profile" title="Edit profile">{{vm.userDisplayName}}</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="form-group wrap-space-left" data-ng-show="vm.isLoggedIn">
+                            <a class="form-control-static" data-ng-click="vm.logOut()">Log Out</a>
+                        </div>
+                    </li>
+                    <li data-ng-hide="vm.isLoggedIn">
+                        <div class="form-group wrap-space-left" data-ng-hide="vm.isLoggedIn">
+                            <a href="/#/login" style="color: #fff">Log In</a>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</nav>

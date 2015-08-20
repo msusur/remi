@@ -1,0 +1,13 @@
+<div class="cal-row-fluid cal-row-head">
+    <div class="cal-cell1" data-ng-repeat-start="i in range(7) track by $index" data-ng-repeat-end="">{{weekdays($index + 1)}}</div>
+</div>
+<div class="cal-month-box">
+    <div data-ng-repeat="i in range(cal.monthData.dayRowsCount) track by $index"
+         data-ng-init="i = $index" class="cal-row-fluid">
+        <div data-ng-repeat="j in range(7) track by $index"
+            class="cal-cell1 cal-cell" data-cal-row="-day{{$index + 1}}"
+            data-ng-init="$day = cal.monthData.days[i + '_' + $index]"
+            data-ng-include="cal.monthData.dayTmpl">
+        </div>
+    </div>
+</div>

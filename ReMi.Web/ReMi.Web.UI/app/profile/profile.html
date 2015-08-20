@@ -1,0 +1,73 @@
+<section id="home-view" class="mainbar" data-ng-controller="profile as vm">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="widget wlightblue">
+                        <div data-remi-widget-header="" title="General information"
+                            data-allow-collapse="true">
+                        </div>
+                        <div class="widget-content text-info">
+                            <form class="form form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Name</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" data-ng-model="vm.account.name" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Full Name</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" data-ng-model="vm.account.fullname" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Role</label>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control" data-ng-model="vm.account.role" readonly="readonly" />
+                                    </div>
+                                    <div class="col-md-5">
+                                        &nbsp;
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Packages</label>
+                                    <div class="col-md-10">
+                                        <div data-tree-list="vm.businessUnits"
+                                            data-options="{
+                                                childrenArrayProperty:'Packages',
+                                                parentNameProperty:'Description',
+                                                childSelectProperty:'IsDefault',
+                                                childCheckProperty:'Checked',
+                                                allowSelect: true,
+                                                allowCheck: true,
+                                                disableSelectIfNotChecked: true,
+                                                childNameProperty:'Name'}"
+                                            style="width: 300px">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="widget-foot">
+                            <button class="btn btn-default" data-ng-click="vm.updateAccountPackages()"
+                                data-access-control="UpdateAccountPackagesCommand" data-restriction-mode="disable">
+                                Update Packages</button>
+                            <button type="button" class="btn btn-default pull-right" data-ng-click="vm.readAccountInfo()">
+                                <span class="glyphicon glyphicon-refresh"></span>
+                                Refresh
+                            </button>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="list-loader" data-ng-show="vm.state.isBusy">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div data-ng-include="'/app/profile/subscriptions.html'"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

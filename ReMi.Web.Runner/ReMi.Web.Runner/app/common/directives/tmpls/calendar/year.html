@@ -1,0 +1,14 @@
+<div class="cal-year-box">
+    <div class="row row-fluid cal-before-eventlist"
+        data-ng-repeat="q in range(3) track by $index"
+        data-ng-init="q = $index">
+        <div class="span3 col-md-3 cal-cell"
+            data-ng-repeat="m in range(4) track by $index"
+            data-cal-row="-month{{$index + 1}}"
+            data-ng-init="$month = cal.yearData.months[(q * 4) + $index + 1]"
+            data-ng-include="cal.yearData.monthTmpl">
+        </div>
+        <div class="clear"></div>
+        <div data-ng-include="cal.yearData.eventsTmpl" id="cal-slide-box" data-ng-if="cal.yearData.showEvents(q)"></div>
+    </div>
+</div>

@@ -1,0 +1,1470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B61C3923-8B28-44A0-B754-E29EE0505461}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReMi.Web.UI.Tests</RootNamespace>
+    <AssemblyName>ReMi.Web.UI.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="..\ReMi.Web.UI\app\acknowledge\acknowledge.js">
+      <Link>Source\app\acknowledge\acknowledge.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\apiDescription\apiDescription.js">
+      <Link>Source\app\apiDescription\apiDescription.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\app.js">
+      <Link>Source\app\app.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\bootstrap\bootstrap.dialog.js">
+      <Link>Source\app\common\bootstrap\bootstrap.dialog.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\common.js">
+      <Link>Source\app\common\common.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\datetimepicker.js">
+      <Link>Source\app\common\datetimepicker.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\directives\accessControlled.js">
+      <Link>Source\app\common\directives\accessControlled.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\directives\accountSearch.js">
+      <Link>Source\app\common\directives\accountSearch.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\directives\accountSignature.js">
+      <Link>Source\app\common\directives\accountSignature.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\directives\aceEditor.js">
+      <Link>Source\app\common\directives\aceEditor.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\directives\draggableRow.js">
+      <Link>Source\app\common\directives\draggableRow.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\directives\focusModalEditor.js">
+      <Link>Source\app\common\directives\focusModalEditor.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\directives\ngEnter.js">
+      <Link>Source\app\common\directives\ngEnter.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\directives\remiChart.js">
+      <Link>Source\app\common\directives\remiChart.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\directives\riskPriorityIcon.js">
+      <Link>Source\app\common\directives\riskPriorityIcon.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\directives\ruleEditor.js">
+      <Link>Source\app\common\directives\ruleEditor.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\directives\treeGrid.js">
+      <Link>Source\app\common\directives\treeGrid.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\directives\treeList.js">
+      <Link>Source\app\common\directives\treeList.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\fileUploader.js">
+      <Link>Source\app\common\fileUploader.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\filter.js">
+      <Link>Source\app\common\filter.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\filters\formatArray.js">
+      <Link>Source\app\common\filters\formatArray.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\filters\formatList.js">
+      <Link>Source\app\common\filters\formatList.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\filters\localdate.js">
+      <Link>Source\app\common\filters\localdate.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\logger.js">
+      <Link>Source\app\common\logger.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\spinner.js">
+      <Link>Source\app\common\spinner.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\common\validation.js">
+      <Link>Source\app\common\validation.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\config.exceptionHandler.js">
+      <Link>Source\app\config.exceptionHandler.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\config.js">
+      <Link>Source\app\config.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\config.route.js">
+      <Link>Source\app\config.route.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\accounts\accounts.html">
+      <Link>Source\app\configuration\accounts\accounts.html</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\accounts\accounts.js">
+      <Link>Source\app\configuration\accounts\accounts.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\businessUnits\products.html">
+      <Link>Source\app\configuration\businessUnits\products.html</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\businessUnits\products.js">
+      <Link>Source\app\configuration\businessUnits\products.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\permissions\commands.html">
+      <Link>Source\app\configuration\permissions\commands.html</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\permissions\commands.js">
+      <Link>Source\app\configuration\permissions\commands.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\permissions\permissions.html">
+      <Link>Source\app\configuration\permissions\permissions.html</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\permissions\queries.html">
+      <Link>Source\app\configuration\permissions\queries.html</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\permissions\queries.js">
+      <Link>Source\app\configuration\permissions\queries.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\permissions\roles.html">
+      <Link>Source\app\configuration\permissions\roles.html</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\permissions\roles.js">
+      <Link>Source\app\configuration\permissions\roles.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\plugins\plugins.js">
+      <Link>Source\app\configuration\plugins\plugins.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\plugins\pluginsConfiguration.js">
+      <Link>Source\app\configuration\plugins\pluginsConfiguration.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\plugins\pluginsGlobalConfiguration.js">
+      <Link>Source\app\configuration\plugins\pluginsGlobalConfiguration.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\plugins\pluginsPackageConfiguration.js">
+      <Link>Source\app\configuration\plugins\pluginsPackageConfiguration.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\rules\rules.html">
+      <Link>Source\app\configuration\rules\rules.html</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\configuration\rules\rules.js">
+      <Link>Source\app\configuration\rules\rules.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\confirm\confirm.js">
+      <Link>Source\app\confirm\confirm.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\layout\shell.js">
+      <Link>Source\app\layout\shell.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\layout\sidebar.js">
+      <Link>Source\app\layout\sidebar.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\layout\topnav.js">
+      <Link>Source\app\layout\topnav.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\login\login.js">
+      <Link>Source\app\login\login.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\metrics\metricsByProduct.js">
+      <Link>Source\app\metrics\metricsByProduct.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\productRegistrationConfig\productRegistrationConfig.js">
+      <Link>Source\app\productRegistrationConfig\productRegistrationConfig.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\productRegistration\productRegistration.js">
+      <Link>Source\app\productRegistration\productRegistration.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\profile\profile.js">
+      <Link>Source\app\profile\profile.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\profile\subscriptions.js">
+      <Link>Source\app\profile\subscriptions.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\releaseCalendar\releaseCalendar.css">
+      <Link>Source\app\releaseCalendar\releaseCalendar.css</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\releaseCalendar\releaseCalendar.html">
+      <Link>Source\app\releaseCalendar\releaseCalendar.html</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\releaseCalendar\releaseCalendar.js">
+      <Link>Source\app\releaseCalendar\releaseCalendar.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\release.js">
+      <Link>Source\app\release\release.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\releaseExecution\deploymentJobsMeasurements.js">
+      <Link>Source\app\release\releaseExecution\deploymentJobsMeasurements.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\releaseExecution\releaseProcess.js">
+      <Link>Source\app\release\releaseExecution\releaseProcess.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\releaseExecution\signOff.js">
+      <Link>Source\app\release\releaseExecution\signOff.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\releasePlan\checkList.js">
+      <Link>Source\app\release\releasePlan\checkList.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\releasePlan\closeRelease.js">
+      <Link>Source\app\release\releasePlan\closeRelease.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\releasePlan\releaseApprovers.js">
+      <Link>Source\app\release\releasePlan\releaseApprovers.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\releasePlan\releaseChanges.js">
+      <Link>Source\app\release\releasePlan\releaseChanges.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\releasePlan\releaseContent.js">
+      <Link>Source\app\release\releasePlan\releaseContent.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\releasePlan\releaseJobs.js">
+      <Link>Source\app\release\releasePlan\releaseJobs.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\releasePlan\releaseParticipant.js">
+      <Link>Source\app\release\releasePlan\releaseParticipant.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\releasePlan\releaseQaStatus.js">
+      <Link>Source\app\release\releasePlan\releaseQaStatus.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\release\releasePlan\releaseTask.js">
+      <Link>Source\app\release\releasePlan\releaseTask.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\reports\report.js">
+      <Link>Source\app\reports\report.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\services\authService.js">
+      <Link>Source\app\services\authService.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\services\directives.js">
+      <Link>Source\app\services\directives.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\services\entityManagerFactory.js">
+      <Link>Source\app\services\entityManagerFactory.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\services\localData.js">
+      <Link>Source\app\services\localData.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\services\notifications.js">
+      <Link>Source\app\services\notifications.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\services\remiapi.js">
+      <Link>Source\app\services\remiapi.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\app\services\rulesService.js">
+      <Link>Source\app\services\rulesService.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\ace.js">
+      <Link>Source\Scripts\ace\src-noconflict\ace.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\mode-csharp.js">
+      <Link>Source\Scripts\ace\src-noconflict\mode-csharp.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\mode-css.js">
+      <Link>Source\Scripts\ace\src-noconflict\mode-css.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\mode-html.js">
+      <Link>Source\Scripts\ace\src-noconflict\mode-html.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\mode-javascript.js">
+      <Link>Source\Scripts\ace\src-noconflict\mode-javascript.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\mode-json.js">
+      <Link>Source\Scripts\ace\src-noconflict\mode-json.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\theme-github.js">
+      <Link>Source\Scripts\ace\src-noconflict\theme-github.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\worker-css.js">
+      <Link>Source\Scripts\ace\src-noconflict\worker-css.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\worker-html.js">
+      <Link>Source\Scripts\ace\src-noconflict\worker-html.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\worker-javascript.js">
+      <Link>Source\Scripts\ace\src-noconflict\worker-javascript.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\worker-json.js">
+      <Link>Source\Scripts\ace\src-noconflict\worker-json.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-animate.js">
+      <Link>Source\Scripts\angular-animate.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-animate.min.js">
+      <Link>Source\Scripts\angular-animate.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-aria.js">
+      <Link>Source\Scripts\angular-aria.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-aria.min.js">
+      <Link>Source\Scripts\angular-aria.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-chart.js">
+      <Link>Source\Scripts\angular-chart.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-cookies.js">
+      <Link>Source\Scripts\angular-cookies.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-cookies.min.js">
+      <Link>Source\Scripts\angular-cookies.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-csp.css">
+      <Link>Source\Scripts\angular-csp.css</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-datatables.min.js">
+      <Link>Source\Scripts\angular-datatables.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-loader.js">
+      <Link>Source\Scripts\angular-loader.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-loader.min.js">
+      <Link>Source\Scripts\angular-loader.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-messages.js">
+      <Link>Source\Scripts\angular-messages.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-messages.min.js">
+      <Link>Source\Scripts\angular-messages.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-mocks.js">
+      <Link>Source\Scripts\angular-mocks.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-nvd3.js">
+      <Link>Source\Scripts\angular-nvd3.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-nvd3.min.js">
+      <Link>Source\Scripts\angular-nvd3.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-resource.js">
+      <Link>Source\Scripts\angular-resource.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-resource.min.js">
+      <Link>Source\Scripts\angular-resource.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-route.js">
+      <Link>Source\Scripts\angular-route.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-route.min.js">
+      <Link>Source\Scripts\angular-route.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-sanitize.js">
+      <Link>Source\Scripts\angular-sanitize.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-sanitize.min.js">
+      <Link>Source\Scripts\angular-sanitize.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-scenario.js">
+      <Link>Source\Scripts\angular-scenario.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-touch.js">
+      <Link>Source\Scripts\angular-touch.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-touch.min.js">
+      <Link>Source\Scripts\angular-touch.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-ui\ui-bootstrap-tpls.js">
+      <Link>Source\Scripts\angular-ui\ui-bootstrap-tpls.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-ui\ui-bootstrap-tpls.min.js">
+      <Link>Source\Scripts\angular-ui\ui-bootstrap-tpls.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-ui\ui-bootstrap.js">
+      <Link>Source\Scripts\angular-ui\ui-bootstrap.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-ui\ui-bootstrap.min.js">
+      <Link>Source\Scripts\angular-ui\ui-bootstrap.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular.js">
+      <Link>Source\Scripts\angular.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular.min.js">
+      <Link>Source\Scripts\angular.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\bootstrap.js">
+      <Link>Source\Scripts\bootstrap.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\bootstrap.min.js">
+      <Link>Source\Scripts\bootstrap.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\Chart.min.js">
+      <Link>Source\Scripts\Chart.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\d3.js">
+      <Link>Source\Scripts\d3.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\d3.min.js">
+      <Link>Source\Scripts\d3.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\dataTables.scroller.js">
+      <Link>Source\Scripts\dataTables.scroller.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\guid-generator.js">
+      <Link>Source\Scripts\guid-generator.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\http.js">
+      <Link>Source\Scripts\http.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-animate.min.js.map">
+      <Link>Source\Scripts\angular-animate.min.js.map</Link>
+      <DependentUpon>angular-animate.js</DependentUpon>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-aria.min.js.map">
+      <Link>Source\Scripts\angular-aria.min.js.map</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-chart.js.map">
+      <Link>Source\Scripts\angular-chart.js.map</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-cookies.min.js.map">
+      <Link>Source\Scripts\angular-cookies.min.js.map</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-loader.min.js.map">
+      <Link>Source\Scripts\angular-loader.min.js.map</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-messages.min.js.map">
+      <Link>Source\Scripts\angular-messages.min.js.map</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-nvd3.min.js.map">
+      <Link>Source\Scripts\angular-nvd3.min.js.map</Link>
+      <DependentUpon>angular-nvd3.js</DependentUpon>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-resource.min.js.map">
+      <Link>Source\Scripts\angular-resource.min.js.map</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-route.min.js.map">
+      <Link>Source\Scripts\angular-route.min.js.map</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-sanitize.min.js.map">
+      <Link>Source\Scripts\angular-sanitize.min.js.map</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular-touch.min.js.map">
+      <Link>Source\Scripts\angular-touch.min.js.map</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\angular.min.js.map">
+      <Link>Source\Scripts\angular.min.js.map</Link>
+    </Content>
+    <None Include="..\ReMi.Web.UI\Scripts\jquery-2.1.0-vsdoc.js">
+      <Link>Source\Scripts\jquery-2.1.0-vsdoc.js</Link>
+    </None>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_af-na.js">
+      <Link>Source\Scripts\i18n\angular-locale_af-na.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_af-za.js">
+      <Link>Source\Scripts\i18n\angular-locale_af-za.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_af.js">
+      <Link>Source\Scripts\i18n\angular-locale_af.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_am-et.js">
+      <Link>Source\Scripts\i18n\angular-locale_am-et.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_am.js">
+      <Link>Source\Scripts\i18n\angular-locale_am.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-001.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-001.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-ae.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-ae.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-bh.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-bh.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-dz.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-dz.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-eg.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-eg.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-iq.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-iq.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-jo.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-jo.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-kw.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-kw.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-lb.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-lb.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-ly.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-ly.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-ma.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-ma.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-om.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-om.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-qa.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-qa.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-sa.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-sa.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-sd.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-sd.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-sy.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-sy.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-tn.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-tn.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar-ye.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar-ye.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ar.js">
+      <Link>Source\Scripts\i18n\angular-locale_ar.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_bg-bg.js">
+      <Link>Source\Scripts\i18n\angular-locale_bg-bg.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_bg.js">
+      <Link>Source\Scripts\i18n\angular-locale_bg.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_bn-bd.js">
+      <Link>Source\Scripts\i18n\angular-locale_bn-bd.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_bn-in.js">
+      <Link>Source\Scripts\i18n\angular-locale_bn-in.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_bn.js">
+      <Link>Source\Scripts\i18n\angular-locale_bn.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ca-ad.js">
+      <Link>Source\Scripts\i18n\angular-locale_ca-ad.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ca-es.js">
+      <Link>Source\Scripts\i18n\angular-locale_ca-es.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ca.js">
+      <Link>Source\Scripts\i18n\angular-locale_ca.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_cs-cz.js">
+      <Link>Source\Scripts\i18n\angular-locale_cs-cz.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_cs.js">
+      <Link>Source\Scripts\i18n\angular-locale_cs.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_da-dk.js">
+      <Link>Source\Scripts\i18n\angular-locale_da-dk.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_da.js">
+      <Link>Source\Scripts\i18n\angular-locale_da.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_de-at.js">
+      <Link>Source\Scripts\i18n\angular-locale_de-at.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_de-be.js">
+      <Link>Source\Scripts\i18n\angular-locale_de-be.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_de-ch.js">
+      <Link>Source\Scripts\i18n\angular-locale_de-ch.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_de-de.js">
+      <Link>Source\Scripts\i18n\angular-locale_de-de.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_de-li.js">
+      <Link>Source\Scripts\i18n\angular-locale_de-li.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_de-lu.js">
+      <Link>Source\Scripts\i18n\angular-locale_de-lu.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_de.js">
+      <Link>Source\Scripts\i18n\angular-locale_de.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_el-cy.js">
+      <Link>Source\Scripts\i18n\angular-locale_el-cy.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_el-gr.js">
+      <Link>Source\Scripts\i18n\angular-locale_el-gr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_el.js">
+      <Link>Source\Scripts\i18n\angular-locale_el.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-as.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-as.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-au.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-au.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-bb.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-bb.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-be.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-be.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-bm.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-bm.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-bw.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-bw.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-bz.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-bz.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-ca.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-ca.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-fm.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-fm.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-gb.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-gb.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-gu.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-gu.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-gy.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-gy.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-hk.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-hk.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-ie.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-ie.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-in.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-in.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-iso.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-iso.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-jm.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-jm.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-mh.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-mh.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-mp.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-mp.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-mt.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-mt.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-mu.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-mu.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-na.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-na.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-nz.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-nz.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-ph.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-ph.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-pk.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-pk.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-pr.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-pr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-pw.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-pw.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-sg.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-sg.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-tc.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-tc.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-tt.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-tt.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-um.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-um.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-us.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-us.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-vg.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-vg.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-vi.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-vi.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-za.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-za.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en-zw.js">
+      <Link>Source\Scripts\i18n\angular-locale_en-zw.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_en.js">
+      <Link>Source\Scripts\i18n\angular-locale_en.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-419.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-419.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-ar.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-ar.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-bo.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-bo.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-cl.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-cl.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-co.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-co.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-cr.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-cr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-do.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-do.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-ea.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-ea.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-ec.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-ec.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-es.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-es.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-gq.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-gq.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-gt.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-gt.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-hn.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-hn.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-ic.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-ic.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-mx.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-mx.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-ni.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-ni.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-pa.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-pa.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-pe.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-pe.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-pr.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-pr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-py.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-py.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-sv.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-sv.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-us.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-us.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-uy.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-uy.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es-ve.js">
+      <Link>Source\Scripts\i18n\angular-locale_es-ve.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_es.js">
+      <Link>Source\Scripts\i18n\angular-locale_es.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_et-ee.js">
+      <Link>Source\Scripts\i18n\angular-locale_et-ee.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_et.js">
+      <Link>Source\Scripts\i18n\angular-locale_et.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_eu-es.js">
+      <Link>Source\Scripts\i18n\angular-locale_eu-es.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_eu.js">
+      <Link>Source\Scripts\i18n\angular-locale_eu.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fa-af.js">
+      <Link>Source\Scripts\i18n\angular-locale_fa-af.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fa-ir.js">
+      <Link>Source\Scripts\i18n\angular-locale_fa-ir.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fa.js">
+      <Link>Source\Scripts\i18n\angular-locale_fa.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fi-fi.js">
+      <Link>Source\Scripts\i18n\angular-locale_fi-fi.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fi.js">
+      <Link>Source\Scripts\i18n\angular-locale_fi.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fil-ph.js">
+      <Link>Source\Scripts\i18n\angular-locale_fil-ph.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fil.js">
+      <Link>Source\Scripts\i18n\angular-locale_fil.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-be.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-be.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-bf.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-bf.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-bi.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-bi.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-bj.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-bj.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-bl.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-bl.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-ca.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-ca.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-cd.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-cd.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-cf.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-cf.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-cg.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-cg.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-ch.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-ch.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-ci.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-ci.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-cm.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-cm.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-dj.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-dj.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-fr.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-fr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-ga.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-ga.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-gf.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-gf.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-gn.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-gn.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-gp.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-gp.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-gq.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-gq.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-km.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-km.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-lu.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-lu.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-mc.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-mc.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-mf.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-mf.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-mg.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-mg.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-ml.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-ml.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-mq.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-mq.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-ne.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-ne.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-re.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-re.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr-yt.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr-yt.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_fr.js">
+      <Link>Source\Scripts\i18n\angular-locale_fr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_gl-es.js">
+      <Link>Source\Scripts\i18n\angular-locale_gl-es.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_gl.js">
+      <Link>Source\Scripts\i18n\angular-locale_gl.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_gsw-ch.js">
+      <Link>Source\Scripts\i18n\angular-locale_gsw-ch.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_gsw.js">
+      <Link>Source\Scripts\i18n\angular-locale_gsw.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_gu-in.js">
+      <Link>Source\Scripts\i18n\angular-locale_gu-in.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_gu.js">
+      <Link>Source\Scripts\i18n\angular-locale_gu.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_he-il.js">
+      <Link>Source\Scripts\i18n\angular-locale_he-il.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_he.js">
+      <Link>Source\Scripts\i18n\angular-locale_he.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_hi-in.js">
+      <Link>Source\Scripts\i18n\angular-locale_hi-in.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_hi.js">
+      <Link>Source\Scripts\i18n\angular-locale_hi.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_hr-hr.js">
+      <Link>Source\Scripts\i18n\angular-locale_hr-hr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_hr.js">
+      <Link>Source\Scripts\i18n\angular-locale_hr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_hu-hu.js">
+      <Link>Source\Scripts\i18n\angular-locale_hu-hu.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_hu.js">
+      <Link>Source\Scripts\i18n\angular-locale_hu.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_id-id.js">
+      <Link>Source\Scripts\i18n\angular-locale_id-id.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_id.js">
+      <Link>Source\Scripts\i18n\angular-locale_id.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_in.js">
+      <Link>Source\Scripts\i18n\angular-locale_in.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_is-is.js">
+      <Link>Source\Scripts\i18n\angular-locale_is-is.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_is.js">
+      <Link>Source\Scripts\i18n\angular-locale_is.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_it-it.js">
+      <Link>Source\Scripts\i18n\angular-locale_it-it.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_it-sm.js">
+      <Link>Source\Scripts\i18n\angular-locale_it-sm.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_it.js">
+      <Link>Source\Scripts\i18n\angular-locale_it.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_iw.js">
+      <Link>Source\Scripts\i18n\angular-locale_iw.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ja-jp.js">
+      <Link>Source\Scripts\i18n\angular-locale_ja-jp.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ja.js">
+      <Link>Source\Scripts\i18n\angular-locale_ja.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_kn-in.js">
+      <Link>Source\Scripts\i18n\angular-locale_kn-in.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_kn.js">
+      <Link>Source\Scripts\i18n\angular-locale_kn.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ko-kr.js">
+      <Link>Source\Scripts\i18n\angular-locale_ko-kr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ko.js">
+      <Link>Source\Scripts\i18n\angular-locale_ko.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ln-cd.js">
+      <Link>Source\Scripts\i18n\angular-locale_ln-cd.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ln.js">
+      <Link>Source\Scripts\i18n\angular-locale_ln.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_lt-lt.js">
+      <Link>Source\Scripts\i18n\angular-locale_lt-lt.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_lt.js">
+      <Link>Source\Scripts\i18n\angular-locale_lt.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_lv-lv.js">
+      <Link>Source\Scripts\i18n\angular-locale_lv-lv.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_lv.js">
+      <Link>Source\Scripts\i18n\angular-locale_lv.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ml-in.js">
+      <Link>Source\Scripts\i18n\angular-locale_ml-in.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ml.js">
+      <Link>Source\Scripts\i18n\angular-locale_ml.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_mr-in.js">
+      <Link>Source\Scripts\i18n\angular-locale_mr-in.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_mr.js">
+      <Link>Source\Scripts\i18n\angular-locale_mr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ms.js">
+      <Link>Source\Scripts\i18n\angular-locale_ms.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_mt-mt.js">
+      <Link>Source\Scripts\i18n\angular-locale_mt-mt.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_mt.js">
+      <Link>Source\Scripts\i18n\angular-locale_mt.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_nl-cw.js">
+      <Link>Source\Scripts\i18n\angular-locale_nl-cw.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_nl-nl.js">
+      <Link>Source\Scripts\i18n\angular-locale_nl-nl.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_nl-sx.js">
+      <Link>Source\Scripts\i18n\angular-locale_nl-sx.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_nl.js">
+      <Link>Source\Scripts\i18n\angular-locale_nl.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_no.js">
+      <Link>Source\Scripts\i18n\angular-locale_no.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_or-in.js">
+      <Link>Source\Scripts\i18n\angular-locale_or-in.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_or.js">
+      <Link>Source\Scripts\i18n\angular-locale_or.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_pl-pl.js">
+      <Link>Source\Scripts\i18n\angular-locale_pl-pl.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_pl.js">
+      <Link>Source\Scripts\i18n\angular-locale_pl.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_pt-br.js">
+      <Link>Source\Scripts\i18n\angular-locale_pt-br.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_pt-pt.js">
+      <Link>Source\Scripts\i18n\angular-locale_pt-pt.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_pt.js">
+      <Link>Source\Scripts\i18n\angular-locale_pt.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ro-ro.js">
+      <Link>Source\Scripts\i18n\angular-locale_ro-ro.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ro.js">
+      <Link>Source\Scripts\i18n\angular-locale_ro.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ru-ru.js">
+      <Link>Source\Scripts\i18n\angular-locale_ru-ru.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ru.js">
+      <Link>Source\Scripts\i18n\angular-locale_ru.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sk-sk.js">
+      <Link>Source\Scripts\i18n\angular-locale_sk-sk.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sk.js">
+      <Link>Source\Scripts\i18n\angular-locale_sk.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sl-si.js">
+      <Link>Source\Scripts\i18n\angular-locale_sl-si.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sl.js">
+      <Link>Source\Scripts\i18n\angular-locale_sl.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sq-al.js">
+      <Link>Source\Scripts\i18n\angular-locale_sq-al.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sq.js">
+      <Link>Source\Scripts\i18n\angular-locale_sq.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sr-cyrl-rs.js">
+      <Link>Source\Scripts\i18n\angular-locale_sr-cyrl-rs.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sr-latn-rs.js">
+      <Link>Source\Scripts\i18n\angular-locale_sr-latn-rs.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sr.js">
+      <Link>Source\Scripts\i18n\angular-locale_sr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sv-se.js">
+      <Link>Source\Scripts\i18n\angular-locale_sv-se.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sv.js">
+      <Link>Source\Scripts\i18n\angular-locale_sv.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sw-tz.js">
+      <Link>Source\Scripts\i18n\angular-locale_sw-tz.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_sw.js">
+      <Link>Source\Scripts\i18n\angular-locale_sw.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ta-in.js">
+      <Link>Source\Scripts\i18n\angular-locale_ta-in.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ta.js">
+      <Link>Source\Scripts\i18n\angular-locale_ta.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_te-in.js">
+      <Link>Source\Scripts\i18n\angular-locale_te-in.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_te.js">
+      <Link>Source\Scripts\i18n\angular-locale_te.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_th-th.js">
+      <Link>Source\Scripts\i18n\angular-locale_th-th.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_th.js">
+      <Link>Source\Scripts\i18n\angular-locale_th.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_tl.js">
+      <Link>Source\Scripts\i18n\angular-locale_tl.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_tr-tr.js">
+      <Link>Source\Scripts\i18n\angular-locale_tr-tr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_tr.js">
+      <Link>Source\Scripts\i18n\angular-locale_tr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_uk-ua.js">
+      <Link>Source\Scripts\i18n\angular-locale_uk-ua.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_uk.js">
+      <Link>Source\Scripts\i18n\angular-locale_uk.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ur-pk.js">
+      <Link>Source\Scripts\i18n\angular-locale_ur-pk.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_ur.js">
+      <Link>Source\Scripts\i18n\angular-locale_ur.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_vi-vn.js">
+      <Link>Source\Scripts\i18n\angular-locale_vi-vn.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_vi.js">
+      <Link>Source\Scripts\i18n\angular-locale_vi.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_zh-cn.js">
+      <Link>Source\Scripts\i18n\angular-locale_zh-cn.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_zh-hans-cn.js">
+      <Link>Source\Scripts\i18n\angular-locale_zh-hans-cn.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_zh-hk.js">
+      <Link>Source\Scripts\i18n\angular-locale_zh-hk.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_zh-tw.js">
+      <Link>Source\Scripts\i18n\angular-locale_zh-tw.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_zh.js">
+      <Link>Source\Scripts\i18n\angular-locale_zh.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_zu-za.js">
+      <Link>Source\Scripts\i18n\angular-locale_zu-za.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\i18n\angular-locale_zu.js">
+      <Link>Source\Scripts\i18n\angular-locale_zu.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jquery-2.1.0.js">
+      <Link>Source\Scripts\jquery-2.1.0.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jquery-2.1.0.min.js">
+      <Link>Source\Scripts\jquery-2.1.0.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jquery-ui-1.9.0.js">
+      <Link>Source\Scripts\jquery-ui-1.9.0.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jquery-ui-1.9.0.min.js">
+      <Link>Source\Scripts\jquery-ui-1.9.0.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jquery.dataTables.min.js">
+      <Link>Source\Scripts\jquery.dataTables.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\cors\jquery.postmessage-transport.js">
+      <Link>Source\Scripts\jQuery.FileUpload\cors\jquery.postmessage-transport.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\cors\jquery.xdr-transport.js">
+      <Link>Source\Scripts\jQuery.FileUpload\cors\jquery.xdr-transport.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\jquery.fileupload-angular.js">
+      <Link>Source\Scripts\jQuery.FileUpload\jquery.fileupload-angular.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\jquery.fileupload-audio.js">
+      <Link>Source\Scripts\jQuery.FileUpload\jquery.fileupload-audio.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\jquery.fileupload-image.js">
+      <Link>Source\Scripts\jQuery.FileUpload\jquery.fileupload-image.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\jquery.fileupload-jquery-ui.js">
+      <Link>Source\Scripts\jQuery.FileUpload\jquery.fileupload-jquery-ui.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\jquery.fileupload-process.js">
+      <Link>Source\Scripts\jQuery.FileUpload\jquery.fileupload-process.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\jquery.fileupload-ui.js">
+      <Link>Source\Scripts\jQuery.FileUpload\jquery.fileupload-ui.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\jquery.fileupload-validate.js">
+      <Link>Source\Scripts\jQuery.FileUpload\jquery.fileupload-validate.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\jquery.fileupload-video.js">
+      <Link>Source\Scripts\jQuery.FileUpload\jquery.fileupload-video.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\jquery.fileupload.js">
+      <Link>Source\Scripts\jQuery.FileUpload\jquery.fileupload.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\jquery.iframe-transport.js">
+      <Link>Source\Scripts\jQuery.FileUpload\jquery.iframe-transport.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jquery.numeric.js">
+      <Link>Source\Scripts\jquery.numeric.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jquery.numeric.min.js">
+      <Link>Source\Scripts\jquery.numeric.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jquery.signalR-2.1.0.js">
+      <Link>Source\Scripts\jquery.signalR-2.1.0.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jquery.signalR-2.1.0.min.js">
+      <Link>Source\Scripts\jquery.signalR-2.1.0.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jquery.validate.js">
+      <Link>Source\Scripts\jquery.validate.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jquery.validate.min.js">
+      <Link>Source\Scripts\jquery.validate.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\jquery-2.1.0.min.map">
+      <Link>Source\Scripts\jquery-2.1.0.min.map</Link>
+    </Content>
+    <None Include="..\ReMi.Web.UI\Scripts\linq-vsdoc.js">
+      <Link>Source\Scripts\linq-vsdoc.js</Link>
+    </None>
+    <Content Include="..\ReMi.Web.UI\Scripts\linq.js">
+      <Link>Source\Scripts\linq.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\linq.min.js">
+      <Link>Source\Scripts\linq.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\moment-with-locales.js">
+      <Link>Source\Scripts\moment-with-locales.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\moment-with-locales.min.js">
+      <Link>Source\Scripts\moment-with-locales.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\moment.js">
+      <Link>Source\Scripts\moment.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\moment.min.js">
+      <Link>Source\Scripts\moment.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\nv.d3.js">
+      <Link>Source\Scripts\nv.d3.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\nv.d3.min.js">
+      <Link>Source\Scripts\nv.d3.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\q.js">
+      <Link>Source\Scripts\q.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\q.min.js">
+      <Link>Source\Scripts\q.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\spin.js">
+      <Link>Source\Scripts\spin.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\spin.min.js">
+      <Link>Source\Scripts\spin.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\textAngular-sanitize.min.js">
+      <Link>Source\Scripts\textAngular-sanitize.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\textAngular.min.js">
+      <Link>Source\Scripts\textAngular.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\timeHelper.js">
+      <Link>Source\Scripts\timeHelper.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\toastr.js">
+      <Link>Source\Scripts\toastr.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\toastr.min.js">
+      <Link>Source\Scripts\toastr.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\treeGrid\jquery.cookie.js">
+      <Link>Source\Scripts\treeGrid\jquery.cookie.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\treeGrid\jquery.treegrid.bootstrap3.js">
+      <Link>Source\Scripts\treeGrid\jquery.treegrid.bootstrap3.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\treeGrid\jquery.treegrid.js">
+      <Link>Source\Scripts\treeGrid\jquery.treegrid.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\underscore-min.js">
+      <Link>Source\Scripts\underscore-min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\utils.js">
+      <Link>Source\Scripts\utils.js</Link>
+    </Content>
+    <Content Include="Tests\app\apiDescription\apiDescriptionTests.js" />
+    <Content Include="Tests\app\common\directives\aceEditorTests.js" />
+    <Content Include="Tests\app\common\directives\treeListTests.js" />
+    <Content Include="Tests\app\common\filters\localdateTests.js" />
+    <Content Include="Tests\app\configuration\accounts\accountTests.js" />
+    <Content Include="Tests\app\configuration\plugins\pluginsPackageConfigurationTests.js" />
+    <Content Include="Tests\app\configuration\plugins\pluginsGlobalConfigurationTests.js" />
+    <Content Include="Tests\app\configuration\plugins\pluginsConfigurationTests.js" />
+    <Content Include="Tests\app\configuration\plugins\pluginsTests.js" />
+    <Content Include="Tests\app\configuration\rules\rulesTests.js" />
+    <Content Include="Tests\app\configuration\permissions\queriesTests.js" />
+    <Content Include="Tests\app\configuration\permissions\rolesTests.js" />
+    <Content Include="Tests\app\configuration\permissions\commandsTests.js" />
+    <Content Include="Tests\app\configuration\businessUnits\productsTests.js" />
+    <Content Include="Tests\app\confirm\confirmTests.js" />
+    <Content Include="Tests\app\common\directives\focusModalEditorTests.js" />
+    <Content Include="Tests\app\common\directives\accessControlTests.js" />
+    <Content Include="Tests\app\common\directives\ruleEditorTests.js" />
+    <Content Include="Tests\app\common\directives\treeGridTests.js" />
+    <Content Include="Tests\app\common\directives\draggableRowTests.js" />
+    <Content Include="Tests\app\common\directives\accountSearchTests.js" />
+    <Content Include="Tests\app\common\directives\accountSignatureTests.js" />
+    <Content Include="Tests\app\common\directives\remiChartTests.js" />
+    <Content Include="Tests\app\layout\topnavTests.js" />
+    <Content Include="Tests\app\layout\sidebarTests.js" />
+    <Content Include="Tests\app\metrics\metricsByProductTests.js" />
+    <Content Include="Tests\app\release\releasePlan\releaseQaStatusTests.js" />
+    <Content Include="Tests\app\reports\reportTests.js" />
+    <Content Include="Tests\app\productRegistrationConfig\productRegistrationConfigTests.js" />
+    <Content Include="Tests\app\productRegistration\productRegistrationTests.js" />
+    <Content Include="Tests\app\profile\profileTests.js" />
+    <Content Include="Tests\app\profile\subscriptionsTests.js" />
+    <Content Include="Tests\app\release\releaseExecution\deploymentJobsMeasurementsTests.js" />
+    <Content Include="Tests\app\release\releaseExecution\releaseProcessTests.js" />
+    <Content Include="Tests\app\release\releaseExecution\signOffTests.js" />
+    <Content Include="Tests\app\release\releasePlan\checkListTests.js" />
+    <Content Include="Tests\app\release\releasePlan\closeReleaseTests.js" />
+    <Content Include="Tests\app\release\releasePlan\closeReleaseTests.js" />
+    <Content Include="Tests\app\release\releasePlan\releaseApproversTests.js" />
+    <Content Include="Tests\app\release\releasePlan\releaseJobsTests.js" />
+    <Content Include="Tests\app\release\releasePlan\releaseTaskTests.js" />
+    <Content Include="Tests\app\release\releasePlan\releaseApproversTests.js" />
+    <Content Include="Tests\app\release\releasePlan\releaseChangesTests.js" />
+    <Content Include="Tests\app\release\releasePlan\releaseContentTests.js" />
+    <Content Include="Tests\app\release\releasePlan\releaseParticipantTests.js" />
+    <Content Include="Tests\app\release\releaseTests.js" />
+    <Content Include="Tests\app\services\authServiceTests.js" />
+    <Content Include="Tests\app\releaseCalendar\releaseCalendarTests.js" />
+    <Content Include="Tests\app\services\localDataTests.js" />
+    <Content Include="Tests\app\services\rulesServiceTests.js" />
+    <Content Include="Tests\app\services\notificationsTests.js" />
+    <Content Include="Tests\Environment\jasmine.js" />
+    <Content Include="Web.config" />
+    <Content Include="..\ReMi.Web.UI\Scripts\version.json">
+      <Link>Source\Scripts\version.json</Link>
+    </Content>
+    <Content Include="Chutzpah.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\ReMi.Web.UI\Scripts\errors.json">
+      <Link>Source\Scripts\errors.json</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\nv.d3.min.js.map">
+      <Link>Source\Scripts\nv.d3.min.js.map</Link>
+      <DependentUpon>nv.d3.js</DependentUpon>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\Scripts\toastr.min.js.map">
+      <Link>Source\Scripts\toastr.min.js.map</Link>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'int2012|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51430</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49610/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="BeforeBuild" BeforeTargets="Build">
+    <Copy SourceFiles="%(Content.Identity)" DestinationFiles="%(Content.Link)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" Condition="%(Content.Link) != ''" />
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+</Project>

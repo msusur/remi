@@ -1,0 +1,16 @@
+<span id="cal-slide-tick" class="tick-month{{cal.yearData.selectedMonth.number}}"></span>
+<div id="cal-slide-content" class="cal-event-list">
+    <ul class="unstyled list-unstyled">
+        <li data-ng-repeat="event in cal.yearData.selectedMonth.events">
+            <span class="event-wrapper" data-ng-click="cal.invokeEventClick(event, $event)"
+                data-ng-contextmenu="cal.invokeContextmenu(event.start, event, $event)">
+                <span class="pull-left event" data-ng-class="event['class']"></span>&nbsp;
+                <a data-event-id="true" title="{{event['tooltip']}}" class="event-item" data-ng-disabled="event.state.isDisabled">
+                    {{event.start.format('MMM Do HH:mm')}}
+                    <i class="fa fa-exclamation-triangle failed-sign" title="Failed!" data-ng-show="event.isFailed"></i>
+                    {{event.fullTitle}}
+                </a>
+            </span>
+        </li>
+    </ul>
+</div>

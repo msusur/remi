@@ -1,0 +1,21 @@
+<div class="widget wlightblue" data-ng-controller="subscriptions as vm">
+    <div data-remi-widget-header="" title="Email subscriptions"
+        data-allow-collapse="true">
+    </div>
+    <div class="widget-content text-info">
+        <div class="long-table-wrapper" style="min-height: 0px;">
+            <table class="table table-condensed table-striped">
+                <tbody>
+                    <tr data-ng-repeat="s in vm.subscriptionsList">
+                        <td>{{s.NotificationName}}</td>
+                        <td style="text-align: center;">
+                            <input type="checkbox" data-ng-model="s.Subscribed" data-ng-change="vm.save(s)"
+                                data-access-control="UpdateNotificationSubscriptionsCommand" data-restriction-mode="disable"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="list-loader" data-ng-show="vm.state.isBusy"></div>
+    </div>
+</div>

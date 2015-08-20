@@ -1,0 +1,70 @@
+<div data-ng-controller="signOff as vm" data-ng-init="vm.init(false)">
+    <div class="widget wlightblue">
+        <div data-remi-widget-header="" title="List of sign offs" data-allow-collapse="true">
+        </div>
+        <div class="widget-content text-info">
+            <div class="long-table-wrapper">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th data-ng-if="vm.releaseWindow.ReleaseType != 'Scheduled' && vm.releaseWindow.ReleaseType != 'Automated'">Remove</th>
+                            <th>Comment</th>
+                            <th class="text-center">Signed off</th>
+                        </tr>
+                    </thead>
+                    <tbody class="release-action-account">
+                        <tr data-ng-repeat="p in vm.signers | orderBy:'Signer.Email'">
+                            <td>{{p.Signer.FullName}}</td>
+                            <td>{{p.Signer.Email}}</td>
+                            <td>{{p.Signer.Role.Description}}</td>
+                            <td class="text-center" data-ng-if="vm.releaseWindow.ReleaseType != 'Scheduled' && vm.releaseWindow.ReleaseType != 'Automated'">
+                                <button data-confirmation="" data-removing-subject="signer" data-removing-item="{{p.Signer.FullName}}" class="btn btn-default btn-xs" data-ng-show="vm.allowManageSignOff && !p.SignedOff" data-ng-click="vm.removeSigner(p)">Remove</button></td>
+                            <td>
+                                <button data-ng-show="p.Comment"
+                                    class="btn"
+                                    data-ng-click="vm.showSigningDescriptionModal(p)">
+                                    <i class="fa fa-comment-o"></i>
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <input type="checkbox" data-ng-show="!p.AllowSign || p.SignedOff" data-ng-model="p.SignedOff" disabled />
+                                <button class="btn btn-default btn-xs" data-ng-show="p.AllowSign && !p.SignedOff" data-ng-click="vm.sign(data, p)" data-account-signature="" data-description="Comment" data-default-user-name="{{p.Signer.Email}}" data-before-show="vm.beforeShowSignatureForm(defer)">Sign off</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="widget-foot" data-ng-if="vm.releaseWindow.ReleaseType != 'Scheduled' && vm.releaseWindow.ReleaseType != 'Automated'">
+            <div class="row">
+                <div class="col-xs-6">
+                    <button class="btn btn-default" data-ng-show="vm.allowManageSignOff" data-ng-disabled="vm.state.isBusy || !vm.state.bindedToReleaseWindow"
+                            data-account-search="" data-multi-select="true" data-get-selected="vm.getSelectedAccounts()" data-on-submit="vm.addSigners(data)" data-dialog-title="Release sign offs"
+                            data-access-control="AddPeopleToSignOffReleaseCommand" data-restriction-mode="hide">
+                        Add sign off</button>
+                </div>
+            </div>
+        </div>
+        <div class="list-loader" data-ng-show="vm.state.isBusy">
+        </div>
+    </div>
+    <div class="modal fade" id="signingDescriptionModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true" data-ng-click="vm.closeSigningDescriptionModal()">&times;</button>
+                    <h4 class="modal-title">Comment</h4>
+                </div>
+                <div class="modal-body">
+                    <div data-ng-bind-html="vm.signingDescription"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-ng-click="vm.closeSigningDescriptionModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

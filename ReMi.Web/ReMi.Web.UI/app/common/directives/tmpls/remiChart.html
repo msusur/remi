@@ -1,0 +1,62 @@
+<div class="widget wlightblue">
+    <div data-remi-widget-header="" title="{{chartTitle}}" data-allow-collapse="true">
+    </div>
+    <div class="widget-content text-info">
+        <div class="row">
+            <div class="col-md-12">
+                <nvd3 options='options' data='measurementData'></nvd3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="long-table-wrapper" style="margin-left: 2%; margin-right: 2%;" data-ng-hide="table=='Show'">
+                    <table class="table table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th><span style="width: 100px; display: inline-block;">Start time</span></th>
+                                <th>Product</th>
+                                <th>Sprint</th>
+                                <th style="text-align: center;" data-ng-repeat="c in charts">{{c}}</th>
+                                <th>Issues</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="m in tableData">
+                                <td>{{index($index)}}</td>
+                                <td style="width: 100px">{{m.window.StartTime | date: 'dd-MM-yy HH-mm'}}</td>
+                                <td>{{m.window.Product}}</td>
+                                <td>{{m.window.Sprint}}</td>
+                                <td style="text-align: center;" data-ng-repeat="t in m.values track by $index">{{t}}</td>
+                                <td data-ng-bind-html="m.window.Issues"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="widget-foot">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" data-ng-click="toggleSample()">{{table}} sample</button>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-default" data-ng-disabled="!allowManage.pageNumber.down" data-ng-click="!allowManage.pageNumber.down || changePage(1)">&lt;&lt;1</button>
+                <button class="btn btn-default" data-ng-disabled="!allowManage.pageNumber.down" data-ng-click="!allowManage.pageNumber.down || changePage(page-1)">&lt;</button>
+                <h5 style="display: inline-block; margin: 0 7px">{{page}}</h5>
+                <button class="btn btn-default" data-ng-disabled="!allowManage.pageNumber.up" data-ng-click="!allowManage.pageNumber.up || changePage(page+1)">&gt;</button>
+                <button class="btn btn-default" data-ng-disabled="!allowManage.pageNumber.up" data-ng-click="!allowManage.pageNumber.up || changePage(pages)">{{pages}}&gt;&gt;</button>
+            </div>
+            <div class="col-md-4">
+                <div class="pull-right">
+                    <h5 style="display: inline-block">Size: </h5>
+                    <button class="btn btn-default" data-ng-disabled="!allowManage.pageSize.down" data-ng-click="!allowManage.pageSize.down || changePageSize(pageSize-1)">&lt;</button>
+                    <h5 style="display: inline-block; margin: 0 7px">{{pageSize}}</h5>
+                    <button class="btn btn-default" data-ng-click="changePageSize(pageSize+1)">&gt;</button>
+                </div>
+            </div>
+        </div>
+        <div class="list-loader" data-ng-show="busy"></div>
+    </div>
+</div>

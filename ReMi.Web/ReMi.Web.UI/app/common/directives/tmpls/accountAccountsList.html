@@ -1,0 +1,90 @@
+<div class="widget wlightblue">
+    <div data-remi-widget-header title="People supporting current release"
+        allow-collapse="true">
+    </div>
+    <div class="widget-content text-info">
+        <div class="long-table-wrapper">
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Participation Confirmed</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="p in vm.releaseParticipants">
+                        <td>{{p.Account.FullName}}</td>
+                        <td>{{p.Account.Email}}</td>
+                        <td>{{p.Account.Role.Description}}</td>
+                        <td class="text-center">
+                            <input type="checkbox" data-ng-model="p.IsParticipationConfirmed" disabled /></td>
+                        <td>
+                            <button class="btn btn-default btn-xs"
+                                data-ng-show="p.removable"
+                                data-ng-click="vm.removeReleaseParticipant(p)"
+                                data-ng-disabled="vm.isClosed">
+                                Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="widget-foot">
+        <button class="btn btn-default" data-ng-show="vm.AddingParticipantsAllowed" data-ng-disabled="vm.isClosed" data-ng-click="vm.accountListForAddingToReleaseSupport()">Add Participants</button>
+        <div class="list-loader" data-ng-show="vm.state.isRemoveParticipantBusy">
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal fade" id="addreleaseParticipantsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Add Release Participants</h4>
+                </div>
+                <div class="modal-body" id="searchAccountForReleaseParticipation">
+                    <div class="row wrap-space-bottom">
+                        <form class="form form-horizontal" role="form">
+                            <label class="col-sm-4 control-label">Add Release Participant:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" data-ng-keyup="vm.searchAccountForReleaseParticipation()" data-ng-model="vm.participantSearch" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div style="height: 300px;" class="long-table-wrapper">
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Selected</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="p in vm.possibleReleaseParticipants">
+                                    <td>{{p.Account.FullName}}</td>
+                                    <td>{{p.Account.Email}}</td>
+                                    <td>{{p.Account.Role.Description}}</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" data-ng-model="p.ToBeAdded" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <img data-ng-show="vm.state.isReleaseParticipantsBusy" src="/content/images/progress.gif" />
+                    <button class="btn btn-primary" data-ng-click="vm.addReleaseParticipants()" data-ng-disabled="vm.state.isReleaseParticipantsBusy">Add</button>
+                    <button class="btn btn-default" data-dismiss="modal" data-ng-disabled="vm.state.isReleaseParticipantsBusy">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

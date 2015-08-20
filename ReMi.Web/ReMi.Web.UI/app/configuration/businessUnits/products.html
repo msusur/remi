@@ -1,0 +1,103 @@
+<section class="mainbar">
+    <section class="matter products-config">
+        <div data-ng-controller="products as vm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="widget wlightblue">
+                        <div data-remi-widget-header="" title="Packages"></div>
+                        <div class="widget-content user">
+                            <div class="list-long-container">
+                                <div class="container div-table div-table-striped">
+                                    <div class="row div-table-header">
+                                        <div class="col-sm-4">Business unit</div>
+                                        <div class="col-sm-3">Name</div>
+                                        <div class="col-sm-1">Track</div>
+                                        <div class="col-sm-4" style="text-align: center;">Choose tickets by default</div>
+                                    </div>
+                                    <div class="div-table-body div-table-body-300">
+                                        <div class="row" data-ng-repeat="p in vm.products | orderBy : ['BusinessUnitDesc', 'Name']">
+                                            <div class="col-sm-4">
+                                                <a data-ng-click="vm.showManageProductModal(p)"
+                                                    data-access-control="UpdateProductCommand" data-restriction-mode="unclick">{{p.BusinessUnitDesc}}</a>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <a data-ng-click="vm.showManageProductModal(p)"
+                                                    data-access-control="UpdateProductCommand" data-restriction-mode="unclick">{{p.Name}}</a>
+                                            </div>
+                                            <div class="col-sm-1">{{p.ReleaseTrackDescription}}</div>
+                                            <div class="col-sm-4" style="text-align: center;">
+                                                <input type="checkbox" disabled="" data-ng-model="p.ChooseTicketsByDefault" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-foot">
+                            <button data-access-control="AddProductCommand" data-restriction-mode="hide"
+                                class="btn btn-default" data-ng-click="vm.showManageProductModal()">
+                                Add package</button>
+                            <button type="button" class="btn btn-default pull-right" data-ng-click="vm.getProducts()">
+                                <span class="glyphicon glyphicon-refresh"></span>
+                                Refresh
+                            </button>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="list-loader" data-ng-show="vm.state.isBusy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="manageProductModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">{{vm.productMode}} Package</h4>
+                        </div>
+                        <div class="modal-body" style="padding-bottom: 7px !important">
+                            <form role="form" class="form-horizontal" id="add-product-form">
+                                <div class="row">
+                                    <label class="col-sm-3 control-label" for="business-unit-select">Business Unit</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="business-unit-select"
+                                            data-ng-model="vm.productToManage.BusinessUnitId"
+                                            data-ng-options="bu.ExternalId as bu.Description for bu in vm.businessUnits | orderBy: 'Description'">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 3%;">
+                                    <label class="col-sm-3 control-label" for="product-name">Name</label>
+                                    <div class="col-sm-9">
+                                        <textarea id="product-name" rows="1" class="form-control" data-ng-model="vm.productToManage.Description"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top: 3%;">
+                                    <label class="col-sm-3 control-label" for="release-track-select">Release Track</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="release-track-select" data-ng-model="vm.productToManage.ReleaseTrack" data-ng-options="c.Description for c in vm.track">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 3%;">
+                                    <label class="col-sm-5 control-label" style="padding-top: 0;" for="choose-tickets-by-default">Choose tickets by default</label>
+                                    <div class="col-sm-7">
+                                        <input type="checkbox" id="choose-tickets-by-default" data-ng-model="vm.productToManage.ChooseTicketsByDefault" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="list-loader" data-ng-show="vm.state.isBusy">
+                            </div>
+                            <button class="btn btn-primary" data-ng-click="vm[vm.productMode.toLowerCase()+'Product']()">{{vm.productMode}}</button>
+                            <button class="btn btn-default" data-dismiss="modal">Close</button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

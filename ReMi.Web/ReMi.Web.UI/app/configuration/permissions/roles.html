@@ -1,0 +1,100 @@
+<div class="widget wlightblue" data-ng-controller="roles as vm">
+    <div data-remi-widget-header="" title="Role management" data-allow-collapse="true"></div>
+    <div class="widget-content user">
+        <div class="long-table-wrapper">
+            <table class="table table-condensed table-striped">
+                <colgroup>
+                    <col style="width: 45%" />
+                    <col style="width: 40%" />
+                    <col style="width: 8%" />
+                    <col style="width: 7%" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="role in vm.roles | orderBy:'Description'" data-external-id="{{role.ExternalId}}">
+                        <td><a data-ng-click="vm.showRoleUpdate(role)"
+                            data-access-control="UpdateRoleCommand"
+                             data-restriction-mode="unclick">{{role.Name}}</a></td>
+                        <td>
+                            <a data-ng-click="vm.showRoleUpdate(role)"
+                               data-access-control="UpdateRoleCommand"
+                               data-restriction-mode="unclick">{{role.Description}}</a><i data-ng-show="role.blocked" class="glyphicon glyphicon-eye-close" style="margin-left: 5px"></i>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-default btn-xs" data-ng-click="vm.showRoleUpdate(role)"
+                               data-access-control="UpdateRoleCommand" data-restriction-mode="hide">
+                                <i class="glyphicon glyphicon-edit"></i>
+                                Edit
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-default btn-xs" data-ng-click="vm.deleteRole(role)"
+                               data-access-control="DeleteRoleCommand" data-restriction-mode="hide">Remove</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="list-loader" data-ng-show="vm.state.isBusy">
+        </div>
+
+    </div>
+    <div class="widget-foot">
+        <div class="row">
+            <div class="col-sm-6 text-left">
+                <button type="button" class="btn btn-default pull-left" data-ng-click="vm.showRoleAdd()"
+                    data-access-control="CreateRoleCommand" data-restriction-mode="hide">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add
+                </button>
+            </div>
+            <div class="col-sm-6 text-left">
+                <button type="button" class="btn btn-default pull-right" data-ng-click="vm.refreshRoles()">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                    Refresh
+                </button>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal fade" id="roleModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true" data-ng-click="vm.hideCurrentRoleModal()">&times;</button>
+                    <h4 class="modal-title">Role</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="form-horizontal" id="roleModalForm">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="role-name">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="role-name" name="role-name" data-ng-model="vm.currentRole.Name" placeholder="Name" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="role-description">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="role-description" name="role-description" data-ng-model="vm.currentRole.Description" placeholder="Description" required />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" />
+                    <button type="button" data-ng-disabled="vm.state.isBusy" class="btn btn-primary" data-ng-show="vm.roleModalMode == 'add'" data-ng-click="vm.saveRole('add')">Add</button>
+                    <button type="button" data-ng-disabled="vm.state.isBusy" class="btn btn-primary" data-ng-show="vm.roleModalMode == 'update'" data-ng-click="vm.saveRole('update')">Update</button>
+                    <button type="button" data-ng-disabled="vm.state.isBusy" class="btn btn-default" data-ng-click="vm.hideCurrentRoleModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

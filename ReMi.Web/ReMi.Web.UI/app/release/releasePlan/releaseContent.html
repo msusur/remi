@@ -1,0 +1,130 @@
+<div data-ng-controller="releaseContent as releaseContentVm">
+    <div class="widget wlightblue" data-ng-show="releaseContentVm.state.visible">
+        <div data-remi-widget-header="" title="Features to be released:"
+            data-allow-collapse="true">
+        </div>
+        <div class="widget-content text-info">
+            <div class="list-container">
+                <div class="list-panel">
+                    <div>
+                        <table class="table table-condensed table-striped release-content-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Ticket No.</th>
+                                    <th>Changes</th>
+                                    <th>Description</th>
+                                    <th>Assignee</th>
+                                    <th>Risk</th>
+                                    <th data-access-control="UpdateTicketCommentCommand">Comment</th>
+                                    <th>
+                                        <div class="btn-group" data-access-control="UpdateTicketToReleaseNotesRelationCommand" data-restriction-mode="hide">
+                                            <el class="table-header-dropdown dropdown-toggle" data-toggle="dropdown">Include selected
+                                                <span class="caret"></span>
+                                            </el>
+                                            <ul class="dropdown-menu" style="min-width: 100px !important;">
+                                                <li class="dropdown-list-link" style="text-align: center;" data-ng-click="releaseContentVm.manageAllTicketsReleaseRelation(true)">Include all</li>
+                                                <li class="dropdown-list-link" style="text-align: center;" data-ng-click="releaseContentVm.manageAllTicketsReleaseRelation(false)">Exclude all</li>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="t in releaseContentVm.tickets">
+                                    <td>{{$index + 1}}.</td>
+                                    <td><a href="{{t.TicketUrl}}" target="_blank">{{t.TicketName}}</a></td>
+                                    <td><span data-ng-show="!t.releaseChanges" class="refer-absent" title="No Source Code Changes found!">No</span>
+                                        <span data-ng-show="!!t.releaseChanges" class="refer-present" title="Source Code Changes is found">Yes</span>
+                                    </td>
+                                    <td>{{t.TicketDescription}}</td>
+                                    <td>{{t.Assignee}}</td>
+                                    <td class="risk-button-cell">
+                                        <div class="btn-group pull-right">
+                                            <button type="button" class="btn btn-xs dropdown-toggle" style="width: 80px"
+                                                    data-ng-class="releaseContentVm.mapRiskStyle(t.Risk).css" data-toggle="dropdown" data-ng-click=""
+                                                    data-access-control="UpdateTicketRiskCommand" data-restriction-mode="disable">
+                                                {{t.Risk}}</button>
+                                            <ul class="dropdown-menu" style="padding: 5px !important; min-width: 80px" role="menu">
+                                                <li class="dropdown-list-link" data-ng-repeat="r in releaseContentVm.risk"
+                                                    data-ng-style="{'background-color': releaseContentVm.mapRiskStyle(r.Text).color, 'color': '#fff' }">
+                                                    <p data-ng-click="releaseContentVm.updateRiskForTicket(t, r)">{{r.Text}}</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td data-access-control="UpdateTicketCommentCommand" class="comment-button-cell">
+                                        <button class="btn comment-button" data-ng-class="{'btn-warning': t.Comment, 'btn-primary': !t.Comment}"
+                                                data-tooltip-placement="left" data-tooltip="{{t.Comment}}" data-ng-click="releaseContentVm.showEditCommentModal(t)" data-ng-disabled="vm.isClosed">
+                                            <i class="fa fa-comment-o"></i>
+                                        </button>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" data-ng-change="releaseContentVm.manageTicketReleaseRelation(t)" data-ng-model="t.IncludeToReleaseNotes"
+                                               data-access-control="UpdateTicketToReleaseNotesRelationCommand" data-restriction-mode="disable">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="list-loader" data-ng-show="releaseContentVm.state.isBusy">
+                </div>
+            </div>
+            <div class="" role="alert" style="margin-top: 10px; padding: 5px; background-color: #ffffe0">
+                <div class="row">
+                    <div class="col-sm-12"><i class="fa fa-info-circle"></i> Risk column description:</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1"><span style="color: #d82829"><strong>High</strong></span></div>
+                    <div class="col-sm-11">Change impacts all of the customers. Problems are hard to identify and fix, cannot be switched off</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1"><span style="color: #d67323"><strong>Med</strong></span></div>
+                    <div class="col-sm-11">Change impacts all of the customers but problems are easy to identify and has a fix can be quick or switched off</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1"><span style="color: #008000"><strong>Low</strong></span></div>
+                    <div class="col-sm-11">Small change or one that, problems are easy to identify and fix impacts some of the customers</div>
+                </div>
+            </div>
+        </div>
+        <div class="widget-foot">
+            <div class="clearfix"></div>
+            <button type="button" class="btn btn-default" data-ng-show="releaseContentVm.contentLoaded" data-ng-click="releaseContentVm.updateDisplayedTicketList()">{{releaseContentVm.showTicketsButtonName}}</button>
+            <button type="button" class="btn btn-default"
+                data-confirmation="Do you really want to re-assign release content? Existing tickets will be detached from release"
+                data-confirm-type="question"
+                data-access-control="ReapproveTicketsCommand" data-restriction-mode="hide"
+                data-ng-click="releaseContentVm.reapproveReleaseContent()">
+                Reload Content</button>
+            <button type="button" class="btn btn-default pull-right"
+                 data-ng-click="releaseContentVm.getReleaseContent(releaseContentVm.releaseWindow)">
+                <span class="glyphicon glyphicon-refresh"></span>
+                Refresh
+            </button>
+        </div>
+    </div>
+    <div class="modal fade" id="releaseContentCommentModal" data-focus-modal-editor="textarea">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true" data-ng-click="releaseContentVm.closeEditCommentModal()">&times;</button>
+                    <h4 class="modal-title">Comment</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="form-horizontal" data-ng-model-options="{ updateOn: 'blur' }">
+                        <div class="form-group">
+                            <textarea class="form-control check-list-textarea" data-ng-model="releaseContentVm.currentItem.Comment"
+                                data-ng-model-options="{ updateOn: 'blur' }"
+                                data-access-control="UpdateTicketCommentCommand" data-restriction-mode="disable"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-ng-click="releaseContentVm.closeEditCommentModal(this)">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

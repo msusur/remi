@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+	<connectionStrings xdt:Transform="InsertIfMissing" />
+	<connectionStrings>
+		<add name="ReleaseManagementConnection" providerName="System.Data.SqlClient" connectionString="Data Source=localhost;Initial Catalog=remi_db;Integrated Security=True" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)" />
+	</connectionStrings>
+	<appSettings xdt:Transform="InsertIfMissing" />
+	<appSettings>
+		<add key="acknowledgeUrl" value="http://localhost/#/acknowledge?approve" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)" />
+		<add key="frontendUrl" value="http://localhost/#/" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)" />
+		<add key="DefaultReleaseWindowDurationTime" value="120" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)" />
+		<add key="LogJsonFormatted" value="false" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)" />
+		<add key="LogQueryResponses" value="false" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)" />
+	</appSettings>
+	<entityFramework xdt:Transform="InsertIfMissing">
+		<!-- requires SQLServer 2012 installed locally -->
+		<defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework">
+			<parameters>
+				<parameter value="Data Source=localhost;Initial Catalog=remi_db;Integrated Security=True" />
+			</parameters>
+		</defaultConnectionFactory>
+		<providers>
+			<provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+		</providers>
+	</entityFramework>
+	<common xdt:Transform="InsertIfMissing">
+		<logging>
+			<factoryAdapter type="Common.Logging.Log4Net.Log4NetLoggerFactoryAdapter, Common.Logging.Log4Net1210">
+				<arg key="configType" value="FILE-WATCH" />
+				<arg key="configFile" value="~/log4net.config" />
+			</factoryAdapter>
+		</logging>
+	</common>
+</configuration>

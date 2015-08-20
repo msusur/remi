@@ -1,0 +1,135 @@
+<div data-ng-controller="checkList as checkListVm">
+    <div class="widget wlightblue check-list">
+        <div data-remi-widget-header="" title="Check List" data-allow-collapse="true">
+        </div>
+        <div class="widget-content text-info">
+            <div>
+                <div class="long-table-wrapper">
+                    <form id="checkListForm">
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Check Item</th>
+                                    <th style="min-width: 120px">Updated By</th>
+                                    <th data-access-control="UpdateCheckListAnswerCommand">Answer</th>
+                                    <th data-access-control="UpdateCheckListCommentCommand"></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="checkListTableBody">
+                                <tr data-ng-repeat="item in checkListVm.list">
+                                    <td>{{$index + 1}}.</td>
+                                    <td data-ng-bind-html="item.CheckListQuestion | linky:'_blank'"></td>
+                                    <td>{{item.LastChangedBy}}</td>
+                                    <td>
+                                        <input id="Checked{{item.ExternalId}}" name="Checked{{item.ExternalId}}"
+                                            data-ng-model="item.Checked" data-ng-change="checkListVm.toggle(item)" type="checkbox" data-ng-disabled="vm.isClosed" />
+                                        <label for="Checked{{item.ExternalId}}" data-access-control="UpdateCheckListAnswerCommand"></label>
+                                    </td>
+                                    <td>
+                                        <button class="btn check-list-button" data-ng-class="{'btn-warning': item.Comment, 'btn-primary': !item.Comment}"
+                                            data-tooltip-placement="left" data-tooltip="{{item.Comment}}" data-ng-click="checkListVm.showEditCommentModal(item)" data-ng-disabled="vm.isClosed"
+                                            data-access-control="UpdateCheckListCommentCommand">
+                                            <i class="fa fa-comment-o"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group pull-right check-list-remove-group" data-access-control="RemoveCheckListQuestionCommand" data-restriction-mode="hide">
+                                            <button type="button" class="btn btn-default btn-xs" data-ng-click="checkListVm.removeCheckListQuestion(item, false)">Remove</button>
+                                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" style="padding: 5px !important; width: 300px !important" role="menu">
+                                                <li class="dropdown-list-link">
+                                                    <p data-ng-click="checkListVm.removeCheckListQuestion(item, false)">Remove from current checklist</p>
+                                                </li>
+                                                <li class="dropdown-list-link">
+                                                    <p data-ng-click="checkListVm.removeCheckListQuestion(item, true)">Remove and don't use in following releases</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <div class="check-list-loader" data-ng-show="checkListVm.isBusy">
+                </div>
+            </div>
+        </div>
+        <div class="widget-foot">
+            <button class="btn btn-default" data-ng-disabled="checkListVm.isClosed" data-ng-click="checkListVm.addChecklistQuestions()"
+                data-access-control="AddCheckListQuestionsCommand" data-restriction-mode="hide">
+                Add Questions</button>
+            <button type="button" class="btn btn-default pull-right"
+                data-ng-click="checkListVm.getCheckList()">
+                <span class="glyphicon glyphicon-refresh"></span>
+                Refresh
+            </button>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="checkListQuestionModal" tabindex="-1" data-backdrop="static" data-keyboard="true" data-focus-modal-editor="input[type='text']">
+        <div class="modal-dialog" style="width: 800px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true" data-ng-click="checkListVm.hideCurrentChecklistQuestionModal()">&times;</button>
+                    <h4 class="modal-title">Add CheckList Questions</h4>
+                </div>
+                <div class="modal-body" style="padding-right: 4% !important; padding-left: 4% !important">
+                    <div class="row" style="margin-bottom: 10px;">
+                        <div class="col-md-10" style="display: inline-block">
+                            <input type="text" class="form-control" data-ng-keyup="checkListVm.searchCheckListQuestion()" data-ng-model="checkListVm.possibleQuestionsFilter" />
+                        </div>
+                        <div class="col-md-2" style="display: inline-block">
+                            <button class="btn btn-default" style="margin-left: -7% !important;" data-ng-click="checkListVm.addQuestionToAddToChecklist()">Add Question</button>
+                        </div>
+                    </div>
+                    <div class="long-table-wrapper">
+                        <table class="table table-condensed table-striped">
+                            <tbody>
+                                <tr data-ng-repeat="q in checkListVm.possibleQuestionsDisplayed">
+                                    <td>{{q.content}}</td>
+                                    <td>
+                                        <input type="checkbox" data-ng-model="q.isIncluded" data-ng-change="checkListVm.mapQuestion(q)" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <img data-ng-show="checkListVm.state.isAddingBusy" src="/content/images/progress.gif" />
+                    <button class="btn btn-primary" data-ng-disabled="checkListVm.state.isAddingBusy" data-ng-click="checkListVm.submitQuestions()">Submit Adding</button>
+                    <button class="btn btn-default" data-ng-disabled="checkListVm.state.isAddingBusy" data-ng-click="checkListVm.hideCurrentChecklistQuestionModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="checkListCommentModal" data-focus-modal-editor="textarea">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true" data-ng-click="checkListVm.closeEditCommentModal()">&times;</button>
+                    <h4 class="modal-title">Comment</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="form-horizontal" data-ng-model-options="{ updateOn: 'blur' }">
+                        <div class="form-group">
+                            <textarea class="form-control check-list-textarea" data-ng-model="checkListVm.currentItem.Comment"
+                                data-ng-model-options="{ updateOn: 'blur' }"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-access-control="UpdateCheckListCommentCommand" data-restriction-mode="hide"
+                        class="btn btn-default" data-ng-click="checkListVm.closeEditCommentModal(this)">
+                        Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,219 @@
+﻿{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "DEPLOY_TARGET",
+          "value" : "pl_rc"
+        },
+        {
+          "name" : "GERRIT_BRANCH",
+          "value" : "master"
+        }
+      ]
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by user anonymous",
+          "userId" : null,
+          "userName" : "anonymous"
+        }
+      ]
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : null,
+  "duration" : 470648,
+  "estimatedDuration" : 303058,
+  "executor" : null,
+  "fullDisplayName" : "deploy-multi-master-pl_rc #3",
+  "id" : "2015-05-12_17-45-32",
+  "keepLog" : false,
+  "number" : 3,
+  "result" : "FAILURE",
+  "timestamp" : 1431449132000,
+  "url" : "https://build.com/job/deploy-multi-master-pl_rc/3/",
+  "builtOn" : "build-win20a",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ],
+  "subBuilds" : [
+    {
+      "abort" : false,
+      "buildNumber" : 15,
+      "duration" : "35 sec",
+      "icon" : "blue.png",
+      "jobName" : "ops-deploy",
+      "parentBuildNumber" : 3,
+      "parentJobName" : "deploy-multi-master-pl_rc",
+      "phaseName" : "core",
+      "result" : "SUCCESS",
+      "retry" : false,
+      "url" : "job/ops-deploy/15/"
+    },
+    {
+      "abort" : false,
+      "buildNumber" : 4,
+      "duration" : "34 sec",
+      "icon" : "blue.png",
+      "jobName" : "marketing-deploy",
+      "parentBuildNumber" : 3,
+      "parentJobName" : "deploy-multi-master-pl_rc",
+      "phaseName" : "services",
+      "result" : "SUCCESS",
+      "retry" : false,
+      "url" : "job/marketing-deploy/4/"
+    },
+    {
+      "abort" : false,
+      "buildNumber" : 5,
+      "duration" : "20 sec",
+      "icon" : "blue.png",
+      "jobName" : "segmentengine-deploy",
+      "parentBuildNumber" : 3,
+      "parentJobName" : "deploy-multi-master-pl_rc",
+      "phaseName" : "services",
+      "result" : "SUCCESS",
+      "retry" : false,
+      "url" : "job/segmentengine-deploy/5/"
+    },
+    {
+      "abort" : false,
+      "buildNumber" : 7,
+      "duration" : "3 min 41 sec",
+      "icon" : "red.png",
+      "jobName" : "tc.kontomierz-deploy",
+      "parentBuildNumber" : 3,
+      "parentJobName" : "deploy-multi-master-pl_rc",
+      "phaseName" : "components phase 1",
+      "result" : "FAILURE",
+      "retry" : false,
+      "url" : "job/tc.kontomierz-deploy/7/"
+    },
+    {
+      "abort" : false,
+      "buildNumber" : 7,
+      "duration" : "36 sec",
+      "icon" : "blue.png",
+      "jobName" : "tc.timezone-deploy",
+      "parentBuildNumber" : 3,
+      "parentJobName" : "deploy-multi-master-pl_rc",
+      "phaseName" : "components phase 1",
+      "result" : "SUCCESS",
+      "retry" : false,
+      "url" : "job/tc.timezone-deploy/7/"
+    },
+  ]
+}

@@ -1,0 +1,49 @@
+<div class="tree-list" data-ng-show="data && data.length > 0">
+    <div class="top-menu">
+        <span><a data-ng-click="toggleAll()">{{toggleAllText()}}</a></span>
+        <span data-ng-if="!hideCheckBoxes" class="check-all-text">
+            <a data-ng-click="checkAll()">{{checkAllText()}}</a>
+        </span>
+    </div>
+    <ul>
+        <li data-ng-repeat="item in data">
+            <div>
+                <div class="tree-list-parent-div" data-ng-class="{ 'selected': parentSelected(item) }" data-ng-click="toggle(item)">
+                    <i class="tree-list-chevron-icon fa"
+                        data-ng-class="{ 'fa-chevron-right': item.Expanded,  'fa-chevron-down': !item.Expanded, 'vis-hidden': !hasChildren(item) }"></i>
+                    {{item.Name}}
+                    <button type="button" class="btn btn-default tree-list-check-button"
+                        data-ng-class="{ 'active': parentCheckStateClass(item) == 'fa-check' }"
+                        data-ng-click="checkParent(item); $event.stopPropagation();"
+                        data-ng-if="!hideCheckBoxes"
+                        data-tooltip="{{checkTooltipText}}"
+                        data-tooltip-placement="left">
+                        <i class="tree-list-check-icon fa" data-ng-class="parentCheckStateClass(item)"></i>
+                    </button>
+                </div>
+                <ul data-ng-show="item.Expanded" class="child-list">
+                    <li data-ng-repeat="childItem in item.Children" class="tree-list-child" data-ng-class="{ 'selected': childItem.Selected }">
+                        <div data-ng-click="selectChild(childItem)">
+                            <input class="select-input" name="childSelect" type="radio"
+                                data-ng-if="!hideRadioButtons"
+                                data-ng-disabled="disableSelectIfNotChecked && !childItem.Checked"
+                                data-ng-click="selectChild(childItem)"
+                                data-ng-checked="childItem.Selected"
+                                data-tooltip="{{selectTooltipText}}"
+                                data-tooltip-placement="left" />
+                            <span class="child-text">{{childItem.Name}}</span>
+                            <button type="button" class="btn btn-default tree-list-check-button"
+                                data-ng-click="checkChild(childItem, !childItem.Checked); $event.stopPropagation();"
+                                data-ng-class="{ 'active': childItem.Checked }"
+                                data-ng-if="!hideCheckBoxes"
+                                data-tooltip="{{checkTooltipText}}"
+                                data-tooltip-placement="left">
+                                <i class="tree-list-check-icon fa" data-ng-class="{ 'fa-check': childItem.Checked, '': !childItem.Checked }"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>

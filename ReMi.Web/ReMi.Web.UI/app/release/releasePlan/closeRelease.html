@@ -1,0 +1,44 @@
+<div data-ng-controller="closeRelease as closeReleasevm">
+    <div class="modal fade" id="closeReleaseModal" tabindex="-1" data-backdrop="static" data-keyboard="true" data-focus-modal-editor='div[contenteditable="true"]'>
+        <div class="modal-dialog" style="width: 1050px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true" data-ng-click="closeReleasevm.hideCurrentCloseReleaseModal()">&times;</button>
+                    <h4 class="modal-title">Closing relase: Release Notes</h4>
+                </div>
+                <div class="modal-body">
+                    <div style="display: inline-block; width: 74%">
+                        <div text-angular data-ng-model="closeReleasevm.releaseNotes"></div>
+                    </div>
+                    <div style="display: inline-block; width: 23%; vertical-align: top; height: 100%; margin-left: 8px;">
+                        <h4 style="text-align: center; margin-bottom: 1%; margin-top: 0px; padding: 0px">Addressees:</h4>
+                        <div class="long-table-wrapper" style="min-height: 0px;">
+                            <table class="table table-condensed table-striped">
+                                <tbody>
+                                    <tr data-ng-repeat="a in closeReleasevm.addressees | orderBy:'FullName'">
+                                        <td>{{a.FullName}}</td>
+                                        <td>
+                                            <button class="btn btn-default btn-xs" data-ng-click="closeReleasevm.removeAddressee(a)">Remove</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-default"
+                            data-account-search=""
+                            data-multi-select="true"
+                            data-get-selected="closeReleasevm.getSelectedAccounts()"
+                            data-on-submit="closeReleasevm.addAddressee(data)"
+                            data-dialog-title="Add adressees">
+                            Add more</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <img data-ng-show="closeReleasevm.state.isBusy" src="/content/images/progress.gif" />
+                    <button class="btn btn-primary" data-ng-disabled="closeReleasevm.state.isBusy" data-ng-click="closeReleasevm.signOffRelease(data, vm.currentReleaseWindow.ExternalId)" data-account-signature="" data-default-user-name="{{vm.currentUser.email}}">Close Release</button>
+                    <button class="btn btn-default" data-ng-disabled="closeReleasevm.state.isBusy" data-ng-click="closeReleasevm.hideCurrentCloseReleaseModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+param([String]$nugetRepo, [String]$apiKey)
+
+Get-Module | % { if($_.Name -eq "NuGetRemi") { Remove-Module NuGetReMi}}
+Import-Module .\NuGetReMi.psm1 -disablenamechecking
+
+$nuspecPath = $(Join-Path $(Get-Location) ..\ReMi.Web\.build)
+$nuspecName = "ReMi.Web.nuspec"
+$nugetConfig = $(Join-Path $(Get-Location) ..\.nuget\NuGet.config)
+$outputFolder = $(Join-Path $nuspecPath "temp")
+
+$version = GetNextVersion $nuspecName $nuspecPath $nugetRepo
+
+PublishToFileSystem $(Join-Path $nuspecPath ..\ReMi.Web.UI\ReMi.Web.UI.csproj) $outputFolder
+
+Copy-Item -Recurse $(Join-Path $nuspecPath temp\_PublishedWebsites\ReMi.Web.UI\) $nuspecPath
+Rename-Item $(Join-Path $nuspecPath ReMi.Web.UI) content
+Remove-Item -Recurse $(Join-Path $nuspecPath temp) -Force
+Remove-Item -Recurse $(Join-Path $nuspecPath content\bin) -Force
+Remove-Item $(Join-Path $nuspecPath content\packages.config) -Force
+
+GenerateNuGetPackage $nuspecName $nuspecPath $version
+
+PublishPackage $nugetRepo $nuspecName $nuspecPath $nugetConfig $apiKey
+
+RemoveNuGetPackages $nuspecPath $true
+

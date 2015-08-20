@@ -1,0 +1,71 @@
+<div data-ng-controller="deploymentJobsMeasurements as vm">
+    <div class="widget wlightblue" data-ng-show="vm.isVisible">
+        <div data-remi-widget-header="" title="Deploy Jobs measurements" data-allow-collapse="true">
+        </div>
+        <div class="widget-content text-info">
+            <div data-tree-grid="" data-columns="vm.measurementColumns" data-rows="vm.measurements" data-child-items-property="ChildSteps">
+            </div>
+            <div class="list-loader" data-ng-show="vm.state.isBusy">
+            </div>
+        </div>
+        <div class="widget-foot">
+            <div class="row">
+                <div class="col-xs-6">
+                    <button class="btn btn-default" data-ng-click="vm.rePopulateMeasurements()" data-ng-disabled="vm.state.isBusy"
+                        data-access-control="RePopulateDeploymentMeasurementsCommand" data-restriction-mode="hide">
+                        Re-Populate measurements
+                    </button>
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-default pull-right" data-ng-click="vm.refreshMeasurements()" data-ng-disabled="vm.state.isBusy">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                        Refresh
+                    </button>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="modal fade" id="stepDetailsModal">
+            <div class="modal-dialog" style="width: 400px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Step Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form-horizontal" id="stepDetailsModalForm">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="startTime">Start time</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="startTime" name="startTime" data-ng-model="vm.currentStep.StartTime" placeholder="Start time" readonly="readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="startTime">Finish time</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="finishTime" name="finishTime" data-ng-model="vm.currentStep.FinishTime" placeholder="Finish time" readonly="readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="startTime">Duration</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="duration" name="duration" data-ng-model="vm.currentStep.DurationLabel" placeholder="Duration" readonly="readonly" />
+                                </div>
+                            </div>
+                            <div class="form-group" data-ng-show="!!vm.currentStep.Locator">
+                                <div class="col-sm-10 col-sm-offset-2">
+                                    <a data-ng-href="{{vm.currentStep.Locator}}" href="#" target="_blank">Link to Job</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <img ng-show="vm.state.isModalBusy" src="/content/images/progress.gif" />
+                        <button type="button" ng-disabled="vm.state.isModalBusy" class="btn btn-default" data-ng-click="vm.hideModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

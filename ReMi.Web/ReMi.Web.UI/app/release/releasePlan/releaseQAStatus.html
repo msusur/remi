@@ -1,0 +1,56 @@
+<div data-ng-controller="releaseQaStatus as releaseQaStatusVm">
+    <div class="widget wlightblue" data-ng-show="releaseQaStatusVm.state.visible">
+        <div data-remi-widget-header="" title="Quality assurance state for this release:"
+            data-allow-collapse="true">
+        </div>
+        <div class="widget-content text-info">
+            <div class="list-container">
+                <div class="list-panel">
+                    <div>
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr class="changes-widget">
+                                    <th>Area</th>
+                                    <th>Metric/Control</th>
+                                    <th>Status</th>
+                                    <th>Updated</th>
+                                    <th>Owner</th>
+                                    <th>Details/Evidence</th>
+                                    <th>Comments</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="c in releaseQaStatusVm.qaChecks" class="changes-widget">
+                                    <td>{{c.Area}}</td>
+                                    <td>{{c.MetricControl}}</td>
+                                    <td>{{c.Status}}</td>
+                                    <td>{{c.LastStatusUpdate}}</td>
+                                    <td>{{c.Owner}}</td>
+                                    <td>{{c.DetailsEvidence}}</td>
+                                    <td>{{c.Comments}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget-foot">
+            <div class="row">
+                <div class="col-xs-6">
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-default pull-right"
+                        data-ng-click="releaseQaStatusVm.checkStatus()"
+                        data-ng-disabled="releaseQaStatusVm.state.isBusy || vm.isClosed || !releaseQaStatusVm.state.bindedToReleaseWindow">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                        Refresh
+                    </button>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="list-loader" data-ng-show="releaseQaStatusVm.state.isBusy">
+        </div>
+    </div>
+</div>

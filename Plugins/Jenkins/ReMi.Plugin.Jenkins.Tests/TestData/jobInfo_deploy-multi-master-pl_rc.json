@@ -1,0 +1,847 @@
+﻿{
+	"actions" : [{
+			"parameterDefinitions" : [{
+					"defaultParameterValue" : {
+						"value" : "pl_rc"
+					},
+					"description" : "",
+					"name" : "DEPLOY_TARGET",
+					"type" : "StringParameterDefinition"
+				}, {
+					"defaultParameterValue" : {
+						"value" : "master"
+					},
+					"description" : "",
+					"name" : "GERRIT_BRANCH",
+					"type" : "StringParameterDefinition"
+				}
+			]
+		}, {}
+
+	],
+	"description" : "<!-- Managed by Jenkins Job Builder -->",
+	"displayName" : "deploy-multi-master-pl_rc",
+	"displayNameOrNull" : null,
+	"name" : "deploy-multi-master-pl_rc",
+	"url" : "https://build.com/job/deploy-multi-master-pl_rc/",
+	"buildable" : true,
+	"builds" : [{
+			"number" : 4,
+			"url" : "https://build.com/job/deploy-multi-master-pl_rc/4/",
+			"subBuilds" : [{
+					"abort" : false,
+					"buildNumber" : 16,
+					"duration" : "49 sec",
+					"icon" : "blue.png",
+					"jobName" : "ops-deploy",
+					"parentBuildNumber" : 4,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "core",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/ops-deploy/16/"
+				}, {
+					"abort" : false,
+					"buildNumber" : 5,
+					"duration" : "24 sec",
+					"icon" : "blue.png",
+					"jobName" : "marketing-deploy",
+					"parentBuildNumber" : 4,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "services",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/marketing-deploy/5/"
+				}, {
+					"abort" : false,
+					"buildNumber" : 6,
+					"duration" : "23 sec",
+					"icon" : "blue.png",
+					"jobName" : "segmentengine-deploy",
+					"parentBuildNumber" : 4,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "services",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/segmentengine-deploy/6/"
+				}, {
+					"abort" : false,
+					"buildNumber" : 10,
+					"duration" : "17 sec",
+					"icon" : "blue.png",
+					"jobName" : "tc.kontomierz-deploy",
+					"parentBuildNumber" : 4,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "components phase 1",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/tc.kontomierz-deploy/10/"
+				}, {
+					"abort" : false,
+					"buildNumber" : 8,
+					"duration" : "30 sec",
+					"icon" : "blue.png",
+					"jobName" : "tc.timezone-deploy",
+					"parentBuildNumber" : 4,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "components phase 1",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/tc.timezone-deploy/8/"
+				}, {
+					"abort" : false,
+					"buildNumber" : 6,
+					"duration" : "1 min 21 sec",
+					"icon" : "blue.png",
+					"jobName" : "merge.cswebapi-deploy",
+					"parentBuildNumber" : 4,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "merge apis",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/merge.cswebapi-deploy/6/"
+				}, {
+					"abort" : false,
+					"buildNumber" : 6,
+					"duration" : "40 sec",
+					"icon" : "blue.png",
+					"jobName" : "merge.callback-deploy",
+					"parentBuildNumber" : 4,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "merge apis",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/merge.callback-deploy/6/"
+				}
+			]
+		}, {
+			"number" : 3,
+			"url" : "https://build.com/job/deploy-multi-master-pl_rc/3/",
+			"subBuilds" : [{
+					"abort" : false,
+					"buildNumber" : 15,
+					"duration" : "35 sec",
+					"icon" : "blue.png",
+					"jobName" : "ops-deploy",
+					"parentBuildNumber" : 3,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "core",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/ops-deploy/15/"
+				}, {
+					"abort" : false,
+					"buildNumber" : 4,
+					"duration" : "34 sec",
+					"icon" : "blue.png",
+					"jobName" : "marketing-deploy",
+					"parentBuildNumber" : 3,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "services",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/marketing-deploy/4/"
+				}, {
+					"abort" : false,
+					"buildNumber" : 5,
+					"duration" : "20 sec",
+					"icon" : "blue.png",
+					"jobName" : "segmentengine-deploy",
+					"parentBuildNumber" : 3,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "services",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/segmentengine-deploy/5/"
+				}, {
+					"abort" : false,
+					"buildNumber" : 7,
+					"duration" : "3 min 41 sec",
+					"icon" : "red.png",
+					"jobName" : "tc.kontomierz-deploy",
+					"parentBuildNumber" : 3,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "components phase 1",
+					"result" : "FAILURE",
+					"retry" : false,
+					"url" : "job/tc.kontomierz-deploy/7/"
+				}, {
+					"abort" : false,
+					"buildNumber" : 7,
+					"duration" : "36 sec",
+					"icon" : "blue.png",
+					"jobName" : "tc.timezone-deploy",
+					"parentBuildNumber" : 3,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "components phase 1",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/tc.timezone-deploy/7/"
+				}
+			]
+		}, {
+			"number" : 2,
+			"url" : "https://build.com/job/deploy-multi-master-pl_rc/2/",
+			"subBuilds" : [{
+					"abort" : false,
+					"buildNumber" : 14,
+					"duration" : "45 sec",
+					"icon" : "blue.png",
+					"jobName" : "ops-deploy",
+					"parentBuildNumber" : 2,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "core",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/ops-deploy/14/"
+				}
+			]
+		}, {
+			"number" : 1,
+			"url" : "https://build.com/job/deploy-multi-master-pl_rc/1/",
+			"subBuilds" : [{
+					"abort" : false,
+					"buildNumber" : 13,
+					"duration" : "31 sec",
+					"icon" : "blue.png",
+					"jobName" : "ops-deploy",
+					"parentBuildNumber" : 1,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "core",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/ops-deploy/13/"
+				}, {
+					"abort" : false,
+					"buildNumber" : 6,
+					"duration" : "13 sec",
+					"icon" : "blue.png",
+					"jobName" : "tc.kontomierz-deploy",
+					"parentBuildNumber" : 1,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "components phase 1",
+					"result" : "SUCCESS",
+					"retry" : false,
+					"url" : "job/tc.kontomierz-deploy/6/"
+				}, {
+					"abort" : true,
+					"buildNumber" : 6,
+					"duration" : "",
+					"icon" : "aborted.png",
+					"jobName" : "tc.timezone-deploy",
+					"parentBuildNumber" : 1,
+					"parentJobName" : "deploy-multi-master-pl_rc",
+					"phaseName" : "components phase 1",
+					"result" : "ABORTED",
+					"retry" : false,
+					"url" : "job/tc.timezone-deploy/6/"
+				}
+			]
+		}
+	],
+	"color" : "blue",
+	"firstBuild" : {
+		"number" : 1,
+		"url" : "https://build.com/job/deploy-multi-master-pl_rc/1/",
+		"subBuilds" : [{
+				"abort" : false,
+				"buildNumber" : 13,
+				"duration" : "31 sec",
+				"icon" : "blue.png",
+				"jobName" : "ops-deploy",
+				"parentBuildNumber" : 1,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "core",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/ops-deploy/13/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "13 sec",
+				"icon" : "blue.png",
+				"jobName" : "tc.kontomierz-deploy",
+				"parentBuildNumber" : 1,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/tc.kontomierz-deploy/6/"
+			}, {
+				"abort" : true,
+				"buildNumber" : 6,
+				"duration" : "",
+				"icon" : "aborted.png",
+				"jobName" : "tc.timezone-deploy",
+				"parentBuildNumber" : 1,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "ABORTED",
+				"retry" : false,
+				"url" : "job/tc.timezone-deploy/6/"
+			}
+		]
+	},
+	"healthReport" : [{
+			"description" : "Build stability: 3 out of the last 4 builds failed.",
+			"iconClassName" : "icon-health-20to39",
+			"iconUrl" : "health-20to39.png",
+			"score" : 25
+		}
+	],
+	"inQueue" : false,
+	"keepDependencies" : false,
+	"lastBuild" : {
+		"number" : 4,
+		"url" : "https://build.com/job/deploy-multi-master-pl_rc/4/",
+		"subBuilds" : [{
+				"abort" : false,
+				"buildNumber" : 16,
+				"duration" : "49 sec",
+				"icon" : "blue.png",
+				"jobName" : "ops-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "core",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/ops-deploy/16/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 5,
+				"duration" : "24 sec",
+				"icon" : "blue.png",
+				"jobName" : "marketing-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "services",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/marketing-deploy/5/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "23 sec",
+				"icon" : "blue.png",
+				"jobName" : "segmentengine-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "services",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/segmentengine-deploy/6/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 10,
+				"duration" : "17 sec",
+				"icon" : "blue.png",
+				"jobName" : "tc.kontomierz-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/tc.kontomierz-deploy/10/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 8,
+				"duration" : "30 sec",
+				"icon" : "blue.png",
+				"jobName" : "tc.timezone-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/tc.timezone-deploy/8/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "1 min 21 sec",
+				"icon" : "blue.png",
+				"jobName" : "merge.cswebapi-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "merge apis",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/merge.cswebapi-deploy/6/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "40 sec",
+				"icon" : "blue.png",
+				"jobName" : "merge.callback-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "merge apis",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/merge.callback-deploy/6/"
+			}
+		]
+	},
+	"lastCompletedBuild" : {
+		"number" : 4,
+		"url" : "https://build.com/job/deploy-multi-master-pl_rc/4/",
+		"subBuilds" : [{
+				"abort" : false,
+				"buildNumber" : 16,
+				"duration" : "49 sec",
+				"icon" : "blue.png",
+				"jobName" : "ops-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "core",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/ops-deploy/16/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 5,
+				"duration" : "24 sec",
+				"icon" : "blue.png",
+				"jobName" : "marketing-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "services",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/marketing-deploy/5/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "23 sec",
+				"icon" : "blue.png",
+				"jobName" : "segmentengine-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "services",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/segmentengine-deploy/6/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 10,
+				"duration" : "17 sec",
+				"icon" : "blue.png",
+				"jobName" : "tc.kontomierz-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/tc.kontomierz-deploy/10/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 8,
+				"duration" : "30 sec",
+				"icon" : "blue.png",
+				"jobName" : "tc.timezone-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/tc.timezone-deploy/8/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "1 min 21 sec",
+				"icon" : "blue.png",
+				"jobName" : "merge.cswebapi-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "merge apis",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/merge.cswebapi-deploy/6/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "40 sec",
+				"icon" : "blue.png",
+				"jobName" : "merge.callback-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "merge apis",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/merge.callback-deploy/6/"
+			}
+		]
+	},
+	"lastFailedBuild" : {
+		"number" : 3,
+		"url" : "https://build.com/job/deploy-multi-master-pl_rc/3/",
+		"subBuilds" : [{
+				"abort" : false,
+				"buildNumber" : 15,
+				"duration" : "35 sec",
+				"icon" : "blue.png",
+				"jobName" : "ops-deploy",
+				"parentBuildNumber" : 3,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "core",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/ops-deploy/15/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 4,
+				"duration" : "34 sec",
+				"icon" : "blue.png",
+				"jobName" : "marketing-deploy",
+				"parentBuildNumber" : 3,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "services",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/marketing-deploy/4/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 5,
+				"duration" : "20 sec",
+				"icon" : "blue.png",
+				"jobName" : "segmentengine-deploy",
+				"parentBuildNumber" : 3,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "services",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/segmentengine-deploy/5/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 7,
+				"duration" : "3 min 41 sec",
+				"icon" : "red.png",
+				"jobName" : "tc.kontomierz-deploy",
+				"parentBuildNumber" : 3,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "FAILURE",
+				"retry" : false,
+				"url" : "job/tc.kontomierz-deploy/7/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 7,
+				"duration" : "36 sec",
+				"icon" : "blue.png",
+				"jobName" : "tc.timezone-deploy",
+				"parentBuildNumber" : 3,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/tc.timezone-deploy/7/"
+			}
+		]
+	},
+	"lastStableBuild" : {
+		"number" : 4,
+		"url" : "https://build.com/job/deploy-multi-master-pl_rc/4/",
+		"subBuilds" : [{
+				"abort" : false,
+				"buildNumber" : 16,
+				"duration" : "49 sec",
+				"icon" : "blue.png",
+				"jobName" : "ops-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "core",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/ops-deploy/16/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 5,
+				"duration" : "24 sec",
+				"icon" : "blue.png",
+				"jobName" : "marketing-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "services",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/marketing-deploy/5/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "23 sec",
+				"icon" : "blue.png",
+				"jobName" : "segmentengine-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "services",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/segmentengine-deploy/6/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 10,
+				"duration" : "17 sec",
+				"icon" : "blue.png",
+				"jobName" : "tc.kontomierz-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/tc.kontomierz-deploy/10/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 8,
+				"duration" : "30 sec",
+				"icon" : "blue.png",
+				"jobName" : "tc.timezone-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/tc.timezone-deploy/8/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "1 min 21 sec",
+				"icon" : "blue.png",
+				"jobName" : "merge.cswebapi-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "merge apis",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/merge.cswebapi-deploy/6/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "40 sec",
+				"icon" : "blue.png",
+				"jobName" : "merge.callback-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "merge apis",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/merge.callback-deploy/6/"
+			}
+		]
+	},
+	"lastSuccessfulBuild" : {
+		"number" : 4,
+		"url" : "https://build.com/job/deploy-multi-master-pl_rc/4/",
+		"subBuilds" : [{
+				"abort" : false,
+				"buildNumber" : 16,
+				"duration" : "49 sec",
+				"icon" : "blue.png",
+				"jobName" : "ops-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "core",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/ops-deploy/16/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 5,
+				"duration" : "24 sec",
+				"icon" : "blue.png",
+				"jobName" : "marketing-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "services",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/marketing-deploy/5/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "23 sec",
+				"icon" : "blue.png",
+				"jobName" : "segmentengine-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "services",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/segmentengine-deploy/6/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 10,
+				"duration" : "17 sec",
+				"icon" : "blue.png",
+				"jobName" : "tc.kontomierz-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/tc.kontomierz-deploy/10/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 8,
+				"duration" : "30 sec",
+				"icon" : "blue.png",
+				"jobName" : "tc.timezone-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/tc.timezone-deploy/8/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "1 min 21 sec",
+				"icon" : "blue.png",
+				"jobName" : "merge.cswebapi-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "merge apis",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/merge.cswebapi-deploy/6/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 6,
+				"duration" : "40 sec",
+				"icon" : "blue.png",
+				"jobName" : "merge.callback-deploy",
+				"parentBuildNumber" : 4,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "merge apis",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/merge.callback-deploy/6/"
+			}
+		]
+	},
+	"lastUnstableBuild" : null,
+	"lastUnsuccessfulBuild" : {
+		"number" : 3,
+		"url" : "https://build.com/job/deploy-multi-master-pl_rc/3/",
+		"subBuilds" : [{
+				"abort" : false,
+				"buildNumber" : 15,
+				"duration" : "35 sec",
+				"icon" : "blue.png",
+				"jobName" : "ops-deploy",
+				"parentBuildNumber" : 3,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "core",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/ops-deploy/15/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 4,
+				"duration" : "34 sec",
+				"icon" : "blue.png",
+				"jobName" : "marketing-deploy",
+				"parentBuildNumber" : 3,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "services",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/marketing-deploy/4/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 5,
+				"duration" : "20 sec",
+				"icon" : "blue.png",
+				"jobName" : "segmentengine-deploy",
+				"parentBuildNumber" : 3,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "services",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/segmentengine-deploy/5/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 7,
+				"duration" : "3 min 41 sec",
+				"icon" : "red.png",
+				"jobName" : "tc.kontomierz-deploy",
+				"parentBuildNumber" : 3,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "FAILURE",
+				"retry" : false,
+				"url" : "job/tc.kontomierz-deploy/7/"
+			}, {
+				"abort" : false,
+				"buildNumber" : 7,
+				"duration" : "36 sec",
+				"icon" : "blue.png",
+				"jobName" : "tc.timezone-deploy",
+				"parentBuildNumber" : 3,
+				"parentJobName" : "deploy-multi-master-pl_rc",
+				"phaseName" : "components phase 1",
+				"result" : "SUCCESS",
+				"retry" : false,
+				"url" : "job/tc.timezone-deploy/7/"
+			}
+		]
+	},
+	"nextBuildNumber" : 5,
+	"property" : [{
+			"parameterDefinitions" : [{
+					"defaultParameterValue" : {
+						"name" : "DEPLOY_TARGET",
+						"value" : "pl_rc"
+					},
+					"description" : "",
+					"name" : "DEPLOY_TARGET",
+					"type" : "StringParameterDefinition"
+				}, {
+					"defaultParameterValue" : {
+						"name" : "GERRIT_BRANCH",
+						"value" : "master"
+					},
+					"description" : "",
+					"name" : "GERRIT_BRANCH",
+					"type" : "StringParameterDefinition"
+				}
+			]
+		}
+	],
+	"queueItem" : null,
+	"concurrentBuild" : false,
+	"downstreamProjects" : [{
+			"name" : "marketing-deploy",
+			"url" : "https://build.com/job/marketing-deploy/",
+			"color" : "blue"
+		}, {
+			"name" : "merge.callback-deploy",
+			"url" : "https://build.com/job/merge.callback-deploy/",
+			"color" : "blue"
+		}, {
+			"name" : "merge.cswebapi-deploy",
+			"url" : "https://build.com/job/merge.cswebapi-deploy/",
+			"color" : "blue"
+		}, {
+			"name" : "ops-deploy",
+			"url" : "https://build.com/job/ops-deploy/",
+			"color" : "blue"
+		}, {
+			"name" : "segmentengine-deploy",
+			"url" : "https://build.com/job/segmentengine-deploy/",
+			"color" : "blue"
+		}, {
+			"name" : "tc.bankgateway-deploy",
+			"url" : "https://build.com/job/tc.bankgateway-deploy/",
+			"color" : "blue"
+		}, {
+			"name" : "tc.kontomierz-deploy",
+			"url" : "https://build.com/job/tc.kontomierz-deploy/",
+			"color" : "blue"
+		}, {
+			"name" : "tc.timezone-deploy",
+			"url" : "https://build.com/job/tc.timezone-deploy/",
+			"color" : "blue"
+		}
+	],
+	"scm" : {},
+	"upstreamProjects" : []
+}

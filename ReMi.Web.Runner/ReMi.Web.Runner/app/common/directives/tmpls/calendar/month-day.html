@@ -1,0 +1,33 @@
+<div class="cal-month-day" data-ng-class="$day.css" data-ng-contextmenu="cal.invokeContextmenu($day.date, undefined, $event)">
+    <div class="cal-month-day-container">
+        <div class="cal-day-event-container" style="position: absolute; top: 5px; left: 5px">
+            <div data-ng-if="$day.events.length > 0" data-cal-start="true" data-cal-end="true">
+                <div style="float: right;">
+                    <div class="btn disabled" style="width: 35px; border: 1px solid transparent; padding: 3px 0; margin: 0 0 3px 0; display: inline-block;">&nbsp;</div>
+                </div>
+                <div class="event-wrapper" data-ng-repeat="event in $day.events">
+                    <div class="btn-group" data-dropdown=""
+                        data-ng-contextmenu="cal.invokeContextmenu($day.date, event, $event)">
+                        <button class="month-event-btn" data-ng-class="event['class']" title="{{event.tooltip}}"
+                            data-event-id="{{event.id}}" data-toggle="tooltip" data-ng-disabled="event.state.isDisabled"
+                            data-ng-click="cal.invokeEventClick(event, $event)">
+                            <i class="fa fa-exclamation-triangle failed-sign" title="Failed!" data-ng-show="event.isFailed"></i>
+                            <i class="fa fa-thumbs-o-up approved-sign" title="Failed!" data-ng-show="event.state.isApproved"></i>
+                            {{event.title + ' ' + event.start.format('HH:mm')}}
+                        </button>
+                        <button type="button" class="dropdown-toggle month-event-btn" data-dropdown-toggle=""
+                            data-ng-click="cal.invokeContextmenu(event.start, event, $event)"
+                            data-ng-class="event['class']"
+                            style="border-left: 1px solid #777">
+                            <span class="caret"></span>
+                            <span class="sr-only">Split button!</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cal-day-number" style="position: relative; float: right">
+            <span class="pull-right" data-cal-date="true" data-cal-view="day" data-toggle="tooltip" title="{{$day.tooltip}}">{{$day.dayOfMonth}}</span>
+        </div>
+    </div>
+</div>

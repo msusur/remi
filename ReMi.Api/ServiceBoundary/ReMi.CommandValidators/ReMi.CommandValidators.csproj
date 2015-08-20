@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{862BEEF2-2CD9-4E54-A242-34A878AF6E18}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReMi.CommandValidators</RootNamespace>
+    <AssemblyName>ReMi.CommandValidators</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.3.4.0\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Log4Net1210, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Log4Net1210.2.2.0\lib\net40\Common.Logging.Log4Net1210.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentValidation.5.1.0.0\lib\Net40\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.5.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Common.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Utils.1.0.0.0\lib\net45\ReMi.Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Common.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Utils.1.0.0.0\lib\net45\ReMi.Common.Utils.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Core.1.0.0.0\lib\net45\ReMi.Contracts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Plugin.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Utils.1.0.0.0\lib\net45\ReMi.Plugin.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\UpdateApiDescriptionCommandValidator.cs" />
+    <Compile Include="Auth\AssociateAccountsWithProductRequestValidator.cs" />
+    <Compile Include="Auth\CheckAccountsCommandValidator.cs" />
+    <Compile Include="Auth\StartSessionCommandValidator.cs" />
+    <Compile Include="Auth\UpdateAccountPackagesCommandValidator.cs" />
+    <Compile Include="Auth\DeleteRoleCommandValidator.cs" />
+    <Compile Include="Auth\ProlongSessionCommandValidator.cs" />
+    <Compile Include="Auth\SetDefaultProductForNewlyRegisteredUserCommandValidator.cs" />
+    <Compile Include="Auth\UpdateRoleCommandValidator.cs" />
+    <Compile Include="Auth\CreateRoleCommandValidator.cs" />
+    <Compile Include="Auth\CreateAccountRequestValidator.cs" />
+    <Compile Include="Auth\UpdateAccountCommandValidator.cs" />
+    <Compile Include="Common\StringCollectionValidator.cs" />
+    <Compile Include="Common\ProductRequestRegistrationTaskValidator.cs" />
+    <Compile Include="BusinessRules\BusinessRuleParameterValidator.cs" />
+    <Compile Include="BusinessRules\SaveRuleCommandValidator.cs" />
+    <Compile Include="Common\ProductRequestAssigneesValidator.cs" />
+    <Compile Include="BusinessRules\SavePermissionRuleCommandBaseValidator.cs" />
+    <Compile Include="BusinessRules\DeletePermissionRuleCommandValidator.cs" />
+    <Compile Include="BusinessRules\SaveCommandPermissionRuleCommandValidator.cs" />
+    <Compile Include="BusinessRules\SaveQueryPermissionRuleCommandValidator.cs" />
+    <Compile Include="Common\TicketValidator.cs" />
+    <Compile Include="Common\QuestionValidator.cs" />
+    <Compile Include="Configuration\AddProductCommandValidator.cs" />
+    <Compile Include="Configuration\AddCommandToRoleCommandValidator.cs" />
+    <Compile Include="Configuration\AddQueryToRoleCommandValidator.cs" />
+    <Compile Include="Configuration\UpdateProductCommandValidator.cs" />
+    <Compile Include="Configuration\RemoveQueryFromRoleCommandValidator.cs" />
+    <Compile Include="Configuration\RemoveCommandFromRoleCommandValidator.cs" />
+    <Compile Include="ContinuousDelivery\CreateAutomatedReleaseWindowCommandValidator.cs" />
+    <Compile Include="ContinuousDelivery\UpdateAutomatedMetricsCommandValidator.cs" />
+    <Compile Include="DeploymentTool\RePopulateDeploymentMeasurementsCommandValidator.cs" />
+    <Compile Include="SourceControl\LoadReleaseRepositoriesCommandValidator.cs" />
+    <Compile Include="SourceControl\StoreSourceControlChangesCommandValidator.cs" />
+    <Compile Include="DeploymentTool\PopulateDeploymentMeasurementsCommandValidator.cs" />
+    <Compile Include="Metrics\UpdateMetricsCommandValidator.cs" />
+    <Compile Include="Plugins\AssignGlobalPluginCommandValidator.cs" />
+    <Compile Include="Plugins\AssignPackagePluginCommandValidator.cs" />
+    <Compile Include="Plugins\UpdatePluginPackageConfigurationCommandValidator.cs" />
+    <Compile Include="Plugins\UpdatePluginGlobalConfigurationEntityCommandValidator.cs" />
+    <Compile Include="Plugins\UpdatePluginPackageConfigurationEntityCommandValidator.cs" />
+    <Compile Include="Plugins\UpdatePluginGlobalConfigurationCommandValidator.cs" />
+    <Compile Include="ProductRequests\UpdateProductRequestRegistrationCommandValidator.cs" />
+    <Compile Include="ProductRequests\CreateProductRequestRegistrationCommandValidator.cs" />
+    <Compile Include="ProductRequests\DeleteProductRequestRegistrationCommandValidator.cs" />
+    <Compile Include="ProductRequests\DeleteProductRequestGroupCommandValidator.cs" />
+    <Compile Include="ProductRequests\DeleteProductRequestTaskCommandValidator.cs" />
+    <Compile Include="ProductRequests\DeleteProductRequestTypeCommandValidator.cs" />
+    <Compile Include="ProductRequests\CreateProductRequestTaskCommandValidator.cs" />
+    <Compile Include="ProductRequests\UpdateProductRequestTaskCommandValidator.cs" />
+    <Compile Include="ProductRequests\CreateProductRequestGroupCommandValidator.cs" />
+    <Compile Include="ProductRequests\UpdateProductRequestGroupCommandValidator.cs" />
+    <Compile Include="ProductRequests\UpdateProductRequestTypeCommandValidator.cs" />
+    <Compile Include="ProductRequests\CreateProductRequestTypeCommandValidator.cs" />
+    <Compile Include="ReleaseCalendar\ApproveReleaseCommandValidator.cs" />
+    <Compile Include="ReleaseCalendar\BookReleaseWindowCommandValidator.cs" />
+    <Compile Include="ReleaseCalendar\CancelReleaseWindowCommandValidator.cs" />
+    <Compile Include="Metrics\CreateReleaseMetricsCommandValidator.cs" />
+    <Compile Include="ReleaseCalendar\ClearApproversSignaturesCommandValidator.cs" />
+    <Compile Include="ReleaseCalendar\CloseReleaseCommandValidator.cs" />
+    <Compile Include="ReleaseCalendar\FailReleaseCommandValidator.cs" />
+    <Compile Include="ReleaseCalendar\UpdateReleaseDecisionCommandValidator.cs" />
+    <Compile Include="ReleaseCalendar\ReleaseIssuesSavedCommandValidator.cs" />
+    <Compile Include="Metrics\UpdateReleaseMetricsCommandValidator.cs" />
+    <Compile Include="ReleaseCalendar\UpdateReleaseWindowCommandValidator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReleaseExecution\AddPeopleToSignOffReleaseCommandValidator.cs" />
+    <Compile Include="ReleaseExecution\RemoveSignOffCommandValidator.cs" />
+    <Compile Include="ReleaseExecution\SignOffReleaseCommandValidator.cs" />
+    <Compile Include="ReleasePlan\AddCheckListQuestionsCommandValidator.cs" />
+    <Compile Include="ReleasePlan\AddReleaseApproversCommandValidator.cs" />
+    <Compile Include="ReleasePlan\ReapproveTicketsCommandValidator.cs" />
+    <Compile Include="ReleasePlan\IncludeTicketsToReleaseNotesCommandValidator.cs" />
+    <Compile Include="ReleasePlan\ReAssignReleaseChangesToReleaseCommandValidator.cs" />
+    <Compile Include="ReleasePlan\RemoveReleaseApproverCommandValidator.cs" />
+    <Compile Include="ReleasePlan\CompleteReleaseTaskCommandValidator.cs" />
+    <Compile Include="ReleasePlan\CreateReleaseTaskCommandValidator.cs" />
+    <Compile Include="ReleasePlan\DeleteReleaseTaskAttachmentCommandValidator.cs" />
+    <Compile Include="ReleasePlan\DeleteReleaseTaskCommandValidator.cs" />
+    <Compile Include="ReleasePlan\RemoveCheckListQuestionCommandValidator.cs" />
+    <Compile Include="ReleasePlan\UpdateTicketCommentCommandValidator.cs" />
+    <Compile Include="ReleasePlan\UpdateTicketRiskCommandValidator.cs" />
+    <Compile Include="ReleasePlan\UpdateTicketToReleaseNotesRelationCommandValidator.cs" />
+    <Compile Include="ReleasePlan\UpdateReleaseJobCommandValidator.cs" />
+    <Compile Include="ReleasePlan\UpdateReleaseTaskCommandValidator.cs" />
+    <Compile Include="ReleasePlan\UpdateCheckListCommandValidator.cs" />
+    <Compile Include="ReleasePlan\UpdateReleaseTasksOrderCommandValidator.cs" />
+    <Compile Include="SourceControl\UpdateReleaseRepositoryCommandValidator.cs" />
+    <Compile Include="Subscriptions\UpdateNotificationSubscriptionsCommandValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ReMi.Common.Constants\ReMi.Common.Constants.csproj">
+      <Project>{f8b8274d-2b1c-442b-b1c7-0208a150875f}</Project>
+      <Name>ReMi.Common.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ReMi.Common.Cqrs.FluentValidation\ReMi.Common.Cqrs.FluentValidation.csproj">
+      <Project>{49390f7b-ac73-4249-bf1f-ba2118eac148}</Project>
+      <Name>ReMi.Common.Cqrs.FluentValidation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\ReMi.BusinessEntities\ReMi.BusinessEntities.csproj">
+      <Project>{379E6FC3-C839-474B-A235-4AC3B1C36E9A}</Project>
+      <Name>ReMi.BusinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataAccess\ReMi.DataEntities\ReMi.DataEntities.csproj">
+      <Project>{41748e9b-c354-4eea-9a4f-61e9e8fbad0e}</Project>
+      <Name>ReMi.DataEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReMi.Commands\ReMi.Commands.csproj">
+      <Project>{57665c47-aaf0-461a-af14-a0fc8f59f4fb}</Project>
+      <Name>ReMi.Commands</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

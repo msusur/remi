@@ -1,0 +1,33 @@
+<div class="row" data-ng-controller="pluginsGlobalConfiguration as vm">
+    <div class="col-sm-6">
+        <div class="widget wlightblue">
+            <div data-remi-widget-header="" title="Global Plugins"></div>
+            <div class="widget-content">
+                <form role="form" id="globalConfigurationForm" class="form form-horizontal">
+                    <div class="form-group" data-ng-repeat="plugin in vm.parent.globalPlugins.GlobalPluginConfiguration">
+                        <label class="col-sm-4 control-label" for="plugin-select-{{plugin.PluginType}}">
+                            {{plugin.PluginType | formatenum:vm.parent.pluginTypes}}
+                        </label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="plugin-select-{{plugin.PluginType}}"
+                                data-ng-model="plugin.PluginId"
+                                data-ng-options="p.PluginId as p.PluginKey for p in plugin.Plugins"
+                                data-ng-change="vm.globalPluginChanged(plugin)">
+                                <option value="">None</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="widget-foot">
+                <button type="button" class="btn btn-default pull-right" data-ng-click="vm.refreshGlobalPlugins()">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                    Refresh
+                </button>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="list-loader" data-ng-show="vm.state.isBusy">
+        </div>
+    </div>
+</div>

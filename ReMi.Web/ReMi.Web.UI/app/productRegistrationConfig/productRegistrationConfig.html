@@ -1,0 +1,210 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="widget wlightblue" data-ng-controller="productRegistrationConfig as vm">
+                <div data-remi-widget-header="" title="Product Registration Configuration">
+                </div>
+                <div class="widget-content">
+                    <div class="wrap-space-left wrap-space-right">
+                        <div data-ng-repeat="r in vm.requestConfig track by $index" class="row product-request-config">
+                            <div class="col-sm-12">
+                                <div class="row request-type">
+                                    <div class="col-sm-6">
+                                        <div class="name">{{r.Name}}</div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="pull-right">
+                                            <button class="btn btn-default btn-xs" data-ng-click="vm.showTypeModal(r)"
+                                                data-access-control="UpdateProductRequestTypeCommand" data-restriction-mode="hide"><i class="fa fa-edit"></i>Edit</button>
+                                            <button class="btn btn-default btn-xs"
+                                                data-confirmation="" data-target-item="{{r.Name}}" data-target-item-type="request type"
+                                                data-ng-click="vm.deleteType(r)" title="Remove type {{r.Name}}"
+                                                data-access-control="DeleteProductRequestTypeCommand" data-restriction-mode="hide">
+                                                Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="groups row">
+                                    <div class="col-sm-12">
+                                        <div data-ng-repeat="g in r.RequestGroups track by $index" class="group row">
+                                            <div class="col-sm-12">
+                                                <div class="row group-header">
+                                                    <div class="col-sm-9">
+                                                        <div class="pull-left name">{{g.Name}} ({{g.Assignees | formatList:'FullName'}})</div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="pull-right">
+                                                            <button type="button" class="btn btn-default btn-xs" data-ng-click="vm.showGroupModal(r, g)" title="Edit group {{g.Name}}"><i class="fa fa-edit"
+                                                                data-access-control="UpdateProductRequestGroupCommand" data-restriction-mode="hide"></i>Edit</button>
+                                                            <button type="button" class="btn btn-default btn-xs"
+                                                                data-confirmation="" data-target-item="{{g.Name}}" data-target-item-type="request group"
+                                                                data-ng-click="vm.deleteGroup(r, g)" title="Remove group {{g.Name}}"
+                                                                data-access-control="DeleteProductRequestGroupCommand" data-restriction-mode="hide">
+                                                                Remove</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 tasks">
+                                                        <div class="row task-details" data-ng-repeat="t in g.RequestTasks track by $index" data-ng-class="{'odd' : '$odd'}">
+                                                            <div class="col-sm-6">{{t.Question}}</div>
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-3">
+                                                                <div class="pull-right">
+                                                                    <a class="btn btn-default btn-xs" data-ng-click="vm.showTaskModal(r, g, t)" title="Edit task"
+                                                                        data-access-control="UpdateProductRequestTaskCommand" data-restriction-mode="hide"><i class="fa fa-edit"></i>Edit</a>
+                                                                    <a class="btn btn-default btn-xs"
+                                                                        data-confirmation="" data-target-item="{{t.Question}}" data-target-item-type="task"
+                                                                        data-ng-click="vm.deleteTask(r, g, t)" title="Remove task"
+                                                                        data-access-control="DeleteProductRequestTaskCommand" data-restriction-mode="hide">Remove</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class=" wrap-space-top2">
+                                                                    <button type="button" class="btn btn-default btn-xs" data-ng-click="vm.showTaskModal(r, g)" title="Create new task for group {{g.Name}}"
+                                                                        data-access-control="CreateProductRequestTaskCommand" data-restriction-mode="hide">Create new task</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row actions">
+                                            <div class="col-sm-12 wrap-space-top2 no-left-padding">
+                                                <button type="button" class="btn btn-default" data-ng-click="vm.showGroupModal(r)" title="Add new group to {{r.RequestType}}"
+                                                    data-access-control="CreateProductRequestGroupCommand" data-restriction-mode="hide"><i class="fa fa-plus"></i>Create new group</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 no-left-padding">
+                                <button class="btn btn-primary" data-ng-click="vm.showTypeModal()"
+                                    data-access-control="CreateProductRequestTypeCommand" data-restriction-mode="hide"><i class="fa fa-plus"></i>Create new request type</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-loader" data-ng-show="vm.state.isBusy"></div>
+                </div>
+                <div class="widget-foot">
+                    <div class="row">
+                        <div class="col-xs-12">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <!-- request type edit //-->
+                <div class="modal fade" id="typeModal" tabindex="-1" data-backdrop="static" data-keyboard="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" aria-hidden="true" data-ng-click="vm.hideTypeModal()">&times;</button>
+                                <h4 class="modal-title">Request Type</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form" id="typeModalForm" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="type-name">Type</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="type-name" type="text" data-ng-model="vm.currentType.Name" required="" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" alt="" />
+                                <button class="btn btn-primary" data-ng-disabled="vm.state.isBusy" data-ng-click="vm.saveTypeModal()">Save</button>
+                                <button class="btn btn-default" data-ng-disabled="vm.state.isBusy" data-ng-click="vm.hideTypeModal()">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- task edit //-->
+                <div class="modal fade" id="taskModal" tabindex="-1" data-backdrop="static" data-keyboard="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" aria-hidden="true" data-ng-click="vm.hideTaskModal()">&times;</button>
+                                <h4 class="modal-title">Task</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form" id="taskModalForm" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="task-name">Question</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" id="task-name" data-ng-model="vm.currentTask.Question" required="" rows="4" cols="20"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" alt="" />
+                                <button class="btn btn-primary" data-ng-disabled="vm.state.isBusy" data-ng-click="vm.saveTaskModal()">Save</button>
+                                <button class="btn btn-default" data-ng-disabled="vm.state.isBusy" data-ng-click="vm.hideTaskModal()">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- group edit //-->
+                <div class="modal fade" id="groupModal" tabindex="-1" data-backdrop="static" data-keyboard="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" aria-hidden="true" data-ng-click="vm.hideGroupModal()">&times;</button>
+                                <h4 class="modal-title">Group of tasks</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form" id="groupModalForm" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="group-name">Type</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" id="group-name" type="text" data-ng-model="vm.currentGroup.Name" required="" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="assignees-list">Assignees</label>
+                                        <div class="col-sm-10">
+                                            <table class="table table-striped table-condensed" style="border-top: 1px solid #dedede; border-bottom: 1px solid #dedede">
+                                                <tr id="assignees-list" data-ng-repeat="a in vm.currentGroup.Assignees | orderBy: 'FullName'">
+                                                    <td data-account-id="{{a.ExternalId}}">{{a.FullName}}</td>
+                                                    <td>
+                                                        <button type="button"
+                                                            class="btn btn-default btn-xs pull-right"
+                                                            data-confirmation="" data-target-item="{{a.FullName}}" data-target-item-type="assignee"
+                                                            data-ng-click="vm.removeGroupAssignee(vm.currentGroup, a)">
+                                                            Remove</button>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="wrap-space-top2">
+                                                <button
+                                                    class="btn btn-default"
+                                                    data-account-search="" data-multi-select="true" data-get-selected="vm.getGroupAssignees()" data-on-submit="vm.addGroupAssignees(data)" data-dialog-title="Release approvers">
+                                                    Append assignee</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" alt="" />
+                                <button class="btn btn-primary" data-ng-disabled="vm.state.isBusy" data-ng-click="vm.saveGroupModal()">Save</button>
+                                <button class="btn btn-default" data-ng-disabled="vm.state.isBusy" data-ng-click="vm.hideGroupModal()">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</section>

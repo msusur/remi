@@ -1,0 +1,30 @@
+<section class="mainbar">
+    <section class="matter plugins" data-ng-controller="plugins as vm">
+        <tabset>
+            <tab heading="Global Plugins"
+                 active="vm.activeTab.globalConfiguration.isCurrent"
+                 data-ng-click="vm.tabChange('globalConfiguration')">
+                <div class="tab-container"
+                     data-ng-if="vm.activeTab.globalConfiguration.loaded"
+                     data-ng-include="'/app/configuration/plugins/pluginsGlobalConfiguration.html'"></div>
+            </tab>
+            <tab heading="Package Plugins"
+                 active="vm.activeTab.packageConfiguration.isCurrent"
+                 data-ng-click="vm.tabChange('packageConfiguration')">
+                <div class="tab-container"
+                     data-ng-if="vm.activeTab.packageConfiguration.loaded"
+                     data-ng-include="'/app/configuration/plugins/pluginsPackageConfiguration.html'"></div>
+            </tab>
+            <tab heading="Plugins"
+                 active="vm.activeTab.plugins.isCurrent"
+                 data-ng-click="vm.tabChange('plugins')">
+                <div class="tab-container"
+                     data-ng-if="vm.activeTab.plugins.loaded"
+                     data-ng-include="'/app/configuration/plugins/pluginsConfiguration.html'"></div>
+            </tab>
+        </tabset>
+    </section>
+</section>
+
+
+

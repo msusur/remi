@@ -1,0 +1,49 @@
+<div data-ng-controller="releaseProcess as vm">
+    <div class="widget wlightblue" data-ng-show="vm.state.display">
+        <div data-remi-widget-header="" title="Release process" data-allow-collapse="true">
+        </div>
+        <div class="widget-content text-info">
+            <div class="row release-passing">
+                <ul class="today-datas">
+                    <li data-ng-repeat="m in vm.metrics" class="fix-height" data-ng-click="!m.active || vm.updateMetrics(m)" data-ng-disabled="!m.active" data-ng-class="{activityAvailable: m.active, activityDisable: !m.active}"
+                        data-access-control="UpdateMetricsCommand" data-restriction-mode="unclick">
+                        <div><div class="datas-text">
+                                 <span class="bold">{{m.MetricTypeName}}</span>
+                                 <p class="passing-time" data-ng-show="m.ExecutedOn != null">{{m.ExecutedOn | date:'yyyy-MM-dd HH:mm'}}</p>
+                                 <p class="passing-time" data-ng-hide="m.ExecutedOn != null">not done</p>
+                             </div></div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="widget-foot">
+            <div class="row" style="padding-right: 3%;">
+                <button class="btn btn-default pull-right" data-ng-click="vm.isReleaseClosed || vm.showIssues()" data-ng-disabled="vm.state.isBusy || vm.isReleaseClosed"
+                    data-access-control="SaveReleaseIssuesCommand" data-restriction-mode="hide">Issues</button>
+            </div>
+        </div>
+        <div class="list-loader" data-ng-show="vm.state.isBusy">
+        </div>
+    </div>
+    <div class="modal fade" id="releaseIssuesModal" tabindex="-1" data-backdrop="static" data-keyboard="true" data-focus-modal-editor="div[contenteditable='true']">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true" data-ng-click="vm.hideIssuesModal()">&times;</button>
+                    <h4 class="modal-title">Release Issues</h4>
+                </div>
+                <div class="modal-body">
+                    <div style="display: inline-block; width: 100%">
+                        <div data-text-angular="" data-ng-model="vm.releaseWindow.Issues"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" />
+                    <button class="btn btn-primary" data-ng-disabled="vm.state.isBusy" data-ng-click="vm.saveIssues()">Save</button>
+                    <button class="btn btn-default" data-ng-disabled="vm.state.isBusy" data-ng-click="vm.hideIssuesModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

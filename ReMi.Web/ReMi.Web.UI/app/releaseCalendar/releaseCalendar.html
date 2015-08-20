@@ -1,0 +1,223 @@
+<div class="release-calendar" data-ng-controller="releaseCalendar as vm">
+    <section class="mainbar">
+        <section class="matter">
+            <div class="container">
+                <div class="row" data-ng-if="vm.isSupressLoading">
+                    <div class="col-md-12">
+                        <div class="label label-info">Processing redirect to a requested page...</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="widget wlightblue">
+                        <div data-remi-widget-header="" title="{{vm.title}}"></div>
+                        <div class="widget-content user">
+                            <div class="calendar-label">
+                                <label>{{vm.calendar.getTitle()}}</label>
+                            </div>
+                            <div class="calendar-navigation" data-ng-click="vm.refresh()">
+                                <button class="btn btn-default">
+                                    <span class="glyphicon glyphicon-refresh"></span>
+                                    Refresh
+                                </button>
+                                <div class="btn-group">
+                                    <button data-calendar-nav="prev" data-ng-click="vm.calendar.navigate('prev')" class="btn btn-primary">&lt;&lt; Prev</button>
+                                    <button data-calendar-nav="today" data-ng-click="vm.calendar.navigate('today')" class="btn">Today</button>
+                                    <button data-calendar-nav="next" data-ng-click="vm.calendar.navigate('next')" class="btn btn-primary">Next &gt;&gt;</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button data-ng-class="{ active: vm.calendar.options.view === 'year' }"
+                                            data-calendar-view="year" data-ng-click="vm.calendar.setView('year')" class="btn btn-warning">
+                                        Year</button>
+                                    <button data-ng-class="{ active: vm.calendar.options.view === 'month' }"
+                                            data-calendar-view="month" data-ng-click="vm.calendar.setView('month')" class="btn btn-warning active">
+                                        Month</button>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <section class="calendar-secion">
+                                <div id="calendar" data-calendar="" data-data="vm.calendarData"
+                                    data-configuration="{tmplPath: 'app/common/directives/tmpls/calendar/'}"
+                                    data-ng-model="vm.calendar" data-contextmenu="vm.contextmenu" data-is-busy="vm.state.isBusy"
+                                    data-view-changed="vm.viewChanged" data-event-click="vm.eventClick">
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <div class="modal fade" id="releaseWindowModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">{{vm.fieldTitles.ModalHeader}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="currentReleaseWindowForm" class="form form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <h3>{{ vm.currentReleaseWindow.Products | formatArray }} {{vm.fieldTitles.Release}}</h3>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="release-sprint">{{vm.fieldTitles.Sprint}}</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="release-sprint" name="Sprint" data-ng-model="vm.currentReleaseWindow.Sprint"
+                                    data-ng-class="vm.invalidData.sprint.css" />
+                            </div>
+                            <div class="col-sm-offset-2 col-sm-10" data-ng-show="!!vm.invalidData.sprint.error">
+                                <p class="error-text">{{vm.invalidData.sprint.error}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="start-input">Start / End</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="date" data-ng-class="vm.invalidData.date.css">
+                                            <div class="dropdown">
+                                                <a class="dropdown-toggle" id="start-datetimepicker" role="button" data-toggle="dropdown" data-target="#">
+                                                    <div class="input-group">
+                                                        <p id="start-input" class="form-control-static input-look">{{ vm.currentReleaseWindow.StartTime | date:'dd MMM yyyy HH:mm' }}</p>
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                    </div>
+                                                </a>
+                                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                    <li data-datetimepicker="" data-ng-model="vm.currentReleaseWindow.StartTime"
+                                                        data-datetimepicker-config="{ dropdownSelector: '#start-datetimepicker' }"
+                                                        data-min-view-option="vm.timePickerViewName"
+                                                        data-on-set-time="vm.startTimeChanged" />
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="date" data-ng-class="vm.invalidData.date.css">
+                                            <div class="dropdown">
+                                                <a class="dropdown-toggle" id="end-datetimepicker" role="button" data-toggle="dropdown" data-target="#">
+                                                    <div class="input-group">
+                                                        <p id="end-input" class="form-control-static input-look">{{ vm.currentReleaseWindow.EndTime | date:'dd MMM yyyy HH:mm' }}</p>
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                    </div>
+                                                </a>
+                                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                    <li data-datetimepicker="" data-ng-model="vm.currentReleaseWindow.EndTime"
+                                                        data-datetimepicker-config="{ dropdownSelector: '#end-datetimepicker' }"
+                                                        data-min-view-option="vm.timePickerViewName" />
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-2 col-sm-10" data-ng-show="!!vm.invalidData.date.error">
+                                <p class="error-text">{{vm.invalidData.date.error}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group" data-ng-show="vm.isMaintenanceWindow">
+                            <label class="col-sm-2 control-label" for="release-product-select">Packages</label>
+                            <div class="col-sm-10">
+                                <div data-tree-list="vm.businessUnits" id="release-product-select"
+                                    data-ng-class="vm.invalidData.packages.css"
+                                    data-options="{
+                                        childrenArrayProperty:'Packages',
+                                        parentNameProperty:'Description',
+                                        allowCheck: true,
+                                        childNameProperty:'Name'}"
+                                    style="height: 150px; overflow: auto;">
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-2 col-sm-10" data-ng-show="!!vm.invalidData.packages.error">
+                                <p class="error-text">{{vm.invalidData.packages.error}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="release-type-select">Type</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="release-type-select"
+                                    data-ng-class="vm.invalidData.releaseType.css"
+                                    data-ng-model="vm.currentReleaseWindow.ReleaseType"
+                                    data-ng-options="c.Name as c.Description for c in vm.releaseTypes | filter:vm.filterReleaseType"
+                                    data-ng-change="vm.releaseTypeChanged()">
+                                </select>
+                            </div>
+                            <div class="col-sm-offset-2 col-sm-10" data-ng-show="!!vm.invalidData.releaseType.error">
+                                <p class="error-text">{{vm.invalidData.releaseType.error}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group" data-ng-hide="vm.currentReleaseWindow.ReleaseType == 'Hotfix'">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="requires-downtime" name="RequiresDowntime" data-ng-model="vm.currentReleaseWindow.RequiresDowntime">
+                                        Downtime Required
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row without-margin-left">
+                            <label class="col-sm-2 control-label" for="release-description">Description</label>
+                            <div class="col-sm-10">
+                                <div id="release-description" data-linkify="" data="vm.currentReleaseWindow.Description" data-editor="vm.showDescriptionEditor" class="linkify-widget"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="pull-left">
+                        <button type="button" data-ng-disabled="vm.state.isBusy" class="btn btn-default" data-ng-show="vm.releseWindowModalMode == 'update'" data-ng-click="vm.navigateToReleasePlan(vm.currentReleaseWindow)">
+                            <i class="fa fa-caret-left"></i>
+                            Open release plan
+                        </button>
+                    </div>
+                    <div class="pull-right">
+                        <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" alt="" />
+                        <button type="button" data-ng-disabled="vm.state.isBusy" class="btn btn-primary"
+                            data-ng-show="vm.releseWindowModalMode == 'add'"
+                            data-ng-click="vm.addReleaseWindow()"
+                            data-access-control="BookReleaseWindowCommand" data-restriction-mode="hide">
+                            Add</button>
+                        <button type="button" data-ng-disabled="vm.state.isBusy" class="btn btn-primary"
+                            data-ng-show="vm.allowUpdateCurrentRelease && vm.releseWindowModalMode == 'update'"
+                            data-ng-click="vm.updateReleaseWindow()"
+                            data-access-control="UpdateReleaseWindowCommand" data-restriction-mode="hide">
+                            Update</button>
+                        <button data-confirmation="" data-removing-subject="release" data-removing-item="{{vm.currentReleaseWindow.Sprint}}" type="button"
+                            data-ng-disabled="vm.state.isBusy" class="btn btn-primary"
+                            data-ng-show="vm.allowRemoveCurrentRelease && vm.releseWindowModalMode == 'update'"
+                            data-ng-click="vm.removeReleaseWindow()"
+                            data-access-control="CancelReleaseWindowCommand" data-restriction-mode="hide">
+                            Remove</button>
+                        <button type="button" data-ng-disabled="vm.state.isBusy" class="btn btn-default" data-ng-click="vm.hideModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contextMenu" class="dropdown clearfix context-menu"
+        data-ng-show="vm.contextMenuState.shown" data-ng-style="vm.contextMenuState.style">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px;">
+            <li data-ng-show="vm.allowNavigateToRelease">
+                <a tabindex="-1" data-ng-click="vm.navigateToReleasePlan()">
+                    <i class="fa fa-caret-left"></i>Navigate To Plan
+                </a>
+            </li>
+            <li class="divider" data-ng-show="vm.allowNavigateToRelease"></li>
+            <li><a tabindex="-1" data-ng-click="vm.showReleaseWindowModal('add')">Schedule New Release</a></li>
+            <li><a tabindex="-1" data-ng-click="vm.showReleaseWindowModal('add', true)">Schedule Maintenance Window</a></li>
+            <li class="divider"></li>
+            <li><a tabindex="-1"
+                data-ng-click="vm.showReleaseWindowModal('update')" data-ng-disabled="vm.dateInvalid"
+                data-ng-show="vm.allowEditFromContextMenu">Update</a></li>
+            <li><a tabindex="-1" data-confirmation="" data-removing-subject="release" data-removing-item="{{vm.currentReleaseWindow.Sprint}}"
+                data-ng-show="vm.allowRemoveFromContextMenu"
+                data-ng-click="vm.removeReleaseWindow()">Remove</a></li>
+            <li class="divider" data-target="release" data-ng-show="vm.allowRemoveFromContextMenu || vm.allowEditFromContextMenu"></li>
+            <li><a tabindex="-1" data-ng-click="vm.calendar.navigate('prev')"><i class="fa fa-angle-double-left"></i>Prev</a></li>
+            <li><a tabindex="-1" data-ng-click="vm.calendar.navigate('today')"><i class="fa fa-home"></i>Today</a></li>
+            <li><a tabindex="-1" data-ng-click="vm.calendar.navigate('next')"><i class="fa fa-angle-double-right"></i>Next</a></li>
+        </ul>
+    </div>
+</div>

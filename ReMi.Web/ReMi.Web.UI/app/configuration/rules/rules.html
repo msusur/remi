@@ -1,0 +1,69 @@
+<section class="mainbar">
+    <section class="matter">
+        <div data-ng-controller="rules as vm">
+            <div class="row">
+                <div class="col-md-6" data-ng-repeat="(group, rules) in vm.ruleGroups">
+                    <div class="widget wlightblue">
+                        <div data-remi-widget-header="" title="{{group}}" data-allow-collapse="true"></div>
+                        <div class="widget-content user">
+                            <div class="long-table-wrapper">
+                                <table class="table table-condensed table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Code beginning</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="rule in rules">
+                                            <td><a data-ng-click="vm.editRule(rule)"
+                                                   data-access-control="SaveRuleCommand"
+                                                   data-restriction-mode="unclick">{{rule.Name}}</a></td>
+                                            <td><a data-ng-click="vm.editRule(rule)"
+                                                   data-access-control="SaveRuleCommand"
+                                                    data-restriction-mode="unclick">{{rule.Description}}</a></td>
+                                            <td><a data-ng-click="vm.editRule(rule)" style="font-family: courier"
+                                                   data-access-control="SaveRuleCommand"
+                                                   data-restriction-mode="unclick">{{rule.CodeBeggining}}</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="list-loader" data-ng-show="vm.state.isBusy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="ruleEditor">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Rule Editor</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <div data-rule-editor="" data-rule="vm.currentRule" data-is-busy="vm.state.ruleState.isBusy"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-info" data-ng-click="vm.testBusinessRule()"><i class="fa fa-dashboard"></i>Run Test</button>
+                                        <button class="btn btn-primary" data-ng-click="vm.saveRule()"><i class="fa fa-save"></i>Save</button>
+                                        <button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle-o"></i>Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-loader" data-ng-show="vm.state.ruleState.isBusy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

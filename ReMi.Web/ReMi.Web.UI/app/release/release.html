@@ -1,0 +1,117 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div data-ng-controller="release as vm">
+                <div class="row" data-ng-show="!vm.state.isBindedToRelease">
+                    <div class="col-md-12">
+                        <div class="alert alert-warning" data-ng-show="!vm.state.isBusy">
+                            <h3>Can't get information about the upcoming release.</h3>
+                        </div>
+                        <div class="alert alert-info" data-ng-show="vm.state.isBusy">
+                            <h3>Loading release information...</h3>
+                        </div>
+                        <div class="busy-loader" style="padding-top: 60px" data-ng-show="vm.state.isBusy">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" data-ng-show="vm.state.isBindedToRelease">
+                    <div class="col-md-12">
+                        <span class="dropdown" dropdown="" data-is-open="vm.releaseSelector.isOpen">
+                            <a href="" class="dropdown-toggle" dropdown-toggle="">Click to select the specific release <i class="fa fa-lg fa-caret-down"></i></a>
+                            <ul class="dropdown-menu separate-rows">
+                                <li data-ng-repeat="r in vm.releases">
+                                    <a data-ng-click="vm.chooseToBind(r)">
+                                        <i data-ng-show="r.ExternalId==vm.currentReleaseWindow.ExternalId" class="fa fa-check"></i>
+                                        <span><strong>{{r.Sprint}}
+                                        </strong>
+                                            <br />
+                                            {{r.StartTime | date:'dd.MM.yyyy HH:mm'}}, {{r.ReleaseTypeDescription}}, {{r.Status}}
+                                            <i class="fa fa-caret-right"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </span>
+                        <ul class="today-datas">
+                            <li class="blightblue fix-height" data-ng-class="vm.releaseTypeClass">
+                                <div class="pull-left"><i class="fa fa-calendar"></i></div>
+                                <div class="datas-text pull-right">
+                                    <span class="bold ellipsis" style="max-width: 300px" title="{{vm.currentReleaseWindow.Products | formatArray}}">{{vm.currentReleaseWindow.Products | formatArray}}</span>Type is {{vm.currentReleaseWindow.ReleaseTypeDescription}}
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li class="blightblue fix-height" data-ng-class="vm.releaseTypeClass">
+                                <div class="pull-left"><i class="fa fa-cogs"></i></div>
+                                <div class="datas-text pull-right">
+                                    <span class="bold">Sprint: {{vm.currentReleaseWindow.Sprint}}</span>Scheduled for {{vm.currentReleaseWindow.StartTime | date:'d MMMM y HH:mm'}}
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li class="blightblue fix-height" data-ng-class="vm.releaseTypeClass">
+                                <div class="pull-left">
+                                    <i class="fa fa-flag" data-ng-if="vm.currentReleaseWindow.Status != 'Closed' || !vm.currentReleaseWindow.IsFailed"></i>
+                                    <i class="fa fa-exclamation-triangle failed-sign" data-ng-if="vm.currentReleaseWindow.Status == 'Closed' && vm.currentReleaseWindow.IsFailed" title="Release failed!"></i>
+                                </div>
+                                <div class="datas-text pull-right">
+                                    <span class="bold" data-ng-if="vm.currentReleaseWindow.Status != 'Closed' || !vm.currentReleaseWindow.IsFailed">{{vm.currentReleaseWindow.Status}}</span>
+                                    <span class="bold" data-ng-if="vm.currentReleaseWindow.Status == 'Closed' && vm.currentReleaseWindow.IsFailed">Failed</span>
+                                    Release status
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li class="blightblue fix-height" data-ng-class="vm.releaseDecisionClass.css" style="position: relative;"
+                                data-ng-if="vm.currentReleaseWindow && !vm.isCurrentReleaseWindowMaintenance">
+                                <div class="pull-left"><i class="fa" data-ng-class="vm.releaseDecisionClass.icon"></i></div>
+                                <div class="datas-text pull-right">
+                                    <span class="bold" style="margin: 0; padding: 0;">{{vm.currentReleaseWindow.ReleaseDecision}}</span>Decision
+                                </div>
+                            </li>
+                            <li class="close-release pointer fix-height" data-ng-show="vm.enableCloseRelease" data-ng-click="vm.closeRelease()"
+                                data-access-control="CloseReleaseCommand" data-restriction-mode="hide">
+                                <div class="pull-left"><i class="fa fa-check"></i></div>
+                                <div class="datas-text pull-right">
+                                    <span class="bold">Close Off Release</span>Create release notes, sign off release
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="busy-loader" style="padding-top: 60px" data-ng-show="vm.state.isBusy">
+                        <img src="/content/images/progress.gif" alt="Loading..." />
+                    </div>
+                </div>
+                <div>
+                    <div data-ng-include="'/app/release/releasePlan/closeRelease.html'"></div>
+                </div>
+                <div class="row" data-ng-show="vm.state.isBindedToRelease">
+                    <div class="col-md-12" data-ng-switch="" data-on="vm.currentReleaseWindow.ReleaseType">
+                        <div data-ng-switch-when="Scheduled">
+                            <div data-ng-include="'/app/release/scheduled.html'"></div>
+                        </div>
+                        <div data-ng-switch-when="Hotfix">
+                            <div data-ng-include="'/app/release/hotfix.html'"></div>
+                        </div>
+                        <div data-ng-switch-when="ChangeRequest">
+                            <div data-ng-include="'/app/release/hotfix.html'"></div>
+                        </div>
+                        <div data-ng-switch-when="Automated">
+                            <div data-ng-include="'/app/release/scheduled.html'"></div>
+                        </div>
+                        <div data-ng-switch-when="Pci">
+                            <div data-ng-include="'/app/release/maintenance.html'"></div>
+                        </div>
+                        <div data-ng-switch-when="CorpIT">
+                            <div data-ng-include="'/app/release/maintenance.html'"></div>
+                        </div>
+                        <div data-ng-switch-when="SystemMaintenance">
+                            <div data-ng-include="'/app/release/maintenance.html'"></div>
+                        </div>
+                        <div data-ng-switch-when="ThirdParty">
+                            <div data-ng-include="'/app/release/maintenance.html'"></div>
+                        </div>
+                    </div>
+                </div>          
+            </div>
+        </div>
+    </section>
+</section>

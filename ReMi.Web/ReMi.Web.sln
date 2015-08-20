@@ -1,0 +1,47 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{61D2F58C-B24C-41D9-8CBC-D848B3FAC92C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReMi.Web.UI", "ReMi.Web.UI\ReMi.Web.UI.csproj", "{A825103D-82B3-45B5-9BA6-85BE4A826E6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReMi.Web.UI.Tests", "ReMi.Web.UI.Tests\ReMi.Web.UI.Tests.csproj", "{B61C3923-8B28-44A0-B754-E29EE0505461}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{302F5949-1CF0-4BF2-9703-2E01AE17308A}"
+	ProjectSection(SolutionItems) = preProject
+		.build\ReMi.Web.nuspec = .build\ReMi.Web.nuspec
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		int2012|Any CPU = int2012|Any CPU
+		Live|Any CPU = Live|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A825103D-82B3-45B5-9BA6-85BE4A826E6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A825103D-82B3-45B5-9BA6-85BE4A826E6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A825103D-82B3-45B5-9BA6-85BE4A826E6A}.int2012|Any CPU.ActiveCfg = int2012|Any CPU
+		{A825103D-82B3-45B5-9BA6-85BE4A826E6A}.int2012|Any CPU.Build.0 = int2012|Any CPU
+		{A825103D-82B3-45B5-9BA6-85BE4A826E6A}.Live|Any CPU.ActiveCfg = Live|Any CPU
+		{A825103D-82B3-45B5-9BA6-85BE4A826E6A}.Live|Any CPU.Build.0 = Live|Any CPU
+		{A825103D-82B3-45B5-9BA6-85BE4A826E6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A825103D-82B3-45B5-9BA6-85BE4A826E6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B61C3923-8B28-44A0-B754-E29EE0505461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B61C3923-8B28-44A0-B754-E29EE0505461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B61C3923-8B28-44A0-B754-E29EE0505461}.int2012|Any CPU.ActiveCfg = int2012|Any CPU
+		{B61C3923-8B28-44A0-B754-E29EE0505461}.int2012|Any CPU.Build.0 = int2012|Any CPU
+		{B61C3923-8B28-44A0-B754-E29EE0505461}.Live|Any CPU.ActiveCfg = Release|Any CPU
+		{B61C3923-8B28-44A0-B754-E29EE0505461}.Live|Any CPU.Build.0 = Release|Any CPU
+		{B61C3923-8B28-44A0-B754-E29EE0505461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B61C3923-8B28-44A0-B754-E29EE0505461}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

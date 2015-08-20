@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{10F4DD06-4E1C-4134-B143-12E0F275688F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReMi.DataAccess.Tests</RootNamespace>
+    <AssemblyName>ReMi.DataAccess.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.3.4.0\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Log4Net1210, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Log4Net1210.2.2.0\lib\net40\Common.Logging.Log4Net1210.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FizzWare.NBuilder, Version=3.0.1.0, Culture=neutral, PublicKeyToken=5651b03e12e42c12, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.2.1402.2112, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.5.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Common.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Utils.1.0.0.0\lib\net45\ReMi.Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Common.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Utils.1.0.0.0\lib\net45\ReMi.Common.Utils.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Core.1.0.0.0\lib\net45\ReMi.Contracts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Plugin.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Utils.1.0.0.0\lib\net45\ReMi.Plugin.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.TestUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.TestUtils.1.0.0.0\lib\net45\ReMi.TestUtils.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise />
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Api\ApiDescriptionGatewayTests.cs" />
+    <Compile Include="Auth\AccountsGatewayTests.cs" />
+    <Compile Include="Auth\QueryPermissionsGatewayTests.cs" />
+    <Compile Include="Auth\RoleGatewayTests.cs" />
+    <Compile Include="Auth\CommandPermissionsGatewayTests.cs" />
+    <Compile Include="Auth\SecurityGatewayTests.cs" />
+    <Compile Include="AutoMapper\BusinessEntityToDataEntityMappingProfileTests.cs" />
+    <Compile Include="AutoMapper\ContractEntityToDataEntityMappingProfileTests.cs" />
+    <Compile Include="AutoMapper\DataEntityToContractEntityMappingProfileTests.cs" />
+    <Compile Include="AutoMapper\DataEntityToBusinessEntityMappingProfileTest.cs" />
+    <Compile Include="BusinessRules\BusinessRuleGatewayTests.cs" />
+    <Compile Include="CommandPollGatewayTests.cs" />
+    <Compile Include="Evt\EventGatewayTests.cs" />
+    <Compile Include="Extensions\TimeSpanExtensionsTests.cs" />
+    <Compile Include="ReleasePlan\ReleaseRepositoryGatewayTests.cs" />
+    <Compile Include="SourceControl\SourceControlChangeGatewayTests.cs" />
+    <Compile Include="Helpers\CommandCollectorTests.cs" />
+    <Compile Include="Helpers\BusinessRuleCollectorTests.cs" />
+    <Compile Include="Helpers\QueryCollectorTests.cs" />
+    <Compile Include="Metrics\MetricsGatewayTests.cs" />
+    <Compile Include="Plugins\PluginGatewayTests.cs" />
+    <Compile Include="Reports\ReportGatewayTests.cs" />
+    <Compile Include="ProductRequests\ProductRequestGatewayTests.cs" />
+    <Compile Include="ProductRequests\ProductRequestRegistrationGatewayTests.cs" />
+    <Compile Include="Products\BusinessUnitsGatewayTests.cs" />
+    <Compile Include="Products\ProductGatewayTests.cs" />
+    <Compile Include="ReleaseCalendar\ReleaseProductGatewayTests.cs" />
+    <Compile Include="ReleaseCalendar\ReleaseWindowGatewayTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReleaseExecution\ReleaseDeploymentJobMeasurementGatewayTests.cs" />
+    <Compile Include="ReleaseExecution\SignOffGatewayTests.cs" />
+    <Compile Include="ReleasePlan\CheckListGatewayTests.cs" />
+    <Compile Include="ReleasePlan\ReleaseContentGatewayTests.cs" />
+    <Compile Include="ReleasePlan\ReleaseApproverGatewayTests.cs" />
+    <Compile Include="ReleasePlan\ReleaseJobGatewayTests.cs" />
+    <Compile Include="ReleasePlan\ReleaseTaskGatewayTests.cs" />
+    <Compile Include="ReleasePlan\ReleaseParticipantGatewayTests.cs" />
+    <Compile Include="Subscriptions\AccountNotificationGatewayTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ReMi.Common.Constants\ReMi.Common.Constants.csproj">
+      <Project>{f8b8274d-2b1c-442b-b1c7-0208a150875f}</Project>
+      <Name>ReMi.Common.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\ReMi.Common.WebApi\ReMi.Common.WebApi.csproj">
+      <Project>{4E98AEE1-92E1-4C15-B8CE-ECB332F54FC1}</Project>
+      <Name>ReMi.Common.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\ReMi.BusinessEntities\ReMi.BusinessEntities.csproj">
+      <Project>{379e6fc3-c839-474b-a235-4ac3b1c36e9a}</Project>
+      <Name>ReMi.BusinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\ReMi.BusinessLogic\ReMi.BusinessLogic.csproj">
+      <Project>{8F1E82C1-11A6-4FD4-BEC8-6D9155DF5E1B}</Project>
+      <Name>ReMi.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataAccess\ReMi.DataAccess\ReMi.DataAccess.csproj">
+      <Project>{61385e7e-0660-434c-b62e-0737a609b343}</Project>
+      <Name>ReMi.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataAccess\ReMi.DataEntities\ReMi.DataEntities.csproj">
+      <Project>{41748e9b-c354-4eea-9a4f-61e9e8fbad0e}</Project>
+      <Name>ReMi.DataEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataAccess\ReMi.DataEntityMaps\ReMi.DataEntityMaps.csproj">
+      <Project>{4F0F68BD-7EB7-42BF-A27F-722458F852E4}</Project>
+      <Name>ReMi.DataEntityMaps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceBoundary\ReMi.Commands\ReMi.Commands.csproj">
+      <Project>{57665c47-aaf0-461a-af14-a0fc8f59f4fb}</Project>
+      <Name>ReMi.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceBoundary\ReMi.Queries\ReMi.Queries.csproj">
+      <Project>{10021ea0-0cbe-4a13-8b08-56bc9f3d3316}</Project>
+      <Name>ReMi.Queries</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

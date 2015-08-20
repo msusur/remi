@@ -1,0 +1,21 @@
+<div data-remi-sidebar="" data-ng-controller="sidebar as vm">
+    <div class="sidebar-filler"></div>
+    <div class="sidebar-dropdown"><a href="#">Menu</a></div>
+    <div class="sidebar-inner" data-ng-mouseleave="vm.mouseOutAllRoutes()">
+        <div class="sidebar-widget">
+        </div>
+        <ul class="navi current">
+            <li class="nlightblue item-show-hide" data-ng-repeat="r in vm.navRoutes"
+                data-ng-class="{'current' : r.state.isCurrent, 'current-child' : r.state.isCurrentChild, 'child': !!r.config.parentUrl}" data-ng-hide="r.state.hidden"
+                data-ng-mouseover="vm.mouseOverRoute(r)">
+                <a href="#{{r.url}}">
+                    <i data-ng-if="!r.config.parentUrl" class="{{r.config.settings.iconCss}}"></i>
+                    {{r.config.label}}
+                    <div class="pull-right">
+                        <i data-ng-if="r.state.hasChildren" class="fa right-icon" data-ng-class="{'fa-caret-down': r.state.expanded, 'fa-caret-right': !r.state.expanded}"></i>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

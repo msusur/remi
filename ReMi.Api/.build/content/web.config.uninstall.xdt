@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+	<connectionStrings>
+		<add name="ReleaseManagementConnection" providerName="System.Data.SqlClient" connectionString="Data Source=localhost;Initial Catalog=remi_db;Integrated Security=True" xdt:Transform="Remove" xdt:Locator="Match(name)" />
+	</connectionStrings>
+	<appSettings>
+		<add key="acknowledgeUrl" value="http://localhost/#/acknowledge?approve" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+		<add key="frontendUrl" value="http://localhost/#/" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+		<add key="DefaultReleaseWindowDurationTime" value="120" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+		<add key="LogJsonFormatted" value="false" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+		<add key="LogQueryResponses" value="false" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+	</appSettings>
+</configuration>

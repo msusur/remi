@@ -1,0 +1,243 @@
+<section class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="widget wlightblue" data-ng-controller="apiDescription as vm">
+                <div data-remi-widget-header="" title="Api Description"></div>
+                <div class="widget-content">
+                    <div class="panel panel-info">
+                        <div class="panel-body">
+                            <dl class="api-desc-intro">
+                                <dt>General information</dt>
+                                <dd>This page displays a list of resources that provided by REMI REST API service. Base url of service is <span class="text-primary">{{vm.apiPath}}</span>. 
+                                </dd>
+                                <dt>Queries and commands</dt>
+                                <dd>
+                                    <p>
+                                        There is a list of HTTP GET queries and POST commands deplayed below. Relative url of resource is shown in <strong>Url</strong> section.
+                                    </p>
+                                    <p>
+                                        Some of GET requests requires input parameters. In this case parameters is showns in <strong>Url</strong>. 
+                                        It is bounded by braces '{' and '}'. The type restriction for parameter could be specified inside braces.
+                                        <pre>/commands/{id:guid}/state/<br/><br/> where <em>id</em> is parameter of <em>guid</em> type</pre>
+                                        If type is not specified then parameter specification should be checked. It is shown in block <strong>Parameters</strong>. For the url above it would be:
+                                        <pre>{ "id": "Guid" }</pre>
+                                    </p>
+                                    <p>
+                                        The <strong>'?'</strong> character in parameter's type informs that the parameter could be absent or it could contains nil.
+                                    </p>
+                                    <p>
+                                        All POST commands should be supplied with a CommandId parameter in HTTP request's header.
+                                        <pre>CommandId=F299E963-A7B7-490A-A5C4-8B5B050A42F8</pre>
+                                        It is an uniqe identified of the command. It should contains value of <em>Guid</em> type. It could be used for command execution state tracking (details in Requests results section). 
+                                    </p>
+                                </dd>
+                                <dt>Authentication & Authorization</dt>
+                                <dd>
+                                    <p>
+                                        Some of the GET queries could be invoked by anonymous users. But all POST commands requres authenticated user.
+                                    Information about access restrictions displayed in section <strong>Available for</strong>:
+                                    <pre><i class="fa fa-key"></i>Available for: Executive manager, Admin, Release engineer</pre>
+                                        This mean that the request could be invoked by user that has one if the following roles: <em>Executive manager</em>, <em>Admin</em>, <em>Release engineer</em>.
+                                    </p>
+                                    <p>
+                                        At first, account should be registered in REMI API. It should be supplied with some role. Then it could be used for API calls.
+                                    </p>
+                                    <p>
+                                        Current account could be specified in HTTP request header with parameter <em>Authentication</em>.
+                                        There are two options how the accout information could be specified.
+                                        <ol>
+                                            <li>Using login/password:<pre>Authorization: Basic TG9naW46cGFzc3dvcmQ=</pre>
+                                                Here is Basic authorization schema is used. String <em>TG9naW46cGFzc3dvcmQ=</em> is base64 encoded string in the following format: 
+                                                <em>user_name:password</em>
+                                            </li>
+                                            <li>Using token:<pre>Authorization: Token QWNjb3VudCBuYW1lOlNlc3Npb25JZA==</pre>
+                                                In this case encoded token is used. It should be generated once before using REST API and then copuld be used in the following calls. 
+                                                It's more preferable because it creates new session once.<br />
+                                                New session could be started by invoking HTTP POST request by url <span class="text-primary">{{vm.apiPath}}/session/start</span> with the parameter
+                                                <pre>{ "Login" : "String", "Passwrod" : "String" }</pre>
+                                                If request processed successfuly (see response code below) it returns the response:
+                                                <pre>{ "Account" : {
+    "ExternalId": "Guid",
+    "Name": "String",
+    "FullName": "String",
+    "Email": "String",
+    "Role": {
+        "ExternalId": "Guid",
+        "Name": "String",
+        "Description": "String"
+    },
+    "IsBlocked": "Boolean",
+    "Description": "String",
+    "Products": [
+        {
+        "Name": "String",
+        "ExternalId": "Guid",
+        "ReleaseTrack": "ReleaseTrack",
+        "IsDefault": "Boolean"
+        }
+    ],
+    "CreatedOn": "DateTime"
+    }, 
+"Session" : {
+    "ExternalId": "Guid",
+    "AccountId": "String",
+    "ExpireAfter": "DateTime?",
+    "Completed": "DateTime?",
+    "Description": "String",
+    "CreatedOn": "DateTime"
+    },
+"Token" : "String" }</pre>
+                                                Here Token string should be used for further API calls in HTTP Authorization header.
+                                            </li>
+                                        </ol>
+                                    </p>
+                                </dd>
+                                <dt>Requests results</dt>
+                                <dd>
+                                    <p>
+                                        POST commands requres input parameters. They could be executed asynchronously or synchronously. By default, all commands are asynchronous. 
+                                        To execute command synchronously additional parameter <em>isSynchronous</em> should be specified in url:
+                                        <pre>?isSynchronous=true</pre>
+                                    </p>
+                                    <p>
+                                        Response could has one of the following status codes:
+                                        <ul id="response_codes">
+                                            <li><strong>200</strong> Ok
+                                            </li>
+                                            <li><strong>401</strong> Currect account do not have permissions to perform this action
+                                            </li>
+                                            <li><strong>403</strong> Session expired for current account or account is not specified
+                                            </li>
+                                            <li><strong>404</strong> Resource is not found
+                                            </li>
+                                            <li><strong>406</strong> Request contains invalid parameters
+                                            </li>
+                                        </ul>
+                                    </p>
+                                    <p>
+                                        Invoke of the command asynchronously immediately return result. It would be succesfull if the authentication, authorization and validation checks are passed.
+                                        There is a <em>GetCommandState</em> query that checks execution status of asynchronous command on server (see deatails below in the request list).
+                                    </p>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default hidden-print api-desc-filter">
+                        <div class="panel-body">
+                            <div class="form-inline row">
+                                <div class="form-group col-sm-6">
+                                    <input type="text" class="form-control" data-ng-model="vm.filterByName" data-ng-change="vm.filterByNameChanged()"
+                                        placeholder="Search by name or decsription">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <div class="checkbox" style="padding-top: 8px">
+                                        <label>
+                                            <input type="checkbox" data-ng-model="vm.displayOptions.expandAll" data-ng-change="vm.expandAllChanged()">
+                                            Expand all
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="api-desc-row row">
+                        <div class="col-sm-6">Name</div>
+                        <div class="col-sm-6">Short Info</div>
+                    </div>
+                    <div data-ng-repeat-start="dn in vm.descriptions track by $index" class="row api-desc" data-ng-class="{'first': $first, 'middle': $middle}"
+                        data-ng-hide="dn.isHidden && $index !== 0 && vm.descriptions[$index-1].Method === dn.Method">
+                        <div class="col-sm-12">
+                            <span class="method" data-ng-show="$index == 0 || vm.descriptions[$index-1].Method !== dn.Method">{{dn.Method}}</span>
+                        </div>
+                    </div>
+                    <div class="row api-desc-body" data-ng-hide="dn.isHidden">
+                        <div class="col-sm-12" data-ng-class="{'odd' : $odd, 'even' : $even}">
+                            <div class="api-desc-row row name"
+                                id="{{dn.Name}}"
+                                data-ng-lass="{'hidden': vm.displayOptions.methodType != 'POST & GET' && vm.displayOptions.methodType != dn.Method }"
+                                data-ng-click="vm.descriptionClick(dn)">
+                                <div class="col-sm-6 name">
+                                    <i class="fa"
+                                        data-ng-class="{'fa-caret-down' : vm.displayOptions.expandAll || dn.isExpanded, 'fa-caret-right' : !(vm.displayOptions.expandAll || dn.isExpanded) }"
+                                        style="width: 10px;"></i>
+                                    <span class="name">{{dn.Name}}</span><span class="method">({{dn.Method}})</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div data-ng-class="{'hidden' : vm.displayOptions.expandAll || dn.isExpanded }">{{dn.DescriptionShort}}</div>
+                                </div>
+                            </div>
+                            <div class="api-desc-row row" data-ng-class="{'hidden' : !dn.Roles || !(vm.displayOptions.expandAll || dn.isExpanded ) }">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-11">
+                                    <span data-ng-show="dn.Roles">
+                                        <i class="fa fa-key pointer"></i>Available for
+                                        <pre>{{dn.Roles}}</pre>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="api-desc-row row" data-ng-class="{'hidden' : !(vm.displayOptions.expandAll || dn.isExpanded ) }">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-11">
+                                    <i class="fa fa-book pointer-over-element" data-ng-click="vm.manageDescription(dn)"
+                                        data-access-control="UpdateApiDescriptionCommand" data-restriction-mode="unclick"></i>Description
+                                    <pre>{{dn.DescriptionShort}}<br/>{{dn.Description}}</pre>
+                                </div>
+                            </div>
+                            <div class="api-desc-row row" data-ng-class="{'hidden' : !(vm.displayOptions.expandAll || dn.isExpanded ) }">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-5">
+                                    <i class="fa fa-link"></i>Url
+                                    <pre>{{dn.Url}}</pre>
+                                    <div data-ng-show="!!dn.InputFormat">
+                                        <i class="fa fa-sign-in"></i>Input parameters
+                                        <pre>{{dn.InputFormatParsed | json}}</pre>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div data-ng-show="!!dn.OutputFormat">
+                                        <i class="fa fa-share-square-o"></i>Output format
+                                        <pre>{{dn.OutputFormatParsed | json}}</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-ng-repeat-end="" class="row api-desc-footer">
+                    </div>
+                </div>
+                <div class="widget-foot">
+                    <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" />
+                    <button type="button" class="btn btn-default pull-right" data-ng-click="vm.refreshData()">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                        Refresh
+                    </button>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal fade" id="changeApiDescriptionModal" tabindex="-1" data-backdrop="static" data-keyboard="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" aria-hidden="true" data-ng-click="vm.hideManageDescriptionModal()">&times;</button>
+                                <h4 class="modal-title">Manage API description</h4>
+                            </div>
+                            <div class="modal-body manage-api-description">
+                                <p>{{vm.managingDescription.Name}} ({{vm.managingDescription.Method}})</p>
+                                <form role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <textarea class="col-sm-12" rows="4" data-ng-model="vm.managingDescription.Description"></textarea>
+                                    </div>
+                                </form>                                
+                            </div>
+                            <div class="modal-footer">
+                                <img data-ng-show="vm.state.isBusy" src="/content/images/progress.gif" />
+                                <button class="btn btn-primary" data-ng-disabled="vm.state.isBusy" data-ng-click="vm.saveApiDescription()">Save</button>
+                                <button class="btn btn-default" data-ng-disabled="vm.state.isBusy" data-ng-click="vm.hideManageDescriptionModal()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

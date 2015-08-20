@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{10021EA0-0CBE-4A13-8B08-56BC9F3D3316}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReMi.Queries</RootNamespace>
+    <AssemblyName>ReMi.Queries</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.3.4.0\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Log4Net1210, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Log4Net1210.2.2.0\lib\net40\Common.Logging.Log4Net1210.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.5.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Common.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Utils.1.0.0.0\lib\net45\ReMi.Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Common.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Utils.1.0.0.0\lib\net45\ReMi.Common.Utils.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Core.1.0.0.0\lib\net45\ReMi.Contracts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Plugin.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Utils.1.0.0.0\lib\net45\ReMi.Plugin.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auth\GetAccountRequest.cs" />
+    <Compile Include="Auth\GetAccountResponse.cs" />
+    <Compile Include="Auth\GetAccountsByProductRequest.cs" />
+    <Compile Include="Auth\GetAccountsByProductResponse.cs" />
+    <Compile Include="Auth\GetRolesRequest.cs" />
+    <Compile Include="Auth\GetRolesResponse.cs" />
+    <Compile Include="Auth\GetAccountsByRoleRequest.cs" />
+    <Compile Include="Auth\GetAccountsByRoleResponse.cs" />
+    <Compile Include="Auth\GetAccountsRequest.cs" />
+    <Compile Include="Auth\GetAccountsResponse.cs" />
+    <Compile Include="Auth\GetAccountRolesRequest.cs" />
+    <Compile Include="Auth\GetAccountRolesResponse.cs" />
+    <Compile Include="Auth\GetActiveSessionResponse.cs" />
+    <Compile Include="Auth\GetActiveSessionRequest.cs" />
+    <Compile Include="Auth\GetNewSessionRequest.cs" />
+    <Compile Include="Auth\PermissionsRequest.cs" />
+    <Compile Include="Auth\PermissionsResponse.cs" />
+    <Compile Include="BusinessRules\GetBusinessRulesRequest.cs" />
+    <Compile Include="BusinessRules\GetBusinessRulesResponse.cs" />
+    <Compile Include="BusinessRules\TestBusinessRuleRequest.cs" />
+    <Compile Include="BusinessRules\TestBusinessRuleResponse.cs" />
+    <Compile Include="BusinessRules\GetBusinessRuleRequest.cs" />
+    <Compile Include="BusinessRules\GetBusinessRuleResponse.cs" />
+    <Compile Include="BusinessRules\GetGeneratedRuleRequest.cs" />
+    <Compile Include="BusinessRules\GetGeneratedRuleResponse.cs" />
+    <Compile Include="BusinessRules\TriggerBusinessRuleResponse.cs" />
+    <Compile Include="BusinessRules\TriggerBusinessRuleRequest.cs" />
+    <Compile Include="Common\GetEnumsRequest.cs" />
+    <Compile Include="Common\GetEnumsResponse.cs" />
+    <Compile Include="Configuration\GetBusinessUnitsRequest.cs" />
+    <Compile Include="Configuration\GetBusinessUnitsResponse.cs" />
+    <Compile Include="Configuration\GetCommandsByNamesRequest.cs" />
+    <Compile Include="Configuration\GetCommandsByNamesResponse.cs" />
+    <Compile Include="Configuration\GetQueriesWithRolesRequest.cs" />
+    <Compile Include="Configuration\GetQueriesWithRolesResponse.cs" />
+    <Compile Include="Configuration\GetCommandsWithRolesResponse.cs" />
+    <Compile Include="Configuration\GetCommandsWithRolesRequest.cs" />
+    <Compile Include="Configuration\GetProductsRequest.cs" />
+    <Compile Include="Configuration\GetProductsResponse.cs" />
+    <Compile Include="Configuration\GetReleaseTrackRequest.cs" />
+    <Compile Include="Configuration\GetReleaseTrackResponse.cs" />
+    <Compile Include="ContinuousDelivery\GetApiDescriptionResponse.cs" />
+    <Compile Include="ContinuousDelivery\GetApiDescriptionRequest.cs" />
+    <Compile Include="ContinuousDelivery\GetContinuousDeliveryStatusResponse.cs" />
+    <Compile Include="ContinuousDelivery\GetContinuousDeliveryStatusRequest.cs" />
+    <Compile Include="ExecPoll\GetCommandStateRequest.cs" />
+    <Compile Include="ExecPoll\GetCommandStateResponse.cs" />
+    <Compile Include="Metrics\GetMeasurementsRequest.cs" />
+    <Compile Include="Metrics\GetMeasurementsResponse.cs" />
+    <Compile Include="Plugins\GetPluginsRequest.cs" />
+    <Compile Include="Plugins\GetPluginsResponse.cs" />
+    <Compile Include="Plugins\GetPackagePluginConfigurationEntityRequest.cs" />
+    <Compile Include="Plugins\GetPackagePluginConfigurationEntityResponse.cs" />
+    <Compile Include="Plugins\GetGlobalPluginConfigurationEntityRequest.cs" />
+    <Compile Include="Plugins\GetGlobalPluginConfigurationEntityResponse.cs" />
+    <Compile Include="Plugins\GetPluginsConfigurationRequest.cs" />
+    <Compile Include="Plugins\GetPluginsConfigurationResponse.cs" />
+    <Compile Include="Plugins\GetPackagePluginConfigurationRequest.cs" />
+    <Compile Include="Plugins\GetPackagePluginConfigurationResponse.cs" />
+    <Compile Include="Plugins\GetGlobalPluginConfigurationRequest.cs" />
+    <Compile Include="Plugins\GetGlobalPluginConfigurationResponse.cs" />
+    <Compile Include="ReleaseCalendar\GetCurrentReleaseRequest.cs" />
+    <Compile Include="ReleaseCalendar\GetCurrentReleaseResponse.cs" />
+    <Compile Include="ReleasePlan\GetQaStatusRequest.cs" />
+    <Compile Include="ReleasePlan\GetQaStatusResponse.cs" />
+    <Compile Include="Reports\ReportRequest.cs" />
+    <Compile Include="Reports\ReportResponse.cs" />
+    <Compile Include="Reports\ReportsListRequest.cs" />
+    <Compile Include="Reports\ReportsListResponse.cs" />
+    <Compile Include="ProductRequests\GetProductRequestRegistrationsRequest.cs" />
+    <Compile Include="ProductRequests\GetProductRequestRegistrationsResponse.cs" />
+    <Compile Include="ProductRequests\GetProductRequestsRequest.cs" />
+    <Compile Include="ProductRequests\GetProductRequestsResponse.cs" />
+    <Compile Include="ReleaseCalendar\GetExpiredReleasesRequest.cs" />
+    <Compile Include="ReleaseCalendar\GetExpiredReleasesResponse.cs" />
+    <Compile Include="ReleaseExecution\GetDeploymentJobMeasurementsByProductRequest.cs" />
+    <Compile Include="ReleaseExecution\GetDeploymentJobMeasurementsByProductResponse.cs" />
+    <Compile Include="ReleaseExecution\GetDeploymentJobMeasurementsRequest.cs" />
+    <Compile Include="ReleaseExecution\GetDeploymentJobMeasurementsResponse.cs" />
+    <Compile Include="Metrics\GetMetricsRequest.cs" />
+    <Compile Include="Metrics\GetMetricsResponse.cs" />
+    <Compile Include="ReleaseCalendar\GetNearReleasesRequest.cs" />
+    <Compile Include="ReleaseCalendar\GetNearReleasesResponse.cs" />
+    <Compile Include="ReleaseCalendar\GetReleaseRequest.cs" />
+    <Compile Include="ReleaseCalendar\GetReleaseCalendarRequest.cs" />
+    <Compile Include="ReleaseCalendar\GetReleaseCalendarResponse.cs" />
+    <Compile Include="ReleaseCalendar\GetReleaseResponse.cs" />
+    <Compile Include="ReleaseExecution\GetSignOffsRequest.cs" />
+    <Compile Include="ReleaseExecution\GetSignOffsResponse.cs" />
+    <Compile Include="ReleasePlan\CheckListAdditionalQuestionRequest.cs" />
+    <Compile Include="ReleasePlan\CheckListAdditionalQuestionResponse.cs" />
+    <Compile Include="ReleasePlan\GetReleaseJobsRequest.cs" />
+    <Compile Include="ReleasePlan\GetReleaseApproversRequest.cs" />
+    <Compile Include="ReleasePlan\GetReleaseApproversResponse.cs" />
+    <Compile Include="ReleasePlan\GetReleaseChangesRequest.cs" />
+    <Compile Include="ReleasePlan\GetReleaseChangesResponse.cs" />
+    <Compile Include="ReleasePlan\GetTicketRiskRequest.cs" />
+    <Compile Include="ReleasePlan\GetTicketRiskResponse.cs" />
+    <Compile Include="ReleasePlan\GetReleaseContentInformationRequest.cs" />
+    <Compile Include="ReleasePlan\GetReleaseContentInformationResponse.cs" />
+    <Compile Include="ReleaseCalendar\GetReleaseEnumsRequest.cs" />
+    <Compile Include="ReleaseCalendar\GetReleaseEnumsResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReleaseCalendar\GetUpcomingReleaseRequest.cs" />
+    <Compile Include="ReleaseCalendar\GetUpcomingReleaseResponse.cs" />
+    <Compile Include="ReleasePlan\GetReleaseJobsResponse.cs" />
+    <Compile Include="ReleasePlan\GetReleaseTaskEnvironmentsRequest.cs" />
+    <Compile Include="ReleasePlan\GetReleaseTaskEnvironmentsResponse.cs" />
+    <Compile Include="ReleasePlan\GetReleaseTaskResponse.cs" />
+    <Compile Include="ReleaseParticipant\GetReleaseParticipantRequest.cs" />
+    <Compile Include="ReleaseParticipant\GetReleaseParticipantResponse.cs" />
+    <Compile Include="ReleasePlan\GetCheckListRequest.cs" />
+    <Compile Include="ReleasePlan\GetCheckListResponse.cs" />
+    <Compile Include="ReleasePlan\GetReleaseTaskRequest.cs" />
+    <Compile Include="ReleasePlan\GetReleaseTaskRisksRequest.cs" />
+    <Compile Include="ReleasePlan\GetReleaseTaskRisksResponse.cs" />
+    <Compile Include="ReleasePlan\GetReleaseTasksRequest.cs" />
+    <Compile Include="ReleasePlan\GetReleaseTasksResponse.cs" />
+    <Compile Include="ReleasePlan\GetReleaseTaskTypesRequest.cs" />
+    <Compile Include="ReleasePlan\GetReleaseTaskTypesResponse.cs" />
+    <Compile Include="ReleasePlan\SearchAccountRequest.cs" />
+    <Compile Include="Subscriptions\GetAccountNotificationSubscriptionsRequest.cs" />
+    <Compile Include="Subscriptions\GetAccountNotificationSubscriptionsResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\ReMi.Common.Constants\ReMi.Common.Constants.csproj">
+      <Project>{f8b8274d-2b1c-442b-b1c7-0208a150875f}</Project>
+      <Name>ReMi.Common.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogic\ReMi.BusinessEntities\ReMi.BusinessEntities.csproj">
+      <Project>{379e6fc3-c839-474b-a235-4ac3b1c36e9a}</Project>
+      <Name>ReMi.BusinessEntities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Go\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
