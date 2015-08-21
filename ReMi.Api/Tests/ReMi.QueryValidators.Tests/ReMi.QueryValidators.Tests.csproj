@@ -123,7 +123,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\GetNewSessionRequestValidatorTests.cs" />
-    <Compile Include="Auth\PermissionsRequestValidatorTests.cs" />
     <Compile Include="BusinessRules\TriggerBusinessRuleValidatorTests.cs" />
     <Compile Include="BusinessRules\GetGeneratedRuleValidatorTests.cs" />
     <Compile Include="BusinessRules\GetBusinessRuleValidatorTests.cs" />

@@ -3,7 +3,7 @@ describe("Plugins Controller", function () {
     var activateDeferred, businessUnitsDeferred, getEnumDeferred;
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) { $provide.value("authService", {}) });
     });
 
     beforeEach(angular.mock.inject(function ($q, $rootScope, $routeParams, $route) {

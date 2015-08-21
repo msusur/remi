@@ -52,7 +52,7 @@ namespace ReMi.Api.Insfrastructure.Security
 
         private PermissionStatus CheckPermissions(Type type, Account account, Func<string, ISecurityGateway, IEnumerable<Role>> getRolesMethod, out bool isRolesEmpty)
         {
-            // Admin has access to everyting
+            // Admin has access to everything
             if (account != null && account.Role != null && account.Role.Name == "Admin")
             {
                 isRolesEmpty = false;
@@ -61,6 +61,14 @@ namespace ReMi.Api.Insfrastructure.Security
 
             using (var gateway = SecurityGateway())
             {
+                if (account == null)
+                {
+                    if (!gateway.HasAuthentication())
+                    {
+                        isRolesEmpty = false;
+                        return PermissionStatus.Permmited;
+                    }
+                }
                 var roles = getRolesMethod(type.Name, gateway);
 
                 var rolesList = roles == null || roles is IList<Role> ? roles as IList<Role> : roles.ToList();

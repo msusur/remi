@@ -8,8 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ReMi.Common.Utils.Repository;
+using ReMi.Contracts.Plugins.Data;
 using ReMi.TestUtils.UnitTests;
 using ReMi.DataAccess.Exceptions;
+using ReMi.DataEntities.Auth;
+using ReMi.DataEntities.Plugins;
 using DataQuery = ReMi.DataEntities.Api.Query;
 using DataQueryPermission = ReMi.DataEntities.Auth.QueryPermission;
 using DataRole = ReMi.DataEntities.Auth.Role;
@@ -22,6 +25,8 @@ namespace ReMi.DataAccess.Tests.Auth
         private Mock<IRepository<DataQuery>> _queryRepositoryMock;
         private Mock<IRepository<DataQueryPermission>> _queryPermissionRepositoryMock;
         private Mock<IRepository<DataRole>> _roleRepositoryMock;
+        private Mock<IRepository<Account>> _accountRepositoryMock;
+        private Mock<IRepository<PluginConfiguration>> _pluginConfigurationRepositoryMock;
         private Mock<IMappingEngine> _mapperMock;
 
         protected override QueryPermissionsGateway ConstructSystemUnderTest()
@@ -31,6 +36,8 @@ namespace ReMi.DataAccess.Tests.Auth
                 QueryRepository = _queryRepositoryMock.Object,
                 QueryPermissionRepository = _queryPermissionRepositoryMock.Object,
                 RoleRepository = _roleRepositoryMock.Object,
+                AccountRepository = _accountRepositoryMock.Object,
+                PluginConfigurationRepository = _pluginConfigurationRepositoryMock.Object,
                 Mapper = _mapperMock.Object
             };
         }
@@ -40,9 +47,29 @@ namespace ReMi.DataAccess.Tests.Auth
             _queryRepositoryMock = new Mock<IRepository<DataQuery>>(MockBehavior.Strict);
             _queryPermissionRepositoryMock = new Mock<IRepository<DataQueryPermission>>(MockBehavior.Strict);
             _roleRepositoryMock = new Mock<IRepository<DataRole>>(MockBehavior.Strict);
+            _accountRepositoryMock = new Mock<IRepository<Account>>(MockBehavior.Strict);
+            _pluginConfigurationRepositoryMock = new Mock<IRepository<PluginConfiguration>>(MockBehavior.Strict);
             _mapperMock = new Mock<IMappingEngine>(MockBehavior.Strict);
 
             base.TestInitialize();
+        }
+
+        [Test]
+        public void Dispose_ShouldDisposeAllRepositories_WhenInvoked()
+        {
+            _queryRepositoryMock.Setup(x => x.Dispose());
+            _queryPermissionRepositoryMock.Setup(x => x.Dispose());
+            _roleRepositoryMock.Setup(x => x.Dispose());
+            _accountRepositoryMock.Setup(x => x.Dispose());
+            _pluginConfigurationRepositoryMock.Setup(x => x.Dispose());
+
+            Sut.Dispose();
+
+            _queryRepositoryMock.Verify(x => x.Dispose(), Times.Once);
+            _queryPermissionRepositoryMock.Verify(x => x.Dispose(), Times.Once);
+            _roleRepositoryMock.Verify(x => x.Dispose(), Times.Once);
+            _accountRepositoryMock.Verify(x => x.Dispose(), Times.Once);
+            _pluginConfigurationRepositoryMock.Verify(x => x.Dispose(), Times.Once);
         }
 
         [Test]
@@ -235,6 +262,40 @@ namespace ReMi.DataAccess.Tests.Auth
             Assert.AreEqual(queryPermissions[0].Query.Name, result.First());
         }
 
+        [Test]
+        public void GetAllowedCommands_ShouldReturnEmptyCollection_WhenRoleIsEmptyAndAuthenticationMethodDefined()
+        {
+            var queries = Builder<DataQuery>.CreateListOfSize(5).Build();
+            var accounts = Builder<Account>.CreateListOfSize(5).Build();
+            var pluginsConfig = Builder<PluginConfiguration>.CreateListOfSize(5)
+                .Random(1)
+                .With(x => x.PluginType, PluginType.Authentication)
+                .With(x => x.PluginId, RandomData.RandomInt(int.MaxValue))
+                .Build();
+
+            _accountRepositoryMock.SetupEntities(accounts);
+            _pluginConfigurationRepositoryMock.SetupEntities(pluginsConfig);
+            _queryRepositoryMock.SetupEntities(queries);
+
+            var result = Sut.GetAllowedQueries(null);
+
+            CollectionAssert.IsEmpty(result);
+        }
+
+        [Test]
+        public void GetAllowedCommands_ShouldReturnAllCommands_WhenRoleIsEmptyAndNoAuthenticationMethodDefined()
+        {
+            var queries = Builder<DataQuery>.CreateListOfSize(5).Build();
+
+            _accountRepositoryMock.SetupEntities(Enumerable.Empty<Account>());
+            _pluginConfigurationRepositoryMock.SetupEntities(Enumerable.Empty<PluginConfiguration>());
+            _queryRepositoryMock.SetupEntities(queries);
+
+            var result = Sut.GetAllowedQueries(null);
+
+            CollectionAssert.AreEquivalent(queries.Select(x => x.Name), result);
+        }
+        
         [Test]
         public void GetAllowedQueries_ShouldReturnAllQueriesWhenRoleIsAdmin()
         {

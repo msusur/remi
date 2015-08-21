@@ -3,7 +3,7 @@ describe("PluginsGlobalConfiguration Controller", function () {
     var activateDeferred, initDeferred;
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) { $provide.value("authService", {}) });
     });
 
     beforeEach(angular.mock.inject(function ($q, $rootScope) {

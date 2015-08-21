@@ -37,6 +37,21 @@ namespace ReMi.Api.Tests.Infrastructure.Security
         }
 
         [Test]
+        public void CheckCommandPermission_ShouldReturnStatusPermitted_WhenNoAuthentication()
+        {
+            var commandType = _commandMock.Object.GetType();
+
+            _securityGatewayMock.Setup(x => x.HasAuthentication())
+                .Returns(false);
+
+            var result = Sut.CheckCommandPermission(commandType, null);
+
+            Assert.AreEqual(PermissionStatus.Permmited, result);
+            _securityGatewayMock.Verify(x => x.GetCommandRoles(commandType.Name), Times.Never);
+            _authorizationManagerMock.Verify(x => x.IsAuthorized(It.IsAny<IEnumerable<Role>>()), Times.Never);
+        }
+
+        [Test]
         public void CheckCommandPermission_ShouldReturnStatusPermitted_WhenAccountRoleIsAdmin()
         {
             var account = BuildAccount();
@@ -75,6 +90,8 @@ namespace ReMi.Api.Tests.Infrastructure.Security
 
             _securityGatewayMock.Setup(x => x.GetCommandRoles(commandType.Name))
                 .Returns(new[] { new Role { Name = "Admin" } });
+            _securityGatewayMock.Setup(x => x.HasAuthentication())
+                .Returns(true);
 
             var result = Sut.CheckCommandPermission(commandType, null);
 
@@ -89,6 +106,8 @@ namespace ReMi.Api.Tests.Infrastructure.Security
 
             _securityGatewayMock.Setup(x => x.GetCommandRoles(commandType.Name))
                 .Returns(new[] { new Role { Name = "Admin" }, new Role { Name = "NotAuthenticated" } });
+            _securityGatewayMock.Setup(x => x.HasAuthentication())
+                .Returns(true);
 
             var result = Sut.CheckCommandPermission(commandType, null);
 
@@ -127,6 +146,21 @@ namespace ReMi.Api.Tests.Infrastructure.Security
 
             Assert.AreEqual(PermissionStatus.NotAuthorized, result);
             _securityGatewayMock.Verify(x => x.GetCommandRoles(commandType.Name), Times.Once());
+        }
+
+        [Test]
+        public void CheckQueryPermission_ShouldReturnStatusPermitted_WhenNoAuthentication()
+        {
+            var queryType = _queryMock.Object.GetType();
+
+            _securityGatewayMock.Setup(x => x.HasAuthentication())
+                .Returns(false);
+
+            var result = Sut.CheckQueryPermission(queryType, null);
+
+            Assert.AreEqual(PermissionStatus.Permmited, result);
+            _securityGatewayMock.Verify(x => x.GetQueryRoles(queryType.Name), Times.Never);
+            _authorizationManagerMock.Verify(x => x.IsAuthorized(It.IsAny<IEnumerable<Role>>()), Times.Never);
         }
 
         [Test]
@@ -183,6 +217,8 @@ namespace ReMi.Api.Tests.Infrastructure.Security
 
             _securityGatewayMock.Setup(x => x.GetQueryRoles(queryType.Name))
                 .Returns(new[] { new Role { Name = "Admin" } });
+            _securityGatewayMock.Setup(x => x.HasAuthentication())
+                .Returns(true);
 
             var result = Sut.CheckQueryPermission(queryType, null);
 
@@ -197,6 +233,8 @@ namespace ReMi.Api.Tests.Infrastructure.Security
 
             _securityGatewayMock.Setup(x => x.GetQueryRoles(queryType.Name))
                 .Returns(new[] { new Role { Name = "Admin" }, new Role { Name = "NotAuthenticated" } });
+            _securityGatewayMock.Setup(x => x.HasAuthentication())
+                .Returns(true);
 
             var result = Sut.CheckQueryPermission(queryType, null);
 

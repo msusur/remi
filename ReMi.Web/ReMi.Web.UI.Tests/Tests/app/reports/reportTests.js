@@ -3,7 +3,7 @@ describe("Report Controller", function () {
     var $q, $rootScope, activateCallback, handlers = {};
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) { $provide.value("authService", {}) });
 
         mocks = {
             common: {

@@ -2,7 +2,7 @@ describe("Rules Controller", function () {
     var sut, mocks, logger, activateDefer, getRulesDefer;
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) { $provide.value("authService", {}) });
     });
 
     beforeEach(angular.mock.inject(function ($q, $rootScope, $controller) {

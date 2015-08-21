@@ -2,7 +2,7 @@ describe("Close Release Controller", function () {
     var sut, mocks, deferred, scope, fakeLogger, q;
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) { $provide.value("authService", {}) });
 
         fakeLogger = { warn: function () { }, error: function () { }};
 

@@ -2,7 +2,7 @@ describe("AceEditor Directive ", function () {
     var scope, container, element, html, compiled, compile;
     var templateCache, injector, httpBackend, timeout;
 
-    beforeEach(module("app"));
+    beforeEach(module("app", function ($provide) { $provide.value("authService", {}) }));
     beforeEach(inject(function ($compile, $rootScope, $templateCache, $injector, _$httpBackend_, _$timeout_) {
         html = '<div data-ace-editor="" data-ng-model="model" data-mode="csharp" data-ng-change="onChange(data)" data-ng-disabled="isReadOnly"></div>';
 

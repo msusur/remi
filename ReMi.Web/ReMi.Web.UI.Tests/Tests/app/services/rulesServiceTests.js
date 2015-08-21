@@ -28,6 +28,7 @@ describe("Rule Service", function () {
             $provide.value("common", mocks.common);
             $provide.value("remiapi", mocks.remiapi);
             $provide.value("notifications", mocks.notifications);
+            $provide.value("authService", {});
         });
 
         inject(function (_rulesService_, _$q_, _$rootScope_) {

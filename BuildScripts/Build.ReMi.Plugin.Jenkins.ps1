@@ -11,7 +11,7 @@ $matchPattern = ("ReMi.Plugin.Jenkins.dll")
 
 $version = GetNextVersion $nuspecName $nuspecPath $nugetRepo
 
-ChangeVersionInAssemblies $version ..\
+ChangeVersionInAssemblies $version $(Join-Path $nuspecPath ..\)
 
 PublishToFileSystem $(Join-Path $nuspecPath ..\ReMi.Plugin.Jenkins\ReMi.Plugin.Jenkins.csproj) $outputFolder
 

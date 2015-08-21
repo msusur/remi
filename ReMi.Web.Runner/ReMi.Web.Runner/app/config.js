@@ -79,7 +79,7 @@
     }]);
     //#endregion
 
-    app.config(['$httpProvider', function ($httpProvider) {
+    app.config(['$httpProvider', function () {
     }]);
 
 })();

@@ -102,7 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\GetNewSessionRequestValidator.cs" />
-    <Compile Include="Auth\PermissionsRequestValidator.cs" />
     <Compile Include="BusinessRules\GetGeneratedRuleValidator.cs" />
     <Compile Include="BusinessRules\TestBusinessRuleValidator.cs" />
     <Compile Include="BusinessRules\GetBusinessRuleValidator.cs" />

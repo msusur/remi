@@ -59,18 +59,14 @@
         }
 
         function getAccess(access) {
-            if (!authService.isLoggedIn) {
-                return false;
-            }
-
             var accessLevel = true;
             if (access.commands && access.commands instanceof Array) {
-                accessLevel = access.commands.length == 0
+                accessLevel = access.commands.length === 0
                     ? true : getAccessLevel(access.commands, true);
             }
 
             if (access.queries && access.queries instanceof Array) {
-                accessLevel = access.queries.length == 0
+                accessLevel = access.queries.length === 0
                     ? accessLevel : accessLevel && getAccessLevel(access.queries);
             }
 
@@ -87,7 +83,7 @@
                 return false;
             }
 
-            return apiNames.length == apiNames.filter(function (s) {
+            return apiNames.length === apiNames.filter(function (s) {
                 return api.indexOf(s) >= 0;
             }).length;
         }
@@ -110,6 +106,13 @@
 
                             deffered.reject("/");
 
+                        } else if ((routeConfig.access.commands
+                            || routeConfig.access.queries) && !vm.getAccess(routeConfig.access)) {
+                            logger.warn("The page is not accessible!");
+                            deffered.reject("/");
+                        } else if ((routeConfig.access.commands
+                            || routeConfig.access.queries) && vm.getAccess(routeConfig.access)) {
+                            deffered.resolve();
                         } else if (!authService.isLoggedIn) {
                             logger.warn("You need to log in!");
                             search = $location.search();
@@ -118,10 +121,6 @@
 
                             deffered.reject("/login");
 
-                        } else if ((routeConfig.access.commands
-                            || routeConfig.access.queries) && !vm.getAccess(routeConfig.access)) {
-                            logger.warn("The page is not accessible!");
-                            deffered.reject("/");
                         } else {
                             deffered.resolve();
                         }
@@ -137,7 +136,7 @@
         }
 
         function toggleSpinner(on, message) {
-            $timeout(function() {
+            $timeout(function () {
                 vm.isBusy = on;
                 vm.busyMessage = message || "Please wait ...";
             });
@@ -183,9 +182,9 @@
             if (!next || !previous)
                 return false;
             var index = next.indexOf("?");
-            if (index == -1)
+            if (index === -1)
                 index = previous.indexOf("?");
-            if (index == -1)
+            if (index === -1)
                 return next === previous;
             else
                 return next.substr(0, index) === previous.substr(0, index);
@@ -215,7 +214,7 @@
         }
 
         function controllerActivateSuccessHandler(data) {
-            if (data.controllerId != "topnav") { toggleSpinner(false); }
+            if (data.controllerId !== "topnav") { toggleSpinner(false); }
         }
 
         function controllerActivateErrorHandler() { toggleSpinner(false); }
@@ -225,7 +224,7 @@
         }
 
         function serverNotificationHandler(notification) {
-            if (notification.name == notificationOccuredForUserEventName) {
+            if (notification.name === notificationOccuredForUserEventName) {
                 vm.handleNotificationOccuredForUserEvent(notification.data);
             }
 
@@ -234,9 +233,9 @@
 
         function handleNotificationOccuredForUserEvent(data) {
             if (data && data.Message) {
-                if (data.Type == "Error") {
+                if (data.Type === "Error") {
                     common.showErrorMessage(data.Message);
-                } else if (data.Type == "Warning") {
+                } else if (data.Type === "Warning") {
                     common.showWarnMessage(data.Message);
                 } else {
                     common.showInfoMessage("Server event", data.Message);

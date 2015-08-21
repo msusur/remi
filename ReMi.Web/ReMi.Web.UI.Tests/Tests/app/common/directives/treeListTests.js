@@ -2,7 +2,7 @@ describe("TreeList Directive ", function () {
     var scope, container, element, html, compiled, compile;
     var templateCache, injector, httpBackend, timeout;
 
-    beforeEach(module('app'));
+    beforeEach(module("app", function ($provide) { $provide.value("authService", {}) }));
     beforeEach(inject(function ($compile, $rootScope, $templateCache, $injector, _$httpBackend_, _$timeout_) {
         html = '<div data-tree-list="businessUnits" data-options="options"></div>';
         var controllerHtml = "<div class=\"container\"><div data-ng-show=\"viewMode == 'code'\" class=\"cssFade\"></div></div>";

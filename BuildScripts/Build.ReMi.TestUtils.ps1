@@ -11,7 +11,7 @@ $matchPattern = ("ReMi.TestUtils.dll")
 
 $version = GetNextVersion $nuspecName $nuspecPath $nugetRepo
 
-ChangeVersionInAssemblies $version ..\ReMi.Utils\
+ChangeVersionInAssemblies $version $(Join-Path $nuspecPath ..\)
 
 PublishToFileSystem $(Join-Path $nuspecPath ..\ReMi.TestUtils\ReMi.TestUtils.csproj) $outputFolder
 

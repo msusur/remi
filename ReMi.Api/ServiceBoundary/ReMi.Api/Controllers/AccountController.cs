@@ -66,7 +66,7 @@ namespace ReMi.Api.Controllers
 
         [HttpGet]
         [Route("permissions/{roleId}")]
-        public PermissionsResponse Permissions(Guid roleId)
+        public PermissionsResponse Permissions(Guid? roleId)
         {
             var request = new PermissionsRequest { RoleId = roleId };
 

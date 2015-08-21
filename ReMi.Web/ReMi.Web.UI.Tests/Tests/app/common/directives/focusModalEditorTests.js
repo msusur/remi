@@ -1,7 +1,7 @@
 describe("FocusModalEditor Directive ", function () {
     var scope, container, element, html, compiled, compile;
 
-    beforeEach(module('app'));
+    beforeEach(module("app", function ($provide) { $provide.value("authService", {}) }));
     beforeEach(inject(function ($compile, $rootScope) {
         html = '<div id="element-id" data-focus-modal-editor="textarea"</div>';
         scope = $rootScope.$new();

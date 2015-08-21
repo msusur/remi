@@ -4,7 +4,7 @@ describe("Roles Controller", function () {
     var scope, $q;
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) { $provide.value("authService", {}) });
 
         mocks = {
             common: {

@@ -8,7 +8,7 @@ namespace ReMi.Queries.Auth
     public class PermissionsRequest : IQuery
     {
         public QueryContext Context { get; set; }
-        public Guid RoleId { get; set; }
+        public Guid? RoleId { get; set; }
 
         public override string ToString()
         {

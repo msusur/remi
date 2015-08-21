@@ -8,8 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ReMi.Common.Utils.Repository;
+using ReMi.Contracts.Plugins.Data;
 using ReMi.TestUtils.UnitTests;
 using ReMi.DataAccess.Exceptions;
+using ReMi.DataEntities.Auth;
+using ReMi.DataEntities.Plugins;
 using DataCommand = ReMi.DataEntities.Api.Command;
 using DataCommandPermission = ReMi.DataEntities.Auth.CommandPermission;
 using DataRole = ReMi.DataEntities.Auth.Role;
@@ -22,6 +25,8 @@ namespace ReMi.DataAccess.Tests.Auth
         private Mock<IRepository<DataCommand>> _commandRepositoryMock;
         private Mock<IRepository<DataCommandPermission>> _commandPermissionRepositoryMock;
         private Mock<IRepository<DataRole>> _roleRepositoryMock;
+        private Mock<IRepository<Account>> _accountRepositoryMock;
+        private Mock<IRepository<PluginConfiguration>> _pluginConfigurationRepositoryMock;
         private Mock<IMappingEngine> _mapperMock;
 
         protected override CommandPermissionsGateway ConstructSystemUnderTest()
@@ -31,6 +36,8 @@ namespace ReMi.DataAccess.Tests.Auth
                 CommandRepository = _commandRepositoryMock.Object,
                 CommandPermissionRepository = _commandPermissionRepositoryMock.Object,
                 RoleRepository = _roleRepositoryMock.Object,
+                AccountRepository = _accountRepositoryMock.Object,
+                PluginConfigurationRepository = _pluginConfigurationRepositoryMock.Object,
                 Mapper = _mapperMock.Object
             };
         }
@@ -40,9 +47,29 @@ namespace ReMi.DataAccess.Tests.Auth
             _commandRepositoryMock = new Mock<IRepository<DataCommand>>(MockBehavior.Strict);
             _commandPermissionRepositoryMock = new Mock<IRepository<DataCommandPermission>>(MockBehavior.Strict);
             _roleRepositoryMock = new Mock<IRepository<DataRole>>(MockBehavior.Strict);
+            _accountRepositoryMock = new Mock<IRepository<Account>>(MockBehavior.Strict);
+            _pluginConfigurationRepositoryMock = new Mock<IRepository<PluginConfiguration>>(MockBehavior.Strict);
             _mapperMock = new Mock<IMappingEngine>(MockBehavior.Strict);
 
             base.TestInitialize();
+        }
+
+        [Test]
+        public void Dispose_ShouldDisposeAllRepositories_WhenInvoked()
+        {
+            _commandRepositoryMock.Setup(x => x.Dispose());
+            _commandPermissionRepositoryMock.Setup(x => x.Dispose());
+            _roleRepositoryMock.Setup(x => x.Dispose());
+            _accountRepositoryMock.Setup(x => x.Dispose());
+            _pluginConfigurationRepositoryMock.Setup(x => x.Dispose());
+
+            Sut.Dispose();
+
+            _commandRepositoryMock.Verify(x => x.Dispose(), Times.Once);
+            _commandPermissionRepositoryMock.Verify(x => x.Dispose(), Times.Once);
+            _roleRepositoryMock.Verify(x => x.Dispose(), Times.Once);
+            _accountRepositoryMock.Verify(x => x.Dispose(), Times.Once);
+            _pluginConfigurationRepositoryMock.Verify(x => x.Dispose(), Times.Once);
         }
 
         [Test]
@@ -237,7 +264,41 @@ namespace ReMi.DataAccess.Tests.Auth
         }
 
         [Test]
-        public void GetAllowedCommands_ShouldReturnAllCommandsWhenRoleIsAdmin()
+        public void GetAllowedCommands_ShouldReturnEmptyCollection_WhenRoleIsEmptyAndAuthenticationMethodDefined()
+        {
+            var commands = Builder<DataCommand>.CreateListOfSize(5).Build();
+            var accounts = Builder<Account>.CreateListOfSize(5).Build();
+            var pluginsConfig = Builder<PluginConfiguration>.CreateListOfSize(5)
+                .Random(1)
+                .With(x => x.PluginType, PluginType.Authentication)
+                .With(x => x.PluginId, RandomData.RandomInt(int.MaxValue))
+                .Build();
+
+            _accountRepositoryMock.SetupEntities(accounts);
+            _pluginConfigurationRepositoryMock.SetupEntities(pluginsConfig);
+            _commandRepositoryMock.SetupEntities(commands);
+
+            var result = Sut.GetAllowedCommands(null);
+
+            CollectionAssert.IsEmpty(result);
+        }
+
+        [Test]
+        public void GetAllowedCommands_ShouldReturnAllCommands_WhenRoleIsEmptyAndNoAuthenticationMethodDefined()
+        {
+            var commands = Builder<DataCommand>.CreateListOfSize(5).Build();
+
+            _accountRepositoryMock.SetupEntities(Enumerable.Empty<Account>());
+            _pluginConfigurationRepositoryMock.SetupEntities(Enumerable.Empty<PluginConfiguration>());
+            _commandRepositoryMock.SetupEntities(commands);
+
+            var result = Sut.GetAllowedCommands(null);
+
+            CollectionAssert.AreEquivalent(commands.Select(x => x.Name), result);
+        }
+
+        [Test]
+        public void GetAllowedCommands_ShouldReturnAllCommands_WhenRoleIsAdmin()
         {
             var role = new DataRole
             {
@@ -246,7 +307,7 @@ namespace ReMi.DataAccess.Tests.Auth
             };
             var commands = Builder<DataCommand>.CreateListOfSize(5).Build();
 
-            _roleRepositoryMock.SetupEntities(new [] {role});
+            _roleRepositoryMock.SetupEntities(new[] { role });
             _commandRepositoryMock.SetupEntities(commands);
 
             var result = Sut.GetAllowedCommands(role.ExternalId);

@@ -152,7 +152,7 @@
             userNotificationSubscriptions: "/subscriptions/{0}",
 
             //permissions
-            permissions: "/accounts/permissions/{0}",
+            permissions: "/accounts/permissions/{0?}",
 
             //reports
             reportList: "/reports",

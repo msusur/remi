@@ -3,10 +3,8 @@ describe("Access Control Directive ", function () {
     var compiled;
     var $httpBackend, $compile;
 
-    function testSetup(testRole) {
+    function testSetup() {
         mocks = {
-            authService: { isLoggedIn: true, identity: { name: 'name', email: 'email@email', role: testRole } },
-            notifications: jasmine.createSpyObj('notifications', ['subscribe', 'unsubscribe']),
             $window: jasmine.createSpyObj('$window', ['sessionStorage'])
         };
 
@@ -14,10 +12,8 @@ describe("Access Control Directive ", function () {
         mocks.$window.sessionStorage.getItem.and.returnValue(JSON.stringify(['smthCommand']));
         
         module("app", function ($provide) {
-            $provide.value('remiapi', mocks.remiapi);
-            $provide.value('authService', mocks.authService);
-            $provide.value('notifications', mocks.notifications);
             $provide.value('$window', mocks.$window);
+            $provide.value("authService", {});
         });
 
         inject(function (_$compile_, _$httpBackend_, _$rootScope_) {

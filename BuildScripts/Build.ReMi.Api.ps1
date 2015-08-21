@@ -15,7 +15,7 @@ $matchPattern = ("ReMi.BusinessEntities.dll", "ReMi.BusinessLogic.dll", "ReMi.Co
 
 $version = GetNextVersion $nuspecName $nuspecPath $nugetRepo
 
-ChangeVersionInAssemblies $version ..\
+ChangeVersionInAssemblies $version $(Join-Path $nuspecPath ..\)
 
 PublishToFileSystem $(Join-Path $nuspecPath ..\ServiceBoundary\ReMi.Api\ReMi.Api.csproj) $outputFolder
 

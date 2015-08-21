@@ -15,6 +15,7 @@ describe("Local Data", function () {
         module("app", function ($provide) {
             $provide.value("common", mocks.common);
             $provide.value("remiapi", mocks.remiapi);
+            $provide.value("authService", {});
         });
         mocks.common.$q.defer.and.returnValue({
             promise: true,

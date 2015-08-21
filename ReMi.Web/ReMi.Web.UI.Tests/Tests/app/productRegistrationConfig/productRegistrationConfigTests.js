@@ -3,7 +3,7 @@ describe("Product Registration Config Controller", function () {
     var $rootScope, $q, $timeout, $httpBackend;
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) { $provide.value("authService", {}) });
 
         mocks = {
             common: {

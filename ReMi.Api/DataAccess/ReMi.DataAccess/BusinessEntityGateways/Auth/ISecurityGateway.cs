@@ -8,5 +8,6 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Auth
     {
         IEnumerable<Role> GetCommandRoles(string commandName);
         IEnumerable<Role> GetQueryRoles(string queryName);
+        bool HasAuthentication();
     }
 }

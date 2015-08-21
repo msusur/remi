@@ -3,7 +3,7 @@ describe("Release Tasks Controller", function () {
     var $q, $rootScope;
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) { $provide.value("authService", {}) });
 
         mocks = {
             common: {

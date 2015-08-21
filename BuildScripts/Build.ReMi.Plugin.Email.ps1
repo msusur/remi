@@ -11,7 +11,7 @@ $matchPattern = ("ReMi.Plugin.Email.dll", "ReMi.Plugin.EmailMock.dll")
 
 $version = GetNextVersion $nuspecName $nuspecPath $nugetRepo
 
-ChangeVersionInAssemblies $version ..\
+ChangeVersionInAssemblies $version $(Join-Path $nuspecPath ..\)
 
 PublishToFileSystem $(Join-Path $nuspecPath ..\ReMi.Plugin.EmailMock\ReMi.Plugin.EmailMock.csproj) $outputFolder
 

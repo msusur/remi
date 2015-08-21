@@ -3,7 +3,7 @@ describe("Profile Controller", function () {
     var getDeferred;
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) { $provide.value("authService", {}) });
     });
 
     beforeEach(inject(function ($rootScope, $q) {

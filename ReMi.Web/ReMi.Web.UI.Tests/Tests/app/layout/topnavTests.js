@@ -3,7 +3,9 @@ describe("Topnav Controller", function () {
     var businessUnitChangedEventHandler;
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) {
+            $provide.value("authService", { identity: { fullname: "full name" }, isLoggedIn: true });
+        });
 
         mocks = {
             common: {
@@ -32,7 +34,7 @@ describe("Topnav Controller", function () {
         };
         logger = window.jasmine.createSpyObj("logger", ["console", "error", "info", "warn"]);
         mocks.common.logger.getLogger.and.returnValue(logger);
-        mocks.common.handleEvent.and.callFake(function(event, callback) {
+        mocks.common.handleEvent.and.callFake(function (event, callback) {
             businessUnitChangedEventHandler = callback;
         });
 

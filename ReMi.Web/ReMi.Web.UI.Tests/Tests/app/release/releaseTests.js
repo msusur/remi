@@ -2,7 +2,7 @@ describe("Release Controller", function () {
     var sut, mocks, logger, commandDeffered, getNearReleasesDefer, releaseEnumsDefer, getEnumsDefer, getBusinessUnitsDefer;
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) { $provide.value("authService", {}) });
     });
 
     beforeEach(inject(function ($q, $rootScope, $timeout, $httpBackend) {

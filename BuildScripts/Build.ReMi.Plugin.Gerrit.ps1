@@ -11,7 +11,7 @@ $matchPattern = ("ReMi.Plugin.Gerrit.dll")
 
 $version = GetNextVersion $nuspecName $nuspecPath $nugetRepo
 
-ChangeVersionInAssemblies $version ..\
+ChangeVersionInAssemblies $version $(Join-Path $nuspecPath ..\)
 
 PublishToFileSystem $(Join-Path $nuspecPath ..\ReMi.Plugin.Gerrit\ReMi.Plugin.Gerrit.csproj) $outputFolder
 

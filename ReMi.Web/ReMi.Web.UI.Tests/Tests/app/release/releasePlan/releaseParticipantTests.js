@@ -4,7 +4,7 @@ describe("Release Participants Controller", function () {
         removeParticipantDeferred, getParticipantsDeferred, confirmDeferred;
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) { $provide.value("authService", {}) });
     });
 
     beforeEach(angular.mock.inject(function ($q, $rootScope) {

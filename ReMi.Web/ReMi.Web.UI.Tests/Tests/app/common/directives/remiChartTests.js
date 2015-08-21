@@ -8,9 +8,7 @@ describe("Charts Directive ", function () {
         html = '<div data-remi-chart="" data-charts="vm.charts.scheduledRelease" data-measurement="vm.scheduledReleaseMeasurements" data-chart-title="Scheduled Releases Metrics"></div>';
         chartHtml = '<div class="widget wlightblue"></div>';
 
-        module("app", function () {
-        });
-
+        module("app", function ($provide) { $provide.value("authService", {}) });
 
         inject(function ($rootScope, _$compile_, $templateCache, $injector, _$q_, _$httpBackend_, _$timeout_, _$filter_) {
             $timeout = _$timeout_;

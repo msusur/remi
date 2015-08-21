@@ -51,7 +51,6 @@
             }
         };
 
-
         restoreSecurityContext();
 
         return service;
@@ -112,7 +111,13 @@
         }
 
         function loadPermissions() {
-            return remiapi.get.permissions(service.identity.roleId)
+            var roleId = service.identity && service.identity.roleId
+                ? service.identity.roleId
+                : undefined;
+            if (!remiapi || !remiapi.get || !remiapi.get.permissions)
+                return $q.reject();
+
+            return remiapi.get.permissions(roleId)
                 .then(function (response) {
                     try {
                         $window.sessionStorage.setItem("remiCommands", JSON.stringify(response.Commands));
@@ -157,6 +162,7 @@
         function restoreSecurityContext() {
             if (!localStorage["securityContext"] || localStorage["securityContext"].length === 0) {
                 setServiceData();
+                loadPermissions();
                 return null;
             }
             common.$broadcast(config.events.spinnerToggle, { show: true, message: "Authenticating user ..." });

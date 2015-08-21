@@ -238,7 +238,6 @@
     <Content Include="content\datetimepicker.css" />
     <Content Include="content\ie10mobile.css" />
     <Content Include="content\images\dark_wood.png" />
-    <Content Include="content\images\icon.png" />
     <Content Include="content\images\progress.gif" />
     <Content Include="content\images\slide-bg.png" />
     <Content Include="content\images\tick.png" />

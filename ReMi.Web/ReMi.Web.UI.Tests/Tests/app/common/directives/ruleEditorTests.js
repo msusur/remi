@@ -2,7 +2,7 @@ describe("RuleEditor Directive ", function () {
     var scope, container, element, html, compiled, compile;
     var templateCache, httpBackend, timeout;
 
-    beforeEach(module('app'));
+    beforeEach(module("app", function ($provide) { $provide.value("authService", {}) }));
     beforeEach(inject(function ($compile, $rootScope, $templateCache, _$httpBackend_, _$timeout_) {
         html = '<div data-rule-editor="" data-rule="currentRule" data-is-busy="isBusy"></div>';
         var controllerHtml = "<div class=\"container\"><div data-ng-show=\"viewMode == 'code'\" class=\"cssFade\"></div></div>";
@@ -54,7 +54,7 @@ describe("RuleEditor Directive ", function () {
     });
 
     it('should fillout element scope, when initialise and Rule is wrapped in element', function () {
-        scope.currentRule = { Rule : { ExternalId: 'ExternalId ' } };
+        scope.currentRule = { Rule: { ExternalId: 'ExternalId ' } };
         scope.isBusy = false;
 
         prepareDirective(scope);

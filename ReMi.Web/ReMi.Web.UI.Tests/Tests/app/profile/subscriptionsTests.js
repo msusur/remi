@@ -3,7 +3,7 @@ describe("Subscriptions Controller", function () {
     var $rootScope, $q, getDeferred, postDeferred;
 
     beforeEach(function () {
-        module("app");
+        module("app", function ($provide) { $provide.value("authService", {}) });
 
         mocks = {
             common: {

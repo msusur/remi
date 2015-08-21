@@ -6,6 +6,8 @@ using ReMi.DataEntities.Auth;
 using System.Collections.Generic;
 using System.Linq;
 using ReMi.Common.Utils.Repository;
+using ReMi.Contracts.Plugins.Data;
+using ReMi.DataEntities.Plugins;
 using DataCommand = ReMi.DataEntities.Api.Command;
 
 namespace ReMi.DataAccess.BusinessEntityGateways.Auth
@@ -15,7 +17,19 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Auth
         public IRepository<DataCommand> CommandRepository { get; set; }
         public IRepository<Role> RoleRepository { get; set; }
         public IRepository<CommandPermission> CommandPermissionRepository { get; set; }
+        public IRepository<Account> AccountRepository { get; set; }
+        public IRepository<PluginConfiguration> PluginConfigurationRepository { get; set; }
         public IMappingEngine Mapper { get; set; }
+
+        public override void OnDisposing()
+        {
+            base.OnDisposing();
+            CommandRepository.Dispose();
+            RoleRepository.Dispose();
+            CommandPermissionRepository.Dispose();
+            AccountRepository.Dispose();
+            PluginConfigurationRepository.Dispose();
+        }
 
         public IEnumerable<Command> GetCommands(bool includeBackground = false)
         {
@@ -26,8 +40,15 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Auth
                 .ToArray();
         }
 
-        public IEnumerable<string> GetAllowedCommands(Guid roleId)
+        public IEnumerable<string> GetAllowedCommands(Guid? roleId)
         {
+            if (!roleId.HasValue)
+            {
+                var hasAuthentication = AccountRepository.Entities.Any()
+                   && PluginConfigurationRepository.Entities.Any(
+                       x => x.PluginType == PluginType.Authentication && x.PluginId.HasValue);
+                return hasAuthentication ? Enumerable.Empty<string>() : CommandRepository.Entities.Select(x => x.Name).ToArray();
+            }
             var role = RoleRepository.GetSatisfiedBy(x => x.ExternalId == roleId);
             if (role == null)
                 throw new EntityNotFoundException(typeof (Role), roleId);

@@ -11,7 +11,7 @@ $matchPattern = ("ReMi.Plugin.ZenDesk.dll")
 
 $version = GetNextVersion $nuspecName $nuspecPath $nugetRepo
 
-ChangeVersionInAssemblies $version ..\
+ChangeVersionInAssemblies $version $(Join-Path $nuspecPath ..\)
 
 PublishToFileSystem $(Join-Path $nuspecPath ..\ReMi.Plugin.ZenDesk\ReMi.Plugin.ZenDesk.csproj) $outputFolder
 
