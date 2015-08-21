@@ -44,23 +44,23 @@ _ReSharper*/
 _temp
 *.mdf
 
-packages/
-ReMi.Api/packages/*
-ReMi.Api.Runner/packages/*
-ReMi.Web/packages/*
-ReMi.Web.Runner/packages/*
-ReMi.Utils/packages/*
-ReMi.Core/packages/*
-Plugins/Email/packages/*
-Plugins/Gerrit/packages/*
-Plugins/GO/packages/*
-Plugins/Jenkins/packages/*
-Plugins/Jira/packages/*
-Plugins/LDAP/packages/*
-Plugins/QaStats/packages/*
-Plugins/ZenDesk/packages/*
+/packages/
+/ReMi.Api/packages/*
+/ReMi.Api.Runner/packages/*
+/ReMi.Web/packages/*
+/ReMi.Web.Runner/packages/*
+/ReMi.Utils/packages/*
+/ReMi.Core/packages/*
+/Plugins/Email/packages/*
+/Plugins/Gerrit/packages/*
+/Plugins/GO/packages/*
+/Plugins/Jenkins/packages/*
+/Plugins/Jira/packages/*
+/Plugins/LDAP/packages/*
+/Plugins/QaStats/packages/*
+/Plugins/ZenDesk/packages/*
 
-ReMi.Web/ReMi.Web.UI.Tests/Source
+/ReMi.Web/ReMi.Web.UI.Tests/Source
 
 _Chutzpah.*.html
 

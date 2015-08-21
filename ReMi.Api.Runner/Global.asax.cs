@@ -7,12 +7,12 @@ namespace ReMi.Api.Runner
     {
         protected override void Application_Start()
         {
+            base.Application_Start();
+
             var configurationDb = new Configuration();
 
             var migrator = new DbMigrator(configurationDb);
             migrator.Update();
-
-            base.Application_Start();
         }
     }
 }
