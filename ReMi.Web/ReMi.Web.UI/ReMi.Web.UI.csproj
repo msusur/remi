@@ -66,6 +66,11 @@
     <Content Include="app\common\filters\formatArray.js" />
     <Content Include="app\common\filters\formatdatetime.js" />
     <Content Include="app\common\filters\formatList.js" />
+    <Content Include="app\configuration\businessUnits\businessUnits.html" />
+    <Content Include="app\configuration\businessUnits\businessUnits.js" />
+    <Content Include="app\configuration\businessUnits\businessUnitsPage.html" />
+    <Content Include="app\configuration\businessUnits\packages.html" />
+    <Content Include="app\configuration\businessUnits\packages.js" />
     <Content Include="app\configuration\plugins\pluginsConfiguration.html" />
     <Content Include="app\configuration\plugins\pluginsConfiguration.js" />
     <Content Include="app\configuration\plugins\pluginsPackageConfiguration.html" />
@@ -165,8 +170,6 @@
     <Content Include="app\configuration\permissions\roles.js" />
     <Content Include="app\configuration\permissions\commands.html" />
     <Content Include="app\configuration\permissions\commands.js" />
-    <Content Include="app\configuration\businessUnits\products.html" />
-    <Content Include="app\configuration\businessUnits\products.js" />
     <Content Include="app\configuration\permissions\permissions.html" />
     <Content Include="app\app.js" />
     <Content Include="app\common\directives\autofill.js" />

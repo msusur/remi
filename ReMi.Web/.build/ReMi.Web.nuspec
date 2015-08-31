@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>ReMi.Web</id>
-    <version>1.0.0.1</version>
+    <version>1.0.0.2</version>
     <authors>Release Engineering team</authors>
     <owners>Lisa Lambert</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

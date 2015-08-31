@@ -39,6 +39,20 @@ namespace ReMi.DataAccess.Tests.Products
         }
 
         [Test]
+        public void OnDispose_ShouldDisposeAllRepositories_WhenFinished()
+        {
+            _accountRepositoryMock.Setup(x => x.Dispose());
+            _businessUnitRepositoryMock.Setup(x => x.Dispose());
+            _packageRepositoryMock.Setup(x => x.Dispose());
+
+            using (Sut) { }
+
+            _accountRepositoryMock.Verify(x => x.Dispose(), Times.Once);
+            _businessUnitRepositoryMock.Verify(x => x.Dispose(), Times.Once);
+            _packageRepositoryMock.Verify(x => x.Dispose(), Times.Once);
+        }
+
+        [Test]
         [ExpectedException(typeof(AccountNotFoundException))]
         public void GetPackages_ShouldThrowAccountNotFound_WhenAccoundNotExists()
         {
@@ -239,17 +253,118 @@ namespace ReMi.DataAccess.Tests.Products
         }
 
         [Test]
-        public void OnDispose_ShouldDisposeAllRepositories_WhenFinished()
+        public void AddBusinessUnit_ShouldThrowException_WhenExternalIdAlreadyExists()
         {
-            _accountRepositoryMock.Setup(x => x.Dispose());
-            _businessUnitRepositoryMock.Setup(x => x.Dispose());
-            _packageRepositoryMock.Setup(x => x.Dispose());
+            var businessUnits = Builder<BusinessUnit>.CreateListOfSize(5).Build();
+            var businessUnit = Builder<BusinessEntities.Products.BusinessUnit>.CreateNew()
+                .With(x => x.ExternalId, businessUnits[0].ExternalId)
+                .Build();
 
-            using (Sut) { }
+            _businessUnitRepositoryMock.SetupEntities(businessUnits);
 
-            _accountRepositoryMock.Verify(x => x.Dispose(), Times.Once);
-            _businessUnitRepositoryMock.Verify(x => x.Dispose(), Times.Once);
-            _packageRepositoryMock.Verify(x => x.Dispose(), Times.Once);
+            var ex = Assert.Throws<EntityAlreadyExistsException>(() => Sut.AddBusinessUnit(businessUnit));
+
+            Assert.IsTrue(ex.Message.Contains(businessUnit.ExternalId.ToString()));
+        }
+
+        [Test]
+        public void AddBusinessUnit_ShouldAddNewBusinnessUnit_WhenSucced()
+        {
+            var businessUnits = Builder<BusinessUnit>.CreateListOfSize(5).Build();
+            var businessUnit = Builder<BusinessEntities.Products.BusinessUnit>.CreateNew()
+                .With(x => x.ExternalId, Guid.NewGuid())
+                .Build();
+            var dataBusinessUnit = new BusinessUnit { ExternalId = businessUnit.ExternalId };
+
+            _businessUnitRepositoryMock.SetupEntities(businessUnits);
+            _mappingEngineMock.Setup(x => x.Map<BusinessEntities.Products.BusinessUnit, BusinessUnit>(businessUnit))
+                .Returns(dataBusinessUnit);
+            _businessUnitRepositoryMock.Setup(x => x.Insert(dataBusinessUnit));
+
+            Sut.AddBusinessUnit(businessUnit);
+
+            _mappingEngineMock.Verify(x => x.Map<BusinessEntities.Products.BusinessUnit, BusinessUnit>(businessUnit), Times.Once);
+            _businessUnitRepositoryMock.Verify(x => x.Insert(dataBusinessUnit), Times.Once);
+        }
+
+        [Test]
+        public void UpdateBusinessUnit_ShouldThrowException_WhenExternalIdNotExists()
+        {
+            var businessUnits = Builder<BusinessUnit>.CreateListOfSize(5).Build();
+            var businessUnit = Builder<BusinessEntities.Products.BusinessUnit>.CreateNew()
+                .With(x => x.ExternalId, Guid.NewGuid())
+                .Build();
+
+            _businessUnitRepositoryMock.SetupEntities(businessUnits);
+
+            var ex = Assert.Throws<EntityNotFoundException>(() => Sut.UpdateBusinessUnit(businessUnit));
+
+            Assert.IsTrue(ex.Message.Contains(businessUnit.ExternalId.ToString()));
+        }
+
+        [Test]
+        public void UpdateBusinessUnit_ShouldUpdateBusinnessUnit_WhenSucced()
+        {
+            var businessUnits = Builder<BusinessUnit>.CreateListOfSize(5).Build();
+            var businessUnit = Builder<BusinessEntities.Products.BusinessUnit>.CreateNew()
+                .With(x => x.ExternalId, businessUnits[3].ExternalId)
+                .Build();
+
+            _businessUnitRepositoryMock.SetupEntities(businessUnits);
+            _businessUnitRepositoryMock.Setup(x => x.Update(businessUnits[3])).Returns((ChangedFields<BusinessUnit>)null);
+
+            Sut.UpdateBusinessUnit(businessUnit);
+
+            Assert.AreEqual(businessUnits[3].Name, businessUnit.Name);
+            Assert.AreEqual(businessUnits[3].Description, businessUnit.Description);
+            _businessUnitRepositoryMock.Verify(x => x.Update(businessUnits[3]), Times.Once);
+        }
+
+        [Test]
+        public void RemoveBusinessUnit_ShouldThrowException_WhenExternalIdNotExists()
+        {
+            var businessUnits = Builder<BusinessUnit>.CreateListOfSize(5).Build();
+            var businessUnitId = Guid.NewGuid();
+
+            _businessUnitRepositoryMock.SetupEntities(businessUnits);
+
+            var ex = Assert.Throws<EntityNotFoundException>(() => Sut.RemoveBusinessUnit(businessUnitId));
+
+            Assert.IsTrue(ex.Message.Contains(businessUnitId.ToString()));
+        }
+
+
+        [Test]
+        public void RemoveBusinessUnit_ShouldThrowException_WhenBusinessUnitHasPackages()
+        {
+            var businessUnits = Builder<BusinessUnit>.CreateListOfSize(5)
+                .Section(3, 4)
+                .With(x => x.Packages, Builder<Product>.CreateListOfSize(5).Build())
+                .Build();
+            var businessUnitId = businessUnits[3].ExternalId;
+
+            _businessUnitRepositoryMock.SetupEntities(businessUnits);
+
+            var ex = Assert.Throws<EntityHasRelatedData>(() => Sut.RemoveBusinessUnit(businessUnitId));
+
+            Assert.IsTrue(ex.Message.Contains(businessUnitId.ToString()));
+        }
+
+        [Test]
+        public void RemoveBusinessUnit_ShouldAddNewBusinnessUnit_WhenSucced()
+        {
+            var businessUnits = Builder<BusinessUnit>.CreateListOfSize(5)
+                .Section(3, 4)
+                .With(x => x.Packages, Enumerable.Empty<Product>())
+                .Build();
+            var businessUnitId = businessUnits[3].ExternalId;
+
+            _businessUnitRepositoryMock.SetupEntities(businessUnits);
+            _businessUnitRepositoryMock.Setup(x => x.Delete(businessUnits[3]));
+
+            Sut.RemoveBusinessUnit(businessUnitId);
+
+            _businessUnitRepositoryMock.Verify(x => x.Delete(businessUnits[3]), Times.Once);
         }
     }
 }

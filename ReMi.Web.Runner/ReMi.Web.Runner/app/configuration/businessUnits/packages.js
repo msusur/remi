@@ -21,7 +21,6 @@
 
         vm.products = [];
         vm.track = [];
-        vm.qaModes = [];
         vm.productToManage = undefined;
         vm.state = { isBusy: false };
 
@@ -153,6 +152,10 @@
         }
 
         function showManageProductModal(prod) {
+            if (!vm.businessUnits || vm.businessUnits.length === 0) {
+                logger.warn("No Business Units available");
+                return;
+            }
             if (prod) {
                 vm.productMode = "Update";
                 vm.productToManage = {

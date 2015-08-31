@@ -133,11 +133,11 @@
     <Content Include="..\ReMi.Web.UI\app\configuration\accounts\accounts.js">
       <Link>Source\app\configuration\accounts\accounts.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\app\configuration\businessUnits\products.html">
-      <Link>Source\app\configuration\businessUnits\products.html</Link>
+    <Content Include="..\ReMi.Web.UI\app\configuration\businessUnits\businessUnits.js">
+      <Link>Source\app\configuration\businessUnits\businessUnits.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\app\configuration\businessUnits\products.js">
-      <Link>Source\app\configuration\businessUnits\products.js</Link>
+    <Content Include="..\ReMi.Web.UI\app\configuration\businessUnits\packages.js">
+      <Link>Source\app\configuration\businessUnits\packages.js</Link>
     </Content>
     <Content Include="..\ReMi.Web.UI\app\configuration\permissions\commands.html">
       <Link>Source\app\configuration\permissions\commands.html</Link>
@@ -1343,6 +1343,7 @@
     <Content Include="Tests\app\common\directives\treeListTests.js" />
     <Content Include="Tests\app\common\filters\localdateTests.js" />
     <Content Include="Tests\app\configuration\accounts\accountTests.js" />
+    <Content Include="Tests\app\configuration\businessUnits\businessUnitsTests.js" />
     <Content Include="Tests\app\configuration\plugins\pluginsPackageConfigurationTests.js" />
     <Content Include="Tests\app\configuration\plugins\pluginsGlobalConfigurationTests.js" />
     <Content Include="Tests\app\configuration\plugins\pluginsConfigurationTests.js" />
@@ -1351,7 +1352,7 @@
     <Content Include="Tests\app\configuration\permissions\queriesTests.js" />
     <Content Include="Tests\app\configuration\permissions\rolesTests.js" />
     <Content Include="Tests\app\configuration\permissions\commandsTests.js" />
-    <Content Include="Tests\app\configuration\businessUnits\productsTests.js" />
+    <Content Include="Tests\app\configuration\businessUnits\packagesTests.js" />
     <Content Include="Tests\app\confirm\confirmTests.js" />
     <Content Include="Tests\app\common\directives\focusModalEditorTests.js" />
     <Content Include="Tests\app\common\directives\accessControlTests.js" />

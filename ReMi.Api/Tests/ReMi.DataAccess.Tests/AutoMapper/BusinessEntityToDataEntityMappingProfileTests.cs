@@ -3,18 +3,17 @@ using FizzWare.NBuilder;
 using NUnit.Framework;
 using ReMi.BusinessEntities.Auth;
 using ReMi.BusinessEntities.BusinessRules;
+using ReMi.BusinessEntities.DeploymentTool;
 using ReMi.BusinessEntities.ProductRequests;
+using ReMi.BusinessEntities.Products;
 using ReMi.BusinessEntities.ReleasePlan;
 using ReMi.Common.Constants.BusinessRules;
 using ReMi.Common.Constants.ReleasePlan;
-using ReMi.TestUtils.UnitTests;
 using ReMi.DataAccess.AutoMapper;
+using ReMi.TestUtils.UnitTests;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using ReMi.BusinessEntities.DeploymentTool;
-using ReMi.Contracts.Plugins.Data.SourceControl;
 
 namespace ReMi.DataAccess.Tests.AutoMapper
 {
@@ -253,7 +252,7 @@ namespace ReMi.DataAccess.Tests.AutoMapper
             Assert.IsNull(actual.LastChangedBy);
             Assert.IsNull(actual.LastChangedOn);
         }
-        
+
         [Test]
         public void ReleaseJob_ShouldReturnDataReleaseJob_WhenMapFromBusinessEntity()
         {
@@ -273,6 +272,25 @@ namespace ReMi.DataAccess.Tests.AutoMapper
             Assert.AreEqual(releaseJob.JobId, result.JobId);
             Assert.AreEqual(releaseJob.Name, result.Name);
             Assert.AreEqual(releaseJob.Order, result.Order);
+        }
+
+        [Test]
+        public void BusinessUnit_ShouldReturnDataBusinessUnit_WhenMapFromBusinessEntity()
+        {
+            var businessUnit = new BusinessUnit
+            {
+                ExternalId = Guid.NewGuid(),
+                Description = RandomData.RandomString(10),
+                Name = RandomData.RandomString(10),
+                Packages = Builder<Product>.CreateListOfSize(5).Build()
+            };
+
+            var result = Sut.Map<BusinessUnit, DataEntities.Products.BusinessUnit>(businessUnit);
+
+            Assert.AreEqual(businessUnit.ExternalId, result.ExternalId);
+            Assert.AreEqual(businessUnit.Description, result.Description);
+            Assert.AreEqual(businessUnit.Name, result.Name);
+            Assert.IsNull(result.Packages);
         }
     }
 }

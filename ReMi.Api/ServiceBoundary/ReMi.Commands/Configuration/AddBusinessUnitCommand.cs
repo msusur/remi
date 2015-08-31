@@ -16,7 +16,7 @@ namespace ReMi.Commands.Configuration
 
         public override string ToString()
         {
-            return String.Format("CommandContext={0}, Name={1}, Description={2}, ExternalId={3}",
+            return string.Format("CommandContext={0}, Name={1}, Description={2}, ExternalId={3}",
                 CommandContext, Name, Description, ExternalId);
         }
     }

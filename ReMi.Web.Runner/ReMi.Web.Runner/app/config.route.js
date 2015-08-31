@@ -167,7 +167,7 @@
                     parentUrl: '/configuration/accounts',
                     title: 'businessUnits',
                     label: 'Business Units',
-                    templateUrl: 'app/configuration/businessUnits/products.html',
+                    templateUrl: 'app/configuration/businessUnits/businessUnitsPage.html',
                     settings: {
                         nav: 5.2,
                         iconCss: 'fa fa-cog'

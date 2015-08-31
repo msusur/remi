@@ -1,0 +1,83 @@
+<div data-ng-controller="businessUnits as vm">
+    <div class="widget wlightblue">
+        <div data-remi-widget-header="" title="Business Units"></div>
+        <div class="widget-content user">
+            <div class="list-long-container">
+                <div class="container div-table div-table-striped">
+                    <div class="row div-table-header">
+                        <div class="col-sm-4">Name</div>
+                        <div class="col-sm-6">Description</div>
+                    </div>
+                    <div class="div-table-body div-table-body-300">
+                        <div class="row" data-ng-repeat="bu in vm.businessUnits | orderBy : ['Name']">
+                            <div class="col-sm-4">
+                                <a data-ng-click="vm.showModal(bu)"
+                                    data-access-control="UpdateBusinessUnitCommand" data-restriction-mode="unclick">{{bu.Name}}</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a data-ng-click="vm.showModal(bu)"
+                                    data-access-control="UpdateBusinessUnitCommand" data-restriction-mode="unclick">{{bu.Description}}</a>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                                <a class="btn btn-default btn-xs" data-ng-click="vm.removeBusinessUnit(bu)"
+                                    data-confirmation="Removing Business Unit is risky operation, are you sure you want to continue?"
+                                    data-confirmtype="question"
+                                    data-access-control="RemoveBusinessUnitCommand" data-restriction-mode="hide">Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget-foot">
+            <button data-access-control="AddBusinessUnitCommand" data-restriction-mode="hide"
+                class="btn btn-default" data-ng-click="vm.showModal()">
+                Add business unit</button>
+            <button type="button" class="btn btn-default pull-right" data-ng-click="vm.getBusinessUnits()">
+                <span class="glyphicon glyphicon-refresh"></span>
+                Refresh
+            </button>
+            <div class="clearfix"></div>
+        </div>
+        <div class="list-loader" data-ng-show="vm.state.isBusy">
+        </div>
+    </div>
+    <div class="modal fade" id="manageBusinessUnitModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">{{vm.operationMode}} Business Unit</h4>
+                </div>
+                <div class="modal-body" style="padding-bottom: 7px !important">
+                    <form role="form" class="form-horizontal" id="add-product-form">
+                        <div class="row" style="margin-top: 3%;">
+                            <label class="col-sm-3 control-label" for="bu-name">Name</label>
+                            <div class="col-sm-9">
+                                <input id="bu-name" type="text" class="form-control" data-ng-model="vm.businessUnitToManage.Name" />
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 3%;">
+                            <label class="col-sm-3 control-label" for="bu-description">Description</label>
+                            <div class="col-sm-9">
+                                <input id="bu-description" type="text" class="form-control" data-ng-model="vm.businessUnitToManage.Description" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="list-loader" data-ng-show="vm.state.isBusy">
+                    </div>
+                    <button class="btn btn-primary" data-ng-if="vm.operationMode === 'Add'"
+                        data-ng-click="vm.addBusinessUnit()">
+                        Add</button>
+                    <button class="btn btn-primary" data-ng-if="vm.operationMode === 'Update'"
+                        data-ng-click="vm.updateBusinessUnit()">
+                        Update</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

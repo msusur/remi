@@ -116,6 +116,9 @@
     <Compile Include="BusinessRules\SaveQueryPermissionRuleCommandHandler.cs" />
     <Compile Include="Configuration\AddCommandToRoleCommandHandler.cs" />
     <Compile Include="Configuration\AddQueryToRoleCommandHandler.cs" />
+    <Compile Include="Configuration\AddBusinessUnitCommandHandler.cs" />
+    <Compile Include="Configuration\RemoveBusinessUnitCommandHandler.cs" />
+    <Compile Include="Configuration\UpdateBusinessUnitCommandHandler.cs" />
     <Compile Include="Configuration\UpdateProductHandler.cs" />
     <Compile Include="Configuration\RemoveQueryFromRoleCommandHandler.cs" />
     <Compile Include="Configuration\RemoveCommandFromRoleCommandHandler.cs" />

@@ -132,6 +132,9 @@
     <Compile Include="BusinessRules\DeletePermissionRuleCommandValidatorTests.cs" />
     <Compile Include="Common\ProductRequestAssigneesValidatorTests.cs" />
     <Compile Include="Configuration\AddProductCommandValidatorTests.cs" />
+    <Compile Include="Configuration\AddBusinessUnitCommandValidatorTests.cs" />
+    <Compile Include="Configuration\UpdateBusinessUnitCommandValidatorTests.cs" />
+    <Compile Include="Configuration\RemoveBusinessUnitCommandValidatorTests.cs" />
     <Compile Include="Configuration\UpdateProductCommandValidatorTests.cs" />
     <Compile Include="DeploymentTool\RePopulateDeploymentMeasurementsCommandValidatorTests.cs" />
     <Compile Include="DeploymentTool\PopulateDeploymentMeasurementsCommandValidatorTests.cs" />

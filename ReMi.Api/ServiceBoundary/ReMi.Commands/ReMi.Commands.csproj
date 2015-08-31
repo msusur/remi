@@ -104,6 +104,7 @@
     <Compile Include="BusinessRules\SaveQueryPermissionRuleCommand.cs" />
     <Compile Include="BusinessRules\DeletePermissionRuleCommand.cs" />
     <Compile Include="Configuration\AddBusinessUnitCommand.cs" />
+    <Compile Include="Configuration\RemoveBusinessUnitCommand.cs" />
     <Compile Include="Configuration\UpdateBusinessUnitCommand.cs" />
     <Compile Include="Configuration\UpdateProductCommand.cs" />
     <Compile Include="ContinuousDelivery\UpdateApiCommand.cs" />

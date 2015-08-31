@@ -120,6 +120,9 @@
   <ItemGroup>
     <Compile Include="Auth\StartSessionCommandHandlerTests.cs" />
     <Compile Include="Auth\UpdateAccountPackagesCommandHandlerTests.cs" />
+    <Compile Include="Configuration\AddBusinessUnitCommandHandlerTests.cs" />
+    <Compile Include="Configuration\UpdateBusinessUnitCommandHandlerTests.cs" />
+    <Compile Include="Configuration\RemoveBusinessUnitCommandHandlerTests.cs" />
     <Compile Include="Configuration\UpdateProductHandlerTests.cs" />
     <Compile Include="DeploymentTool\RePopulateDeploymentMeasurementsCommandHandlerTests.cs" />
     <Compile Include="Plugins\AddPackagePluginConfigurationCommandHandlerTests.cs" />

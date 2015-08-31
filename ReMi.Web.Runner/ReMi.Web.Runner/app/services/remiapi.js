@@ -171,9 +171,12 @@
             // authentication
             startSession: "StartSessionCommand",
 
-            //products
+            //business units
             updateProduct: "UpdateProductCommand",
             addProduct: "AddProductCommand",
+            addBusinessUnit: "AddBusinessUnitCommand",
+            updateBusinessUnit: "UpdateBusinessUnitCommand",
+            removeBusinessUnit: "RemoveBusinessUnitCommand",
 
             //release calendar
             removeReleaseWindow: "CancelReleaseWindowCommand",

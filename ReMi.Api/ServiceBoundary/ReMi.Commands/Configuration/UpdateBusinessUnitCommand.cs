@@ -1,5 +1,4 @@
 using System;
-using ReMi.BusinessEntities.Products;
 using ReMi.Contracts.Cqrs.Commands;
 
 namespace ReMi.Commands.Configuration
@@ -8,11 +7,17 @@ namespace ReMi.Commands.Configuration
     public class UpdateBusinessUnitCommand : ICommand
     {
         public CommandContext CommandContext { get; set; }
-        public Product Product { get; set; }
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public Guid ExternalId { get; set; }
 
         public override string ToString()
         {
-            return String.Format("Product={0}, CommandContext={1}", Product, CommandContext);
+            return string.Format("CommandContext={0}, Name={1}, Description={2}, ExternalId={3}",
+                CommandContext, Name, Description, ExternalId);
         }
     }
 }

@@ -127,6 +127,9 @@
     <Compile Include="Configuration\AddProductCommandValidator.cs" />
     <Compile Include="Configuration\AddCommandToRoleCommandValidator.cs" />
     <Compile Include="Configuration\AddQueryToRoleCommandValidator.cs" />
+    <Compile Include="Configuration\AddBusinessUnitCommandValidator.cs" />
+    <Compile Include="Configuration\UpdateBusinessUnitCommandValidator.cs" />
+    <Compile Include="Configuration\RemoveBusinessUnitCommandValidator.cs" />
     <Compile Include="Configuration\UpdateProductCommandValidator.cs" />
     <Compile Include="Configuration\RemoveQueryFromRoleCommandValidator.cs" />
     <Compile Include="Configuration\RemoveCommandFromRoleCommandValidator.cs" />

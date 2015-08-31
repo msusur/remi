@@ -6,6 +6,7 @@ using ReMi.BusinessEntities.ProductRequests;
 using ReMi.BusinessEntities.ReleaseCalendar;
 using ReMi.BusinessEntities.ReleasePlan;
 using System;
+using ReMi.BusinessEntities.Products;
 
 namespace ReMi.DataAccess.AutoMapper
 {
@@ -126,6 +127,9 @@ namespace ReMi.DataAccess.AutoMapper
                 .ForMember(target => target.ProductRequestRegistrationId, options => options.Ignore());
 
             Mapper.CreateMap<ReleaseJob, DataEntities.ReleasePlan.ReleaseJob>();
+
+            Mapper.CreateMap<BusinessUnit, DataEntities.Products.BusinessUnit>()
+                .ForMember(target => target.Packages, options => options.Ignore());
         }
     }
 }

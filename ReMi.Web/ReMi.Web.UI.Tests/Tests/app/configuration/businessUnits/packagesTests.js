@@ -194,6 +194,15 @@ describe("Products Controller", function () {
         expect($("#manageProductModal").modal).toHaveBeenCalledWith("show");
     });
 
+    it("should not show add product modal, when no business units", function () {
+        spyOn($.fn, "modal");
+
+        sut.showManageProductModal();
+
+        expect(logger.warn).toHaveBeenCalledWith("No Business Units available");
+        expect($("#manageProductModal").modal).not.toHaveBeenCalledWith("show");
+    });
+
     it("should update product and not change business units, when called and business unit has not changed", function () {
         sut.track = releaseTracks;
         sut.getProducts();

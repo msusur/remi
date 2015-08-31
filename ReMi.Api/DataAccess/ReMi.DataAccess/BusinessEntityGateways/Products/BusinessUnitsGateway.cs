@@ -49,6 +49,38 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Products
             return MappingEngine.Map<IEnumerable<DataEntities.Products.BusinessUnit>, IEnumerable<BusinessUnit>>(businessUnits);
         }
 
+        public void AddBusinessUnit(BusinessUnit businessUnit)
+        {
+            if (BusinessUnitRepository.Entities.Any(x => x.ExternalId == businessUnit.ExternalId))
+                throw new EntityAlreadyExistsException(typeof(DataEntities.Products.BusinessUnit), businessUnit.ExternalId);
+
+            BusinessUnitRepository.Insert(
+                MappingEngine.Map<BusinessUnit, DataEntities.Products.BusinessUnit>(businessUnit));
+        }
+
+        public void UpdateBusinessUnit(BusinessUnit businessUnit)
+        {
+            var bu = BusinessUnitRepository.GetSatisfiedBy(x => x.ExternalId == businessUnit.ExternalId);
+            if (bu == null)
+                throw new EntityNotFoundException(typeof(DataEntities.Products.BusinessUnit), businessUnit.ExternalId);
+
+            bu.Description = businessUnit.Description;
+            bu.Name = businessUnit.Name;
+
+            BusinessUnitRepository.Update(bu);
+        }
+
+        public void RemoveBusinessUnit(Guid businessUnitId)
+        {
+            var bu = BusinessUnitRepository.GetSatisfiedBy(x => x.ExternalId == businessUnitId);
+            if (bu == null)
+                throw new EntityNotFoundException(typeof(DataEntities.Products.BusinessUnit), businessUnitId);
+            if (bu.Packages.Any())
+                throw new EntityHasRelatedData(typeof(DataEntities.Products.BusinessUnit), businessUnitId);
+
+            BusinessUnitRepository.Delete(bu);
+        }
+
         public override void OnDisposing()
         {
             PackageRepository.Dispose();
