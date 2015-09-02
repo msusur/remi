@@ -56,7 +56,7 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Auth
             return role.Name == "Admin"
                 ? QueryRepository.Entities.Select(x => x.Name).ToArray()
                 : QueryPermissionRepository.GetAllSatisfiedBy(x => x.Role.ExternalId == roleId)
-                    .Select(s => s.Query.Name);
+                    .Select(s => s.Query.Name).ToArray();
         }
 
         public void AddQueryPermission(int queryId, Guid roleExternalId)
