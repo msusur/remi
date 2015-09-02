@@ -41,7 +41,7 @@ function GetNextVersion([String]$nuspecName, [String]$nuspecPath, [String]$nuget
     $buildVersion = "0"
 
 
-    if(($lastPackage[1].Contains("$packageName")) -and ($lastPackage[1] -match $versionPattern))
+    if(($lastPackage[$lastPackage.Length - 1].Contains("$packageName")) -and ($lastPackage[$lastPackage.Length - 1] -match $versionPattern))
     {
         $buildVersion = [String]([int]$matches[1] + 1)
     }
