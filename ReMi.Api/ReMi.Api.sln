@@ -69,6 +69,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F33C39
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{82E26766-B15C-44C1-890C-5C73AD678EEB}"
 	ProjectSection(SolutionItems) = preProject
+		.build\content\log4net.config = .build\content\log4net.config
 		.build\ReMi.Api.nuspec = .build\ReMi.Api.nuspec
 		.build\content\web.config.install.xdt = .build\content\web.config.install.xdt
 		.build\content\web.config.uninstall.xdt = .build\content\web.config.uninstall.xdt

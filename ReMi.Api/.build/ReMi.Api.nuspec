@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>ReMi.Api</id>
-    <version>1.0.0.3</version>
+    <version>1.0.0.9</version>
     <authors>Wonga Technology Limited</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ReMi API</description>
@@ -10,16 +10,14 @@
     <copyright>Copyright Wonga Technology Limited 2015</copyright>
     <dependencies>
       <group targetFramework="net45">
-        <dependency id="ReMi.Core" version="1.0.0.0" />
-        <dependency id="ReMi.Utils" version="1.0.0.0" />
         <dependency id="Autofac" version="3.4.0" />
         <dependency id="Autofac.Extras.Attributed" version="3.2.1" />
         <dependency id="Autofac.Mef" version="3.0.3" />
         <dependency id="Autofac.WebApi2" version="3.2.0" />
         <dependency id="AutoMapper" version="3.3.1" />
-        <dependency id="Common.Logging" version="2.2.0" />
-        <dependency id="Common.Logging.Core" version="2.2.0" />
-        <dependency id="Common.Logging.Log4Net1210" version="2.2.0" />
+        <dependency id="Common.Logging.Core" version="[2.2.0]" />
+        <dependency id="Common.Logging" version="[2.2.0]" />
+        <dependency id="Common.Logging.Log4Net1210" version="[2.2.0]" />
         <dependency id="CS-Script" version="3.8.8.0" />
         <dependency id="EntityFramework" version="6.1.2" />
         <dependency id="FluentValidation" version="5.1.0.0" />
@@ -48,6 +46,8 @@
         <dependency id="Owin" version="1.0" />
         <dependency id="RestSharp" version="104.4.0" />
         <dependency id="System.Spatial" version="5.6.0" />
+        <dependency id="ReMi.Core" version="[1.0.0.0]" />
+        <dependency id="ReMi.Utils" version="[1.0.0.1]" />
       </group>
     </dependencies>
   </metadata>
