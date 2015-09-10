@@ -280,38 +280,92 @@
     <Content Include="..\ReMi.Web.UI\app\services\rulesService.js">
       <Link>Source\app\services\rulesService.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\ace.js">
-      <Link>Source\Scripts\ace\src-noconflict\ace.js</Link>
+    <Content Include="..\ReMi.Web.UI\libraries\ace\src-noconflict\ace.js">
+      <Link>Source\libraries\ace\src-noconflict\ace.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\mode-csharp.js">
-      <Link>Source\Scripts\ace\src-noconflict\mode-csharp.js</Link>
+    <Content Include="..\ReMi.Web.UI\libraries\ace\src-noconflict\mode-csharp.js">
+      <Link>Source\libraries\ace\src-noconflict\mode-csharp.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\mode-css.js">
-      <Link>Source\Scripts\ace\src-noconflict\mode-css.js</Link>
+    <Content Include="..\ReMi.Web.UI\libraries\ace\src-noconflict\mode-css.js">
+      <Link>Source\libraries\ace\src-noconflict\mode-css.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\mode-html.js">
-      <Link>Source\Scripts\ace\src-noconflict\mode-html.js</Link>
+    <Content Include="..\ReMi.Web.UI\libraries\ace\src-noconflict\mode-html.js">
+      <Link>Source\libraries\ace\src-noconflict\mode-html.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\mode-javascript.js">
-      <Link>Source\Scripts\ace\src-noconflict\mode-javascript.js</Link>
+    <Content Include="..\ReMi.Web.UI\libraries\ace\src-noconflict\mode-javascript.js">
+      <Link>Source\libraries\ace\src-noconflict\mode-javascript.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\mode-json.js">
-      <Link>Source\Scripts\ace\src-noconflict\mode-json.js</Link>
+    <Content Include="..\ReMi.Web.UI\libraries\ace\src-noconflict\mode-json.js">
+      <Link>Source\libraries\ace\src-noconflict\mode-json.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\theme-github.js">
-      <Link>Source\Scripts\ace\src-noconflict\theme-github.js</Link>
+    <Content Include="..\ReMi.Web.UI\libraries\ace\src-noconflict\theme-github.js">
+      <Link>Source\libraries\ace\src-noconflict\theme-github.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\worker-css.js">
-      <Link>Source\Scripts\ace\src-noconflict\worker-css.js</Link>
+    <Content Include="..\ReMi.Web.UI\libraries\ace\src-noconflict\worker-css.js">
+      <Link>Source\libraries\ace\src-noconflict\worker-css.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\worker-html.js">
-      <Link>Source\Scripts\ace\src-noconflict\worker-html.js</Link>
+    <Content Include="..\ReMi.Web.UI\libraries\ace\src-noconflict\worker-html.js">
+      <Link>Source\libraries\ace\src-noconflict\worker-html.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\worker-javascript.js">
-      <Link>Source\Scripts\ace\src-noconflict\worker-javascript.js</Link>
+    <Content Include="..\ReMi.Web.UI\libraries\ace\src-noconflict\worker-javascript.js">
+      <Link>Source\libraries\ace\src-noconflict\worker-javascript.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\ace\src-noconflict\worker-json.js">
-      <Link>Source\Scripts\ace\src-noconflict\worker-json.js</Link>
+    <Content Include="..\ReMi.Web.UI\libraries\ace\src-noconflict\worker-json.js">
+      <Link>Source\libraries\ace\src-noconflict\worker-json.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\angular-datatables.min.js">
+      <Link>Source\libraries\angular-datatables.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\angular-messages.min.js">
+      <Link>Source\libraries\angular-messages.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\angular-nvd3.js">
+      <Link>Source\libraries\angular-nvd3.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\d3.js">
+      <Link>Source\libraries\d3.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\dataTables.scroller.js">
+      <Link>Source\libraries\dataTables.scroller.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\guid-generator.js">
+      <Link>Source\libraries\guid-generator.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\http.js">
+      <Link>Source\libraries\http.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\jquery.cookie.js">
+      <Link>Source\libraries\jquery.cookie.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\jquery.dataTables.min.js">
+      <Link>Source\libraries\jquery.dataTables.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\jquery.treegrid.bootstrap3.js">
+      <Link>Source\libraries\jquery.treegrid.bootstrap3.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\jquery.treegrid.js">
+      <Link>Source\libraries\jquery.treegrid.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\jquery.validate.js">
+      <Link>Source\libraries\jquery.validate.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\nv.d3.js">
+      <Link>Source\libraries\nv.d3.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\textAngular-sanitize.min.js">
+      <Link>Source\libraries\textAngular-sanitize.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\textAngular.min.js">
+      <Link>Source\libraries\textAngular.min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\timeHelper.js">
+      <Link>Source\libraries\timeHelper.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\underscore-min.js">
+      <Link>Source\libraries\underscore-min.js</Link>
+    </Content>
+    <Content Include="..\ReMi.Web.UI\libraries\utils.js">
+      <Link>Source\libraries\utils.js</Link>
     </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\angular-animate.js">
       <Link>Source\Scripts\angular-animate.js</Link>
@@ -337,9 +391,6 @@
     <Content Include="..\ReMi.Web.UI\Scripts\angular-csp.css">
       <Link>Source\Scripts\angular-csp.css</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\angular-datatables.min.js">
-      <Link>Source\Scripts\angular-datatables.min.js</Link>
-    </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\angular-loader.js">
       <Link>Source\Scripts\angular-loader.js</Link>
     </Content>
@@ -349,14 +400,8 @@
     <Content Include="..\ReMi.Web.UI\Scripts\angular-messages.js">
       <Link>Source\Scripts\angular-messages.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\angular-messages.min.js">
-      <Link>Source\Scripts\angular-messages.min.js</Link>
-    </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\angular-mocks.js">
       <Link>Source\Scripts\angular-mocks.js</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\angular-nvd3.js">
-      <Link>Source\Scripts\angular-nvd3.js</Link>
     </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\angular-nvd3.min.js">
       <Link>Source\Scripts\angular-nvd3.min.js</Link>
@@ -415,20 +460,8 @@
     <Content Include="..\ReMi.Web.UI\Scripts\Chart.min.js">
       <Link>Source\Scripts\Chart.min.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\d3.js">
-      <Link>Source\Scripts\d3.js</Link>
-    </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\d3.min.js">
       <Link>Source\Scripts\d3.min.js</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\dataTables.scroller.js">
-      <Link>Source\Scripts\dataTables.scroller.js</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\guid-generator.js">
-      <Link>Source\Scripts\guid-generator.js</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\http.js">
-      <Link>Source\Scripts\http.js</Link>
     </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\angular-animate.min.js.map">
       <Link>Source\Scripts\angular-animate.min.js.map</Link>
@@ -448,10 +481,6 @@
     </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\angular-messages.min.js.map">
       <Link>Source\Scripts\angular-messages.min.js.map</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\angular-nvd3.min.js.map">
-      <Link>Source\Scripts\angular-nvd3.min.js.map</Link>
-      <DependentUpon>angular-nvd3.js</DependentUpon>
     </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\angular-resource.min.js.map">
       <Link>Source\Scripts\angular-resource.min.js.map</Link>
@@ -1209,9 +1238,6 @@
     <Content Include="..\ReMi.Web.UI\Scripts\jquery-ui-1.9.0.min.js">
       <Link>Source\Scripts\jquery-ui-1.9.0.min.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\jquery.dataTables.min.js">
-      <Link>Source\Scripts\jquery.dataTables.min.js</Link>
-    </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\jQuery.FileUpload\cors\jquery.postmessage-transport.js">
       <Link>Source\Scripts\jQuery.FileUpload\cors\jquery.postmessage-transport.js</Link>
     </Content>
@@ -1260,9 +1286,6 @@
     <Content Include="..\ReMi.Web.UI\Scripts\jquery.signalR-2.1.0.min.js">
       <Link>Source\Scripts\jquery.signalR-2.1.0.min.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\jquery.validate.js">
-      <Link>Source\Scripts\jquery.validate.js</Link>
-    </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\jquery.validate.min.js">
       <Link>Source\Scripts\jquery.validate.min.js</Link>
     </Content>
@@ -1290,9 +1313,6 @@
     <Content Include="..\ReMi.Web.UI\Scripts\moment.min.js">
       <Link>Source\Scripts\moment.min.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\nv.d3.js">
-      <Link>Source\Scripts\nv.d3.js</Link>
-    </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\nv.d3.min.js">
       <Link>Source\Scripts\nv.d3.min.js</Link>
     </Content>
@@ -1308,35 +1328,11 @@
     <Content Include="..\ReMi.Web.UI\Scripts\spin.min.js">
       <Link>Source\Scripts\spin.min.js</Link>
     </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\textAngular-sanitize.min.js">
-      <Link>Source\Scripts\textAngular-sanitize.min.js</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\textAngular.min.js">
-      <Link>Source\Scripts\textAngular.min.js</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\timeHelper.js">
-      <Link>Source\Scripts\timeHelper.js</Link>
-    </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\toastr.js">
       <Link>Source\Scripts\toastr.js</Link>
     </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\toastr.min.js">
       <Link>Source\Scripts\toastr.min.js</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\treeGrid\jquery.cookie.js">
-      <Link>Source\Scripts\treeGrid\jquery.cookie.js</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\treeGrid\jquery.treegrid.bootstrap3.js">
-      <Link>Source\Scripts\treeGrid\jquery.treegrid.bootstrap3.js</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\treeGrid\jquery.treegrid.js">
-      <Link>Source\Scripts\treeGrid\jquery.treegrid.js</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\underscore-min.js">
-      <Link>Source\Scripts\underscore-min.js</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\utils.js">
-      <Link>Source\Scripts\utils.js</Link>
     </Content>
     <Content Include="Tests\app\apiDescription\apiDescriptionTests.js" />
     <Content Include="Tests\app\common\directives\aceEditorTests.js" />
@@ -1403,10 +1399,6 @@
   <ItemGroup>
     <Content Include="..\ReMi.Web.UI\Scripts\errors.json">
       <Link>Source\Scripts\errors.json</Link>
-    </Content>
-    <Content Include="..\ReMi.Web.UI\Scripts\nv.d3.min.js.map">
-      <Link>Source\Scripts\nv.d3.min.js.map</Link>
-      <DependentUpon>nv.d3.js</DependentUpon>
     </Content>
     <Content Include="..\ReMi.Web.UI\Scripts\toastr.min.js.map">
       <Link>Source\Scripts\toastr.min.js.map</Link>

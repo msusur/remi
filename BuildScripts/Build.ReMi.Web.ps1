@@ -17,6 +17,10 @@ Rename-Item $(Join-Path $nuspecPath ReMi.Web.UI) content
 Remove-Item -Recurse $(Join-Path $nuspecPath temp) -Force
 Remove-Item -Recurse $(Join-Path $nuspecPath content\bin) -Force
 Remove-Item $(Join-Path $nuspecPath content\packages.config) -Force
+Remove-Item $(Join-Path $nuspecPath content\favicon.ico) -Force
+Remove-Item -Recurse $(Join-Path $nuspecPath content\content\*) -Force -Exclude images
+Remove-Item -Recurse $(Join-Path $nuspecPath content\fonts) -Force
+Remove-Item -Recurse $(Join-Path $nuspecPath content\Scripts) -Force
 
 GenerateNuGetPackage $nuspecName $nuspecPath $version
 
