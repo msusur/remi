@@ -139,7 +139,7 @@ namespace ReMi.DataAccess.Tests.Auth
         {
             var dataAccount = SetupDataAccount();
 
-            Sut.GetAccountsByRole(dataAccount.Role.Description);
+            Sut.GetAccountsByRole(dataAccount.Role.Name);
 
             _mappingEngineMock.Verify(o => o.Map<IEnumerable<DataAccount>, IEnumerable<BusinessAccount>>(
                 It.Is<IEnumerable<DataAccount>>(x => x.Count() == 1

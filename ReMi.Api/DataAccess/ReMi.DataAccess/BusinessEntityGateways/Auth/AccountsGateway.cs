@@ -115,7 +115,7 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Auth
         public IEnumerable<BusinessEntities.Auth.Account> GetAccountsByRole(string roleName)
         {
             return Mapper.Map<IEnumerable<Account>, IEnumerable<BusinessEntities.Auth.Account>>(
-                AccountRepository.GetAllSatisfiedBy(x => x.Role.Description == roleName)).ToList();
+                AccountRepository.GetAllSatisfiedBy(x => x.Role.Name == roleName)).ToList();
         }
 
         public IEnumerable<BusinessEntities.Auth.Account> GetAccounts()
