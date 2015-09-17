@@ -65,6 +65,7 @@ namespace ReMi.DataAccess.Migrations
             context.RemovingReasons.AddOrUpdateEnum<RemovingReason, RemovingReasonDescription>();
             context.PluginTypes.AddOrUpdateEnum<PluginType, PluginTypeDescription>();
             context.ReleaseTaskRisks.AddOrUpdateEnum<ReleaseTaskRisk, ReleaseTaskRiskDescription>();
+            context.ReleaseTaskEnvironments.AddOrUpdateEnum<ReleaseTaskEnvironment, ReleaseTaskEnvironmentDescription>();
 
             InitialiseEmptyDb(context);
             InitialiseQueries(context);
