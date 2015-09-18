@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>ReMi.Api</id>
-    <version>1.0.0.10</version>
+    <version>1.0.0.11</version>
     <authors>Wonga Technology Limited</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ReMi API</description>
