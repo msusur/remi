@@ -123,6 +123,8 @@
     <Compile Include="ContinuousDelivery\CreateAutomatedReleaseWindowCommand.cs" />
     <Compile Include="ContinuousDelivery\UpdateAutomatedMetricsCommand.cs" />
     <Compile Include="DeploymentTool\RePopulateDeploymentMeasurementsCommand.cs" />
+    <Compile Include="ReleaseCalendar\ClearReleaseContentCommand.cs" />
+    <Compile Include="ReleaseCalendar\ClearReleaseChangesCommand.cs" />
     <Compile Include="SourceControl\LoadReleaseRepositoriesCommand.cs" />
     <Compile Include="SourceControl\StoreSourceControlCommand.cs" />
     <Compile Include="DeploymentTool\PopulateDeploymentMeasurementsCommand.cs" />

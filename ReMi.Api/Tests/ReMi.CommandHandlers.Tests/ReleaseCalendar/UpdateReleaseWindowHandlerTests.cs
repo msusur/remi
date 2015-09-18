@@ -242,7 +242,13 @@ namespace ReMi.CommandHandlers.Tests.ReleaseCalendar
                 .Returns((Task) null);
             _commandDispatcherMock.Setup(cd => cd.Send(It.Is<UpdateReleaseMetricsCommand>(
                 c => c.ReleaseWindow == release && c.CommandContext.ParentId == command.CommandContext.Id)))
-                .Returns((Task) null);
+                .Returns((Task)null);
+            _commandDispatcherMock.Setup(cd => cd.Send(It.Is<ClearReleaseChangesCommand>(
+                c => c.ReleaseWindowId == release.ExternalId && c.CommandContext.ParentId == command.CommandContext.Id)))
+                .Returns((Task)null);
+            _commandDispatcherMock.Setup(cd => cd.Send(It.Is<ClearReleaseContentCommand>(
+                c => c.ReleaseWindowId == release.ExternalId && c.CommandContext.ParentId == command.CommandContext.Id)))
+                .Returns((Task)null);
             _commandDispatcherMock.Setup(cd => cd.Send(It.Is<UpdateReleaseDecisionCommand>(
                 c => c.ReleaseWindowId == release.ExternalId
                     && c.ReleaseDecision == ReleaseDecision.NoGo
@@ -265,6 +271,8 @@ namespace ReMi.CommandHandlers.Tests.ReleaseCalendar
             _commandDispatcherMock.Verify(cd => cd.Send(It.IsAny<ClearApproversSignaturesCommand>()), resetTimes);
             _commandDispatcherMock.Verify(cd => cd.Send(It.IsAny<UpdateReleaseMetricsCommand>()), resetTimes);
             _commandDispatcherMock.Verify(cd => cd.Send(It.IsAny<UpdateReleaseDecisionCommand>()), resetTimes);
+            _commandDispatcherMock.Verify(cd => cd.Send(It.IsAny<ClearReleaseChangesCommand>()), resetTimes);
+            _commandDispatcherMock.Verify(cd => cd.Send(It.IsAny<ClearReleaseContentCommand>()), resetTimes);
             _eventPublisherMock.Verify(cd => cd.Publish(It.IsAny<ReleaseWindowUpdatedEvent>()), Times.Once);
         }
 

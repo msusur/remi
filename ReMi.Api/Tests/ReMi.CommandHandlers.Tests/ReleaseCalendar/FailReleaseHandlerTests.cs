@@ -1,5 +1,3 @@
-using System;
-using FizzWare.NBuilder;
 using Moq;
 using NUnit.Framework;
 using ReMi.BusinessEntities.Auth;
@@ -7,22 +5,20 @@ using ReMi.BusinessEntities.Exceptions;
 using ReMi.BusinessLogic.Auth;
 using ReMi.CommandHandlers.ReleaseCalendar;
 using ReMi.Commands.ReleaseCalendar;
-using ReMi.TestUtils.UnitTests;
 using ReMi.Contracts.Cqrs.Commands;
 using ReMi.Contracts.Cqrs.Events;
 using ReMi.DataAccess.BusinessEntityGateways.ReleaseCalendar;
-using ReMi.DataAccess.BusinessEntityGateways.ReleasePlan;
-using ReMi.DataAccess.BusinessEntityGateways.SourceControl;
 using ReMi.Events.ReleaseCalendar;
 using ReMi.Events.ReleaseExecution;
+using ReMi.TestUtils.UnitTests;
+using System;
 
 namespace ReMi.CommandHandlers.Tests.ReleaseCalendar
 {
     public class FailReleaseHandlerTests : TestClassFor<FailReleaseHandler>
     {
         private Mock<IAccountsBusinessLogic> _accountsBusinessLogicMock;
-        private Mock<ISourceControlChangeGateway> _sourceControlChangesGatewayMock;
-        private Mock<IReleaseContentGateway> _releaseContentGatewayMock;
+        private Mock<ICommandDispatcher> _commandDispatcheryMock;
         private Mock<IReleaseWindowGateway> _releaseWindowGatewayMock;
         private Mock<IPublishEvent> _publishEventMock;
 
@@ -31,8 +27,7 @@ namespace ReMi.CommandHandlers.Tests.ReleaseCalendar
             return new FailReleaseHandler
             {
                 AccountsBusinessLogic = _accountsBusinessLogicMock.Object,
-                SourceControlChangesGatewayFactory = () => _sourceControlChangesGatewayMock.Object,
-                ReleaseContentGatewayFactory = () => _releaseContentGatewayMock.Object,
+                CommandDispatcher = _commandDispatcheryMock.Object,
                 ReleaseWindowGatewayFactory = () => _releaseWindowGatewayMock.Object,
                 PublishEvent = _publishEventMock.Object
             };
@@ -41,8 +36,7 @@ namespace ReMi.CommandHandlers.Tests.ReleaseCalendar
         protected override void TestInitialize()
         {
             _accountsBusinessLogicMock = new Mock<IAccountsBusinessLogic>();
-            _sourceControlChangesGatewayMock = new Mock<ISourceControlChangeGateway>();
-            _releaseContentGatewayMock = new Mock<IReleaseContentGateway>();
+            _commandDispatcheryMock = new Mock<ICommandDispatcher>();
             _releaseWindowGatewayMock = new Mock<IReleaseWindowGateway>();
             _publishEventMock = new Mock<IPublishEvent>();
 
@@ -71,7 +65,7 @@ namespace ReMi.CommandHandlers.Tests.ReleaseCalendar
 
             Sut.Handle(command);
 
-            _releaseContentGatewayMock.Verify(x => x.RemoveTicketsFromRelease(command.ReleaseWindowId));
+            _commandDispatcheryMock.Verify(x => x.Send(It.Is<ClearReleaseContentCommand>(c => c.ReleaseWindowId == command.ReleaseWindowId)));
         }
 
         [Test]
@@ -79,11 +73,9 @@ namespace ReMi.CommandHandlers.Tests.ReleaseCalendar
         {
             var command = ConstructCommand();
 
-            _sourceControlChangesGatewayMock.Setup(x => x.RemoveChangesFromRelease(command.ReleaseWindowId));
-
             Sut.Handle(command);
 
-            _sourceControlChangesGatewayMock.Verify(x => x.RemoveChangesFromRelease(command.ReleaseWindowId));
+            _commandDispatcheryMock.Verify(x => x.Send(It.Is<ClearReleaseChangesCommand>(c => c.ReleaseWindowId == command.ReleaseWindowId)));
         }
 
         [Test]

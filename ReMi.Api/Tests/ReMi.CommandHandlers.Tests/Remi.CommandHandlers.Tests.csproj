@@ -135,6 +135,8 @@
     <Compile Include="ProductRequests\DeleteProductRequestRegistrationCommandHandlerTests.cs" />
     <Compile Include="ReleaseCalendar\CloseExpiredReleasesCommandHandlerTests.cs" />
     <Compile Include="ReleaseCalendar\ClearApproversSignaturesCommandHandlerTests.cs" />
+    <Compile Include="ReleaseCalendar\ClearReleaseChangesCommandHandlerTests.cs" />
+    <Compile Include="ReleaseCalendar\ClearReleaseContentCommandHandlerTests.cs" />
     <Compile Include="ReleaseCalendar\FailReleaseHandlerTests.cs" />
     <Compile Include="ReleasePlan\AcknowledgeHandlerTests.cs" />
     <Compile Include="Api\UpdateApiDescriptionHandlerTests.cs" />

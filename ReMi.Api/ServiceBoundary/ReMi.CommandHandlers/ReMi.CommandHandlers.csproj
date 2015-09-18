@@ -127,6 +127,8 @@
     <Compile Include="ContinuousDelivery\UpdateApiCommandHandler.cs" />
     <Compile Include="ContinuousDelivery\UpdateAutomatedMetricsCommandHandler.cs" />
     <Compile Include="DeploymentTool\RePopulateDeploymentMeasurementsCommandHandler.cs" />
+    <Compile Include="ReleaseCalendar\ClearReleaseChangesCommandHandler.cs" />
+    <Compile Include="ReleaseCalendar\ClearReleaseContentCommandHandler.cs" />
     <Compile Include="SourceControl\LoadReleaseRepositoriesCommandHandler.cs" />
     <Compile Include="SourceControl\StoreSourceControlChangesCommandHandler.cs" />
     <Compile Include="DeploymentTool\PopulateDeploymentMeasurementsCommandHandler.cs" />

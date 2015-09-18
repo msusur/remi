@@ -81,6 +81,16 @@ namespace ReMi.CommandHandlers.ReleaseCalendar
                     ReleaseDecision = ReleaseDecision.NoGo,
                     ReleaseWindowId = command.ReleaseWindow.ExternalId
                 });
+                CommandDispatcher.Send(new ClearReleaseContentCommand
+                {
+                    ReleaseWindowId = command.ReleaseWindow.ExternalId,
+                    CommandContext = command.CommandContext.CreateChild()
+                });
+                CommandDispatcher.Send(new ClearReleaseChangesCommand
+                {
+                    ReleaseWindowId = command.ReleaseWindow.ExternalId,
+                    CommandContext = command.CommandContext.CreateChild()
+                });
             }
 
             EventPublisher.Publish(new ReleaseWindowUpdatedEvent
