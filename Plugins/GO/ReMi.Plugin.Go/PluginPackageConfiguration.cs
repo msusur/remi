@@ -73,7 +73,7 @@ namespace ReMi.Plugin.Go
             using (var gateway = PackageConfigurationGatewayFactory())
             {
                 return PluginConfigurationTemplateBuilder.Build<PluginPackageConfigurationEntity>(
-                    () => gateway.GetServers()
+                    () => (gateway.GetServers() ?? Enumerable.Empty<NameValuePair>())
                         .Select(x => new PluginConfigurationSelectTemplate
                         {
                             Description = x.Name,

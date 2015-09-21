@@ -28,7 +28,8 @@ namespace ReMi.Plugin.Gerrit.DataAccess.Gateways
         public IEnumerable<PluginPackageConfigurationEntity> GetPackagesConfiguration(IEnumerable<Guid> packageIds = null)
         {
             if (!PackageConfigurationRepository.Entities.Any())
-                return null;
+                return Enumerable.Empty<PluginPackageConfigurationEntity>();
+
             var result = packageIds == null
                 ? PackageConfigurationRepository.Entities
                 : PackageConfigurationRepository.GetAllSatisfiedBy(x => packageIds.Any(id => id == x.PackageId));

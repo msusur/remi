@@ -28,7 +28,7 @@ namespace ReMi.Plugin.Jira.DataAccess.Gateways
         public IEnumerable<PluginPackageConfigurationEntity> GetPackagesConfiguration()
         {
             if (!PackageConfigurationRepository.Entities.Any())
-                return null;
+                return Enumerable.Empty<PluginPackageConfigurationEntity>();
 
             return Mapper.Map<IEnumerable<PackageConfiguration>, IEnumerable<PluginPackageConfigurationEntity>>(
                 PackageConfigurationRepository.Entities);
