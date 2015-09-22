@@ -80,10 +80,6 @@
       <HintPath>..\..\packages\ReMi.Utils.1.0.0.1\lib\net45\ReMi.Common.Utils.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ReMi.Core.1.0.0.0\lib\net45\ReMi.Contracts.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="ReMi.Plugin.Common, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ReMi.Utils.1.0.0.1\lib\net45\ReMi.Plugin.Common.dll</HintPath>
       <Private>True</Private>
