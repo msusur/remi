@@ -14,7 +14,7 @@ namespace ReMi.Contracts.Plugins.Data
         SourceControl = 4,
         [EnumDescription("Authentication Service", Annotation = "global")]
         Authentication = 8,
-        [EnumDescription("Email Servive", Annotation = "global")]
+        [EnumDescription("Email Service", Annotation = "global")]
         Email = 16,
         [EnumDescription("Help Desk Service")]
         HelpDesk = 32,
