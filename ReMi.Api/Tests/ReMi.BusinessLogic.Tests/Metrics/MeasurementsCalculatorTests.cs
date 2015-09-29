@@ -7,8 +7,7 @@ using ReMi.BusinessEntities.ReleaseCalendar;
 using ReMi.BusinessLogic.Metrics;
 using ReMi.Common.Constants.Metrics;
 using ReMi.Common.Constants.ReleaseExecution;
-using ReMi.Common.Utils.UnitTests;
-using ReMi.Contracts;
+using ReMi.TestUtils.UnitTests;
 
 namespace ReMi.BusinessLogic.Tests.Metrics
 {

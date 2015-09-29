@@ -5,11 +5,14 @@ using ReMi.DataEntities.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ReMi.BusinessEntities.Auth;
 using ReMi.Common.Utils.Repository;
 using ReMi.DataEntities.Products;
 using ReMi.DataEntities.ReleaseCalendar;
+using Account = ReMi.DataEntities.Auth.Account;
 using ReleaseParticipant = ReMi.BusinessEntities.ReleasePlan.ReleaseParticipant;
 using Role = ReMi.DataEntities.Auth.Role;
+using Session = ReMi.DataEntities.Auth.Session;
 
 namespace ReMi.DataAccess.BusinessEntityGateways.Auth
 {
@@ -22,7 +25,6 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Auth
         public IRepository<ReleaseWindow> ReleaseWindowRepository { get; set; }
         public IRepository<Product> PackageRepository { get; set; }
         public IMappingEngine Mapper { get; set; }
-
 
         public BusinessEntities.Auth.Session StartSession(BusinessEntities.Auth.Account account, Guid sessionId, int sessionDuration)
         {
@@ -141,7 +143,7 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Auth
 
         public void CreateNotExistingAccounts(IEnumerable<BusinessEntities.Auth.Account> accounts)
         {
-            CreateNotExistingAccounts(accounts, "TeamMember");
+            CreateNotExistingAccounts(accounts, "BasicUser");
         }
 
         public void CreateNotExistingAccounts(IEnumerable<BusinessEntities.Auth.Account> accounts, string roleName)
@@ -208,7 +210,7 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Auth
 
         public bool CreateNotExistingAccount(BusinessEntities.Auth.Account account)
         {
-            return CreateNotExistingAccount(account, "ProductionSupport");
+            return CreateNotExistingAccount(account, "BasicUser");
         }
 
         public bool CreateNotExistingAccount(BusinessEntities.Auth.Account account, string roleName)
@@ -377,16 +379,16 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Auth
                 Mapper.Map<IEnumerable<Account>, IEnumerable<BusinessEntities.Auth.Account>>(result);
         }
 
-        public void AssociateAccountsWithProduct(IEnumerable<string> accountEmails, Guid releaseWindowId)
+        public void AssociateAccountsWithProduct(IEnumerable<string> accountEmails, Guid releaseWindowId, Func<string, TeamRoleRuleResult> updateRoleFunc)
         {
             var releaseWindow = ReleaseWindowRepository.GetSatisfiedBy(o => o.ExternalId == releaseWindowId);
             if (releaseWindow == null)
                 throw new ReleaseWindowNotFoundException(releaseWindowId);
 
-            AssociateAccountsWithProducts(releaseWindow.ReleaseProducts.Select(x => x.Product.ExternalId), accountEmails);
+            AssociateAccountsWithProducts(releaseWindow.ReleaseProducts.Select(x => x.Product.ExternalId), accountEmails, updateRoleFunc);
         }
 
-        public void AssociateAccountsWithProducts(IEnumerable<Guid> productIds, IEnumerable<string> accountEmails)
+        public void AssociateAccountsWithProducts(IEnumerable<Guid> productIds, IEnumerable<string> accountEmails, Func<string, TeamRoleRuleResult> updateRoleFunc)
         {
             var emails = accountEmails.ToArray();
 
@@ -402,14 +404,15 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Auth
 
             foreach (var account in existingAccounts)
             {
-                if (account.Role.Name == "BasicUser")
+                var ruleResult = updateRoleFunc == null ? null : updateRoleFunc(account.Role.Name);
+                if (ruleResult != null && ruleResult.RequiresUpdate)
                 {
                     var id = account.ExternalId;
                     AccountRepository.Update(
                         a => a.ExternalId == id,
                         a =>
                         {
-                            a.RoleId = RoleRepository.GetSatisfiedBy(x => x.Name == "TeamMember").Id;
+                            a.RoleId = RoleRepository.GetSatisfiedBy(x => x.Name == ruleResult.NewRole).Id;
                         });
                 }
 

@@ -7,8 +7,10 @@ using Moq;
 using NUnit.Framework;
 using ReMi.BusinessEntities.Auth;
 using ReMi.BusinessEntities.Products;
+using ReMi.BusinessLogic.BusinessRules;
 using ReMi.CommandHandlers.Configuration;
 using ReMi.Commands.Configuration;
+using ReMi.Common.Constants.BusinessRules;
 using ReMi.TestUtils.UnitTests;
 using ReMi.Contracts.Cqrs.Commands;
 using ReMi.Contracts.Cqrs.Events;
@@ -25,6 +27,7 @@ namespace ReMi.CommandHandlers.Tests.Configuration
         private Mock<IAccountsGateway> _accountsGatewayMock;
         private Mock<IMappingEngine> _mappingEngineMock;
         private Mock<IPublishEvent> _eventPublisherMock;
+        private Mock<IBusinessRuleEngine> _businessRuleEngineMock;
 
         protected override AddProductHandler ConstructSystemUnderTest()
         {
@@ -33,7 +36,8 @@ namespace ReMi.CommandHandlers.Tests.Configuration
                 ProductGatewayFactory = () => _productGatewayMock.Object,
                 AccountsGateway = () => _accountsGatewayMock.Object,
                 MappingEngine = _mappingEngineMock.Object,
-                EventPublisher = _eventPublisherMock.Object
+                EventPublisher = _eventPublisherMock.Object,
+                BusinessRuleEngine = _businessRuleEngineMock.Object
             };
         }
 
@@ -43,6 +47,7 @@ namespace ReMi.CommandHandlers.Tests.Configuration
             _accountsGatewayMock = new Mock<IAccountsGateway>(MockBehavior.Strict);
             _mappingEngineMock = new Mock<IMappingEngine>(MockBehavior.Strict);
             _eventPublisherMock = new Mock<IPublishEvent>(MockBehavior.Strict);
+            _businessRuleEngineMock = new Mock<IBusinessRuleEngine>(MockBehavior.Strict);
 
             base.TestInitialize();
         }
@@ -69,6 +74,8 @@ namespace ReMi.CommandHandlers.Tests.Configuration
                     Id = new Guid()
                 }
             };
+            var result = new TeamRoleRuleResult();
+            var roleName = RandomData.RandomString(10);
 
             _mappingEngineMock.Setup(x => x.Map<AddProductCommand, Product>(command))
                 .Returns(product);
@@ -83,14 +90,21 @@ namespace ReMi.CommandHandlers.Tests.Configuration
             _productGatewayMock.Setup(p => p.AddProduct(product));
             _accountsGatewayMock.Setup(p =>
                 p.AssociateAccountsWithProducts(new[] { command.ExternalId },
-                    It.Is<IEnumerable<string>>(x => x.First() == command.CommandContext.UserEmail)));
+                    It.Is<IEnumerable<string>>(x => x.First() == command.CommandContext.UserEmail),
+                    It.Is<Func<string, TeamRoleRuleResult>>(f => f(roleName) == result)));
+
+            _businessRuleEngineMock.Setup(x => x.Execute<TeamRoleRuleResult>(
+                    command.CommandContext.UserId,
+                    BusinessRuleConstants.Config.TeamRoleRule.ExternalId,
+                    It.Is<IDictionary<string, object>>(d => ((string)d["roleName"]) == roleName)))
+                .Returns(result);
+
 
             Sut.Handle(command);
 
             _productGatewayMock.Verify(p => p.AddProduct(It.IsAny<Product>()));
-            _accountsGatewayMock.Verify(
-                p =>
-                    p.AssociateAccountsWithProducts(It.IsAny<IEnumerable<Guid>>(), It.IsAny<IEnumerable<string>>()));
+            _accountsGatewayMock.Verify(p => p.AssociateAccountsWithProducts(
+                It.IsAny<IEnumerable<Guid>>(), It.IsAny<IEnumerable<string>>(), It.IsAny<Func<string, TeamRoleRuleResult>>()));
             _eventPublisherMock.Verify(p => p.Publish(It.IsAny<IEvent>()), Times.Exactly(2));
 
             _productGatewayMock.Verify(p => p.Dispose(), Times.Once);

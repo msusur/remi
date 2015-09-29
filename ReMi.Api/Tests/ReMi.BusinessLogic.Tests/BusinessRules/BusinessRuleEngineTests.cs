@@ -9,9 +9,9 @@ using ReMi.BusinessEntities.Exceptions;
 using ReMi.BusinessLogic.BusinessRules;
 using ReMi.Common.Constants.BusinessRules;
 using ReMi.Common.Utils;
-using ReMi.Common.Utils.UnitTests;
 using ReMi.DataAccess.BusinessEntityGateways.Auth;
 using ReMi.DataAccess.BusinessEntityGateways.BusinessRules;
+using ReMi.TestUtils.UnitTests;
 
 namespace ReMi.BusinessLogic.Tests.BusinessRules
 {

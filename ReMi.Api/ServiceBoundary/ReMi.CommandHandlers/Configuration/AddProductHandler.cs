@@ -1,7 +1,11 @@
 using System;
+using System.Collections.Generic;
 using AutoMapper;
+using ReMi.BusinessEntities.Auth;
 using ReMi.BusinessEntities.Products;
+using ReMi.BusinessLogic.BusinessRules;
 using ReMi.Commands.Configuration;
+using ReMi.Common.Constants.BusinessRules;
 using ReMi.Common.Utils;
 using ReMi.Contracts.Cqrs.Commands;
 using ReMi.Contracts.Cqrs.Events;
@@ -18,6 +22,7 @@ namespace ReMi.CommandHandlers.Configuration
         public Func<IAccountsGateway> AccountsGateway { get; set; }
         public IPublishEvent EventPublisher { get; set; }
         public IMappingEngine MappingEngine { get; set; }
+        public IBusinessRuleEngine BusinessRuleEngine { get; set; }
 
         public void Handle(AddProductCommand command)
         {
@@ -28,7 +33,7 @@ namespace ReMi.CommandHandlers.Configuration
             }
             using (var gateway = AccountsGateway())
             {
-                gateway.AssociateAccountsWithProducts(new[] { product.ExternalId }, new[] { command.CommandContext.UserEmail });
+                gateway.AssociateAccountsWithProducts(new[] { product.ExternalId }, new[] { command.CommandContext.UserEmail }, GetRule(command.CommandContext.UserId));
             }
 
             EventPublisher.Publish(new BusinessUnitsChangedEvent { Context = command.CommandContext.CreateChild<EventContext>() });
@@ -37,6 +42,13 @@ namespace ReMi.CommandHandlers.Configuration
                 Package = product,
                 Context = command.CommandContext.CreateChild<EventContext>()
             });
+        }
+
+        private Func<string, TeamRoleRuleResult> GetRule(Guid userId)
+        {
+            return s => BusinessRuleEngine.Execute<TeamRoleRuleResult>(
+                userId, BusinessRuleConstants.Config.TeamRoleRule.ExternalId,
+                new Dictionary<string, object> { { "roleName", s } });
         }
     }
 }

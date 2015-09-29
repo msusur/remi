@@ -4,10 +4,10 @@ using NUnit.Framework;
 using ReMi.BusinessEntities.DeploymentTool;
 using ReMi.BusinessEntities.HelpDesk;
 using ReMi.BusinessLogic.AutoMapper;
-using ReMi.Common.Utils.UnitTests;
 using ReMi.Contracts.Plugins.Data.HelpDesk;
 using System;
 using System.Linq;
+using ReMi.TestUtils.UnitTests;
 
 namespace ReMi.BusinessLogic.Tests.AutoMapper
 {

@@ -5,6 +5,9 @@ using ReMi.DataAccess.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ReMi.BusinessEntities.Auth;
+using ReMi.BusinessLogic.BusinessRules;
+using ReMi.Common.Constants.BusinessRules;
 using ReMi.Contracts.Plugins.Services.Authentication;
 using Account = ReMi.BusinessEntities.Auth.Account;
 using Role = ReMi.BusinessEntities.Auth.Role;
@@ -19,6 +22,7 @@ namespace ReMi.BusinessLogic.Auth
 
         public IAuthenticationService AuthenticationService { get; set; }
         public IMappingEngine Mapper { get; set; }
+        public IBusinessRuleEngine BusinessRuleEngine { get; set; }
 
         public Session SignSession(string accountName, string password)
         {
@@ -94,7 +98,7 @@ namespace ReMi.BusinessLogic.Auth
                 .ToList();
         }
 
-        public void AssociateAccountsWithProduct(IEnumerable<string> accountEmails, Guid releaseWindowId)
+        public void AssociateAccountsWithProduct(IEnumerable<string> accountEmails, Guid releaseWindowId, Guid userId)
         {
             using (var productGateway = ProductGatewayFactory())
             {
@@ -102,7 +106,7 @@ namespace ReMi.BusinessLogic.Auth
 
                 using (var accountGateway = AccountsGatewayFactory())
                 {
-                    accountGateway.AssociateAccountsWithProducts(productIds, accountEmails);
+                    accountGateway.AssociateAccountsWithProducts(productIds, accountEmails, GetRule(userId));
                 }
             }
         }
@@ -113,6 +117,13 @@ namespace ReMi.BusinessLogic.Auth
             {
                 gateway.CreateAccount(account);
             }
+        }
+
+        private Func<string, TeamRoleRuleResult> GetRule(Guid userId)
+        {
+            return s => BusinessRuleEngine.Execute<TeamRoleRuleResult>(
+                userId, BusinessRuleConstants.Config.TeamRoleRule.ExternalId,
+                new Dictionary<string, object> { { "roleName", s } });
         }
     }
 }

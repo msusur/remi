@@ -38,7 +38,7 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Auth
         IEnumerable<Account> GetTeamMembers(String product);
         IEnumerable<Account> GetTeamMembersExcludeReleaseSupport(ReleaseWindow window);
 
-        void AssociateAccountsWithProducts(IEnumerable<Guid> productIds, IEnumerable<string> accountEmails);
-        void AssociateAccountsWithProduct(IEnumerable<string> accountEmails, Guid releaseWindowId);
+        void AssociateAccountsWithProducts(IEnumerable<Guid> productIds, IEnumerable<string> accountEmails, Func<string, TeamRoleRuleResult> updateRoleFunc);
+        void AssociateAccountsWithProduct(IEnumerable<string> accountEmails, Guid releaseWindowId, Func<string, TeamRoleRuleResult> updateRoleFunc);
     }
 }

@@ -18,7 +18,6 @@ using ReMi.Common.Constants.ReleaseCalendar;
 using ReMi.Common.Constants.ReleasePlan;
 using ReMi.Common.Utils;
 using ReMi.Common.Utils.Enums;
-using ReMi.Common.Utils.UnitTests;
 using ReMi.Contracts.Cqrs.Commands;
 using ReMi.Contracts.Cqrs.Events;
 using ReMi.DataAccess.BusinessEntityGateways.Auth;
@@ -26,6 +25,7 @@ using ReMi.DataAccess.BusinessEntityGateways.ReleaseCalendar;
 using ReMi.DataAccess.BusinessEntityGateways.ReleaseExecution;
 using ReMi.Events.ReleaseCalendar;
 using ReMi.Events.ReleaseExecution;
+using ReMi.TestUtils.UnitTests;
 
 namespace ReMi.BusinessLogic.Tests.ReleasePlan
 {

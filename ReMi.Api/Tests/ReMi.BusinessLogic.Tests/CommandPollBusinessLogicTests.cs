@@ -3,9 +3,9 @@ using Moq;
 using NUnit.Framework;
 using ReMi.BusinessEntities.ExecPoll;
 using ReMi.BusinessLogic.ExecPoll;
-using ReMi.Common.Utils.UnitTests;
 using ReMi.DataAccess.BusinessEntityGateways;
 using ReMi.DataAccess.Exceptions;
+using ReMi.TestUtils.UnitTests;
 
 namespace ReMi.BusinessLogic.Tests
 {

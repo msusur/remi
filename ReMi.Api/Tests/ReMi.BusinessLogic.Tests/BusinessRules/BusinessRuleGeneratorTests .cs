@@ -7,10 +7,10 @@ using ReMi.BusinessLogic.Api;
 using ReMi.BusinessLogic.BusinessRules;
 using ReMi.Common.Constants.BusinessRules;
 using ReMi.Common.Utils;
-using ReMi.Common.Utils.UnitTests;
 using ReMi.Contracts.Cqrs.Commands;
 using ReMi.Contracts.Cqrs.Queries;
 using ReMi.DataAccess.BusinessEntityGateways.Auth;
+using ReMi.TestUtils.UnitTests;
 
 namespace ReMi.BusinessLogic.Tests.BusinessRules
 {

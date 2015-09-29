@@ -114,6 +114,7 @@
     <Compile Include="Auth\Session.cs" />
     <Compile Include="Auth\SignSession.cs" />
     <Compile Include="Auth\StartSession.cs" />
+    <Compile Include="Auth\TeamRoleRuleResult.cs" />
     <Compile Include="Auth\TokenParts.cs" />
     <Compile Include="BusinessRules\BusinessRuleDescription.cs" />
     <Compile Include="BusinessRules\BusinessRuleParameter.cs" />

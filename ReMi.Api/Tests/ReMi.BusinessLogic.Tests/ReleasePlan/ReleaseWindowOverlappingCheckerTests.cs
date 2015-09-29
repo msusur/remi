@@ -7,10 +7,10 @@ using ReMi.BusinessEntities.Products;
 using ReMi.BusinessEntities.ReleaseCalendar;
 using ReMi.BusinessLogic.ReleasePlan;
 using ReMi.Common.Constants.ReleaseCalendar;
-using ReMi.Common.Utils.UnitTests;
 using ReMi.DataAccess.BusinessEntityGateways.Products;
 using ReMi.DataAccess.BusinessEntityGateways.ReleaseCalendar;
 using ReMi.DataAccess.Exceptions;
+using ReMi.TestUtils.UnitTests;
 
 namespace ReMi.BusinessLogic.Tests.ReleasePlan
 {

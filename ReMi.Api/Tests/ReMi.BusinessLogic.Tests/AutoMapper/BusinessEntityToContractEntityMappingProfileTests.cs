@@ -1,9 +1,9 @@
 using AutoMapper;
 using NUnit.Framework;
 using ReMi.BusinessLogic.AutoMapper;
-using ReMi.Common.Utils.UnitTests;
 using System;
 using ReMi.BusinessEntities.ReleasePlan;
+using ReMi.TestUtils.UnitTests;
 
 namespace ReMi.BusinessLogic.Tests.AutoMapper
 {

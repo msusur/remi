@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using ReMi.BusinessLogic.ReleaseExecution;
-using ReMi.Common.Utils.UnitTests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +15,7 @@ using ReMi.DataAccess.BusinessEntityGateways.Subscriptions;
 using ReMi.Events.Metrics;
 using ReMi.BusinessEntities.ReleaseCalendar;
 using ReMi.Common.Utils;
+using ReMi.TestUtils.UnitTests;
 
 namespace ReMi.BusinessLogic.Tests.ReleaseExecution
 {

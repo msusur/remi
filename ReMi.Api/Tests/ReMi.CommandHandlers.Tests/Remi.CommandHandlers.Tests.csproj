@@ -118,6 +118,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\CheckAccountsCommandHandlerTests.cs" />
+    <Compile Include="Auth\AssociateAccountsWithProductCommandHandlerTests.cs" />
+    <Compile Include="Auth\UpdateAccountCommandHandlerTests.cs" />
+    <Compile Include="Auth\CreateAccountCommandHandlerTests.cs" />
     <Compile Include="Auth\StartSessionCommandHandlerTests.cs" />
     <Compile Include="Auth\UpdateAccountPackagesCommandHandlerTests.cs" />
     <Compile Include="Configuration\AddBusinessUnitCommandHandlerTests.cs" />

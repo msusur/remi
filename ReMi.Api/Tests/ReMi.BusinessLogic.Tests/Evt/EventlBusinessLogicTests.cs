@@ -5,10 +5,10 @@ using NUnit.Framework;
 using ReMi.BusinessEntities.Evt;
 using ReMi.BusinessLogic.Evt;
 using ReMi.Common.Utils;
-using ReMi.Common.Utils.UnitTests;
 using ReMi.Contracts.Cqrs.Events;
 using ReMi.DataAccess.BusinessEntityGateways.Evt;
 using ReMi.DataAccess.Exceptions;
+using ReMi.TestUtils.UnitTests;
 
 namespace ReMi.BusinessLogic.Tests.Evt
 {

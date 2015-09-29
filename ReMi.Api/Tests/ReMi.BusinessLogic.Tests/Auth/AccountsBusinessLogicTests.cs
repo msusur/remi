@@ -6,13 +6,17 @@ using Moq;
 using NUnit.Framework;
 using ReMi.BusinessEntities.Auth;
 using ReMi.BusinessLogic.Auth;
-using ReMi.Common.Utils.UnitTests;
+using ReMi.BusinessLogic.BusinessRules;
 using ReMi.Contracts.Plugins.Services.Authentication;
 using ReMi.DataAccess.BusinessEntityGateways.Auth;
 using ReMi.DataAccess.BusinessEntityGateways.Products;
 using ReMi.DataAccess.Exceptions;
+using ReMi.TestUtils.UnitTests;
 using BusinessAccount = ReMi.BusinessEntities.Auth.Account;
 using ContractAccount = ReMi.Contracts.Plugins.Data.Authentication.Account;
+using System.Linq;
+using ReMi.BusinessEntities.Products;
+using ReMi.Common.Constants.BusinessRules;
 
 namespace ReMi.BusinessLogic.Tests.Auth
 {
@@ -23,12 +27,13 @@ namespace ReMi.BusinessLogic.Tests.Auth
         private Mock<IProductGateway> _productGatewayMock;
         private Mock<IAuthenticationService> _authenticationServiceMock;
         private Mock<IMappingEngine> _mapperMock;
+        private Mock<IBusinessRuleEngine> _businessRuleEngineMock;
 
         protected override void TestInitialize()
         {
             _accountsGatewayMock = new Mock<IAccountsGateway>();
             _productGatewayMock = new Mock<IProductGateway>();
-
+            _businessRuleEngineMock = new Mock<IBusinessRuleEngine>(MockBehavior.Strict);
             _authenticationServiceMock = new Mock<IAuthenticationService>();
             _mapperMock = new Mock<IMappingEngine>();
 
@@ -42,7 +47,8 @@ namespace ReMi.BusinessLogic.Tests.Auth
                 AccountsGatewayFactory = () => _accountsGatewayMock.Object,
                 ProductGatewayFactory = () => _productGatewayMock.Object,
                 AuthenticationService = _authenticationServiceMock.Object,
-                Mapper = _mapperMock.Object
+                Mapper = _mapperMock.Object,
+                BusinessRuleEngine = _businessRuleEngineMock.Object
             };
         }
 
@@ -141,6 +147,39 @@ namespace ReMi.BusinessLogic.Tests.Auth
             SetupAccount(email, new Role { Name = "ExecutiveManager" }, true);
 
             Sut.SignSession(accountName, password);
+        }
+
+        [Test]
+        public void AssociateAccountsWithProduct_ShouldGetPackagesAndAssociateThemWithAccount_WhenPackagesExist()
+        {
+            var accountsEmails = Enumerable.Repeat(RandomData.RandomEmail(), 10);
+            var releaseWindowId = Guid.NewGuid();
+            var userId = Guid.NewGuid();
+            var packages = Enumerable.Repeat(new Product {ExternalId = Guid.NewGuid()}, 5);
+            var result = new TeamRoleRuleResult();
+            var roleName = RandomData.RandomString(10);
+
+            _productGatewayMock.Setup(x => x.GetProducts(releaseWindowId))
+                .Returns(packages);
+            _productGatewayMock.Setup(x => x.Dispose());
+            _accountsGatewayMock.Setup(x => x.AssociateAccountsWithProducts(
+                It.Is<IEnumerable<Guid>>(ids => ids.SequenceEqual(packages.Select(p => p.ExternalId))),
+                accountsEmails,
+                It.Is<Func<string, TeamRoleRuleResult>>(f => f(roleName) == result)));
+            _accountsGatewayMock.Setup(x => x.Dispose());
+            _businessRuleEngineMock.Setup(x => x.Execute<TeamRoleRuleResult>(
+                userId,
+                BusinessRuleConstants.Config.TeamRoleRule.ExternalId,
+                It.Is<IDictionary<string, object>>(d => ((string)d["roleName"]) == roleName)))
+            .Returns(result);
+
+            Sut.AssociateAccountsWithProduct(accountsEmails, releaseWindowId, userId);
+
+            _productGatewayMock.Verify(x => x.GetProducts(It.IsAny<Guid>()), Times.Once);
+            _productGatewayMock.Verify(x => x.Dispose(), Times.Once);
+            _accountsGatewayMock.Verify(x => x.AssociateAccountsWithProducts(
+                It.IsAny<IEnumerable<Guid>>(), It.IsAny<IEnumerable<string>>(), It.IsAny<Func<string, TeamRoleRuleResult>>()), Times.Once);
+            _accountsGatewayMock.Verify(x => x.Dispose(), Times.Once);
         }
 
         #region Helpers

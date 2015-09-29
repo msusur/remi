@@ -18,6 +18,6 @@ namespace ReMi.BusinessLogic.Auth
 
         List<Account> SearchAccounts(string criteria);
 
-        void AssociateAccountsWithProduct(IEnumerable<string> accountEmails, Guid releaseWindowId);
+        void AssociateAccountsWithProduct(IEnumerable<string> accountEmails, Guid releaseWindowId, Guid userId);
     }
 }

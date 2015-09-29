@@ -6,6 +6,7 @@ using AutoMapper;
 using Moq;
 using FizzWare.NBuilder;
 using NUnit.Framework;
+using ReMi.BusinessEntities.Auth;
 using ReMi.Common.Utils;
 using ReMi.DataAccess.AutoMapper;
 using ReMi.DataAccess.BusinessEntityGateways.Auth;
@@ -811,7 +812,7 @@ namespace ReMi.DataAccess.Tests.Auth
         [ExpectedException(typeof(ReleaseWindowNotFoundException))]
         public void AssociateAccountsWithProduct_ShouldThrowException_WhenReleaseWindowNotFound()
         {
-            Sut.AssociateAccountsWithProduct(null, Guid.NewGuid());
+            Sut.AssociateAccountsWithProduct(null, Guid.NewGuid(), null);
         }
 
         [Test]
@@ -836,7 +837,7 @@ namespace ReMi.DataAccess.Tests.Auth
             _accountRepositoryMock.SetupEntities(new List<DataAccount>());
             _releaseWindowRepositoryMock.SetupEntities(new[] { window });
 
-            Sut.AssociateAccountsWithProduct(accounts.Select(x => x.Email), windowId);
+            Sut.AssociateAccountsWithProduct(accounts.Select(x => x.Email), windowId, null);
         }
 
         [Test]
@@ -888,7 +889,8 @@ namespace ReMi.DataAccess.Tests.Auth
             _releaseWindowRepositoryMock.SetupEntities(new[] { window });
             _roleRepositoryMock.SetupEntities(new[] { role });
 
-            Sut.AssociateAccountsWithProduct(accounts.Select(x => x.Email), windowId);
+            Sut.AssociateAccountsWithProduct(accounts.Select(x => x.Email), windowId,
+                s => s == "BasicUser" ? new TeamRoleRuleResult { NewRole = "TeamMember", RequiresUpdate = true } : null);
 
             _accountProductRepositoryMock.Verify(
                 x => x.Insert(It.Is<AccountProduct>(e => e.AccountId == dataAccounts[0].AccountId)));

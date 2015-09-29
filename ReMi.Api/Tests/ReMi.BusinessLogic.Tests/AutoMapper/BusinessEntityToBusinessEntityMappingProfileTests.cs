@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Linq.Expressions;
 using AutoMapper;
 using FizzWare.NBuilder;
 using NUnit.Framework;
@@ -10,7 +9,7 @@ using ReMi.BusinessEntities.Metrics;
 using ReMi.BusinessEntities.Products;
 using ReMi.BusinessLogic.AutoMapper;
 using ReMi.Common.Constants.ReleaseCalendar;
-using ReMi.Common.Utils.UnitTests;
+using ReMi.TestUtils.UnitTests;
 
 namespace ReMi.BusinessLogic.Tests.AutoMapper
 {

@@ -1,11 +1,9 @@
 using System;
 using NUnit.Framework;
 using ReMi.BusinessEntities.Metrics;
-using ReMi.Common.Constants;
 using ReMi.Common.Constants.Metrics;
 using ReMi.Common.Utils.Enums;
-using ReMi.Common.Utils.UnitTests;
-using ReMi.Contracts;
+using ReMi.TestUtils.UnitTests;
 
 namespace ReMi.BusinessLogic.Tests.Entities
 {

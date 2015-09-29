@@ -99,7 +99,10 @@
   <ItemGroup>
     <Compile Include="Acknowledge\AcknowledgeHandler.cs" />
     <Compile Include="Api\UpdateApiDescriptionHandler.cs" />
-    <Compile Include="Auth\AccountHandler.cs" />
+    <Compile Include="Auth\UpdateAccountCommandHandler.cs" />
+    <Compile Include="Auth\CheckAccountsCommandHandler.cs" />
+    <Compile Include="Auth\AssociateAccountsWithProductCommandHandler.cs" />
+    <Compile Include="Auth\CreateAccountCommandHandler.cs" />
     <Compile Include="Auth\StartSessionCommandHandler.cs" />
     <Compile Include="Auth\UpdateAccountPackagesCommandHandler.cs" />
     <Compile Include="Auth\DefaultProductHandler.cs" />
