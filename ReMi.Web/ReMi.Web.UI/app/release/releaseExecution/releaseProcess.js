@@ -1,14 +1,14 @@
 (function () {
-    'use strict';
+    "use strict";
 
-    var controllerId = 'releaseProcess';
+    var controllerId = "releaseProcess";
 
-    angular.module('app').controller(controllerId, ['$scope', 'common', 'config', 'authService', 'notifications', 'remiapi', '$filter', releaseProcess]);
+    angular.module("app").controller(controllerId, ["$scope", "common", "config", "authService", "notifications", "remiapi", "$filter", releaseProcess]);
 
     function releaseProcess($scope, common, config, authService, notifications, remiapi, $filter) {
         var logger = common.logger.getLogger(controllerId);
-        var metricUpdatedEvent = 'MetricsUpdatedEvent';
-        var releaseIssuesUpdatedEvent = 'ReleaseIssuesUpdatedEvent';
+        var metricUpdatedEvent = "MetricsUpdatedEvent";
+        var releaseIssuesUpdatedEvent = "ReleaseIssuesUpdatedEvent";
 
         var vm = this;
         vm.state = {
@@ -17,6 +17,11 @@
             bindedToReleaseWindow: false,
             display: false
         };
+        vm.parent = common.getParentScope($scope, function (sc) {
+            return sc && sc.vm && sc.vm.controllerId === "release";
+        }).vm;
+
+        vm.account = authService.identity;
         vm.metrics = undefined;
         vm.allowSiteDown = false;
         vm.allowSiteUp = false;
@@ -34,21 +39,22 @@
         vm.saveIssues = saveIssues;
         vm.allowManaging = allowManaging;
         vm.releaseProcessParticipationHandler = releaseProcessParticipationHandler;
+        vm.failRelease = failRelease;
 
 
         common.handleEvent(config.events.notificationReceived, vm.serverNotificationHandler, $scope);
-        common.handleEvent('release.ReleaseWindowLoadedEvent', vm.releaseWindowLoadedEventHandler, $scope);
-        common.handleEvent('releaseProcess.isParticipantEvent', vm.releaseProcessParticipationHandler, $scope);
-        $scope.$on('$destroy', scopeDestroyHandler);
+        common.handleEvent("release.ReleaseWindowLoadedEvent", vm.releaseWindowLoadedEventHandler, $scope);
+        common.handleEvent("releaseProcess.isParticipantEvent", vm.releaseProcessParticipationHandler, $scope);
+        $scope.$on("$destroy", scopeDestroyHandler);
 
         activate();
 
         function activate() {
-            common.activateController([], controllerId, $scope)
-                .then(function () { logger.console('Activated Release Passing View'); });
+            common.activateController([releaseWindowLoadedEventHandler(vm.parent.currentReleaseWindow)], controllerId, $scope)
+                .then(function () { logger.console("Activated Release Passing View"); });
         }
 
-        function releaseProcessParticipationHandler(event) {
+        function releaseProcessParticipationHandler() {
             if (!allowManageAsProcessParticipant) {
                 allowManageAsProcessParticipant = true;
                 vm.evaluateMetrics();
@@ -68,7 +74,7 @@
 
                 vm.getMetrics(vm.releaseWindow.ExternalId);
 
-                logger.console('Binded to release window ' + vm.releaseWindow.ExternalId);
+                logger.console("Binded to release window " + vm.releaseWindow.ExternalId);
 
                 notifications.subscribe(metricUpdatedEvent, { 'ReleaseWindowId': vm.releaseWindow.ExternalId });
                 notifications.subscribe(releaseIssuesUpdatedEvent, { 'ReleaseWindowId': vm.releaseWindow.ExternalId });
@@ -76,7 +82,7 @@
                 vm.releaseWindow = null;
                 vm.state.bindedToReleaseWindow = false;
 
-                logger.console('Unbind from release window ');
+                logger.console("Unbind from release window ");
 
                 notifications.unsubscribe(metricUpdatedEvent);
                 notifications.unsubscribe(releaseIssuesUpdatedEvent);
@@ -91,11 +97,11 @@
             return remiapi
                 .getMetrics(vm.releaseWindow.ExternalId)
                 .then(function (data) {
-                    vm.metrics = $filter('orderBy')(data.Metrics, 'Order');
+                    vm.metrics = $filter("orderBy")(data.Metrics, "Order");
                     vm.state.display = (data.Metrics.length > 0) && authService.isLoggedIn;
                     vm.evaluateMetrics();
                 }, function (error) {
-                    logger.error('Cannot get metrics');
+                    logger.error("Cannot get metrics");
                     logger.console(error);
                 })
                 .finally(function () {
@@ -109,22 +115,22 @@
         }
 
         function serverNotificationHandler(notification) {
-            if (notification.name == metricUpdatedEvent) {
+            if (notification.name === metricUpdatedEvent) {
                 for (var counter = 0; counter < vm.metrics.length; counter++) {
-                    if (vm.metrics[counter].ExternalId == notification.data.Metric.ExternalId) {
+                    if (vm.metrics[counter].ExternalId === notification.data.Metric.ExternalId) {
                         vm.metrics[counter] = notification.data.Metric;
-                        logger.info('Release process: ' + notification.data.Metric.MetricType +
-                            ' at ' + $filter('date')(notification.data.Metric.ExecutedOn, 'yyyy-MM-dd HH:mm'));
+                        logger.info("Release process: " + notification.data.Metric.MetricType +
+                            " at " + $filter("date")(notification.data.Metric.ExecutedOn, "yyyy-MM-dd HH:mm"));
                         vm.evaluateMetrics();
                     }
                 }
             }
 
-            if (notification.name == releaseIssuesUpdatedEvent) {
+            if (notification.name === releaseIssuesUpdatedEvent) {
                 if (vm.releaseWindow) {
                     vm.releaseWindow.Issues = notification.data.Issues;
                     vm.issuesBackUp = vm.releaseWindow.Issues;
-                    logger.info('Release issues updated');
+                    logger.info("Release issues updated");
                 }
             }
         }
@@ -146,9 +152,9 @@
         function updateMetrics(metric) {
             if (vm.metrics.filter(function (item) {
                 return item.Order < metric.Order;
-            }).length == 0) {
+            }).length === 0) {
                 if (actionInMoreThanNMinutes(vm.releaseWindow.StartTime, 15)) {
-                    logger.warn('Release was not yet started');
+                    logger.warn("Release was not yet started");
                     return null;
                 }
             }
@@ -156,7 +162,7 @@
             vm.state.isBusy = true;
             var commandData = {
                 ReleaseWindowId: vm.releaseWindow.ExternalId,
-                Metric: metric,
+                Metric: metric
             };
 
             return remiapi.updateMetrics(commandData)
@@ -165,7 +171,7 @@
                     vm.evaluateMetrics();
                 },
             function (error) {
-                logger.error('Cannot perform action');
+                logger.error("Cannot perform action");
                 logger.console(error);
             }).finally(function () {
                 vm.state.isBusy = false;
@@ -175,28 +181,28 @@
         function hideIssuesModal() {
             vm.releaseWindow.Issues = vm.issuesBackUp;
 
-            $('#releaseIssuesModal').modal('hide');
+            $("#releaseIssuesModal").modal("hide");
         }
 
         function showIssues() {
             if (actionInMoreThanNMinutes(vm.releaseWindow.StartTime, 15)) {
-                logger.warn('Release was not yet started');
+                logger.warn("Release was not yet started");
                 return null;
             }
             vm.issuesBackUp = vm.releaseWindow.Issues;
 
-            $('#releaseIssuesModal').modal('show');
+            $("#releaseIssuesModal").modal("show");
             return null;
         }
 
         function saveIssues() {
             if (!vm.allowManaging()) {
-                logger.warn('You have no permissions to perform this action');
+                logger.warn("You have no permissions to perform this action");
                 vm.hideIssuesModal();
                 return null;
             }
 
-            if (vm.releaseWindow.Issues == vm.issuesBackUp) {
+            if (vm.releaseWindow.Issues === vm.issuesBackUp) {
                 vm.hideIssuesModal();
                 return null;
             }
@@ -206,11 +212,11 @@
                 ReleaseWindow: vm.releaseWindow
             };
 
-            remiapi.saveReleaseIssues(commandData).then(function () {
+            return remiapi.saveReleaseIssues(commandData).then(function () {
                 vm.issuesBackUp = vm.releaseWindow.Issues;
             },
             function (error) {
-                logger.error('Cannot save issues');
+                logger.error("Cannot save issues");
                 logger.console(error);
             }).finally(function () {
                 vm.state.isBusy = false;
@@ -220,6 +226,40 @@
 
         function allowManaging() {
             return allowManageAsProcessParticipant || authService.isLoggedIn;
+        }
+        function failRelease(signature) {
+            if (!signature || !signature.deferred || !signature.userName || !signature.password) {
+                logger.warn("Please provide credentials");
+                return null;
+            }
+            if (!vm.releaseWindow) {
+                signature.deferred.reject();
+                logger.warn("Release window not selected");
+                return null;
+            }
+
+            vm.state.isBusy = true;
+
+            return remiapi.post.failRelease({
+                ReleaseWindowId: vm.releaseWindow.ExternalId,
+                UserName: signature.userName,
+                Password: signature.password,
+                Issues: signature.Issues
+            })
+                .then(function () {
+                    signature.deferred.resolve();
+                }, function (fault) {
+                    signature.deferred.reject();
+
+                    console.log("error", fault);
+                    if (fault && fault.Details)
+                        logger.error("Cannot fail release: <br />" + fault.Details);
+                    else
+                        logger.error("Cannot fail release");
+                })
+                .finally(function () {
+                    vm.state.isBusy = false;
+                });
         }
     }
 })()

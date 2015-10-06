@@ -7,11 +7,13 @@
                 <ul class="today-datas">
                     <li data-ng-repeat="m in vm.metrics" class="fix-height" data-ng-click="!m.active || vm.updateMetrics(m)" data-ng-disabled="!m.active" data-ng-class="{activityAvailable: m.active, activityDisable: !m.active}"
                         data-access-control="UpdateMetricsCommand" data-restriction-mode="unclick">
-                        <div><div class="datas-text">
-                                 <span class="bold">{{m.MetricTypeName}}</span>
-                                 <p class="passing-time" data-ng-show="m.ExecutedOn != null">{{m.ExecutedOn | date:'yyyy-MM-dd HH:mm'}}</p>
-                                 <p class="passing-time" data-ng-hide="m.ExecutedOn != null">not done</p>
-                             </div></div>
+                        <div>
+                            <div class="datas-text">
+                                <span class="bold">{{m.MetricTypeName}}</span>
+                                <p class="passing-time" data-ng-show="m.ExecutedOn != null">{{m.ExecutedOn | date:'yyyy-MM-dd HH:mm'}}</p>
+                                <p class="passing-time" data-ng-hide="m.ExecutedOn != null">not done</p>
+                            </div>
+                        </div>
                         <div class="clearfix"></div>
                     </li>
                 </ul>
@@ -19,8 +21,20 @@
         </div>
         <div class="widget-foot">
             <div class="row" style="padding-right: 3%;">
-                <button class="btn btn-default pull-right" data-ng-click="vm.isReleaseClosed || vm.showIssues()" data-ng-disabled="vm.state.isBusy || vm.isReleaseClosed"
-                    data-access-control="SaveReleaseIssuesCommand" data-restriction-mode="hide">Issues</button>
+                <div class="pull-right">
+                    <button class="btn btn-info"
+                        data-account-signature=""
+                        data-default-user-name="{{vm.account.email}}"
+                        data-description="Issues"
+                        data-ng-click="vm.failRelease(data)"
+                        data-ng-disabled="vm.state.isBusy || vm.isReleaseClosed"
+                        data-access-control="FailReleaseCommand"
+                        data-restriction-mode="disable">
+                        Close relese and mark as failed</button>
+                    <button class="btn btn-default" data-ng-click="vm.isReleaseClosed || vm.showIssues()" data-ng-disabled="vm.state.isBusy || vm.isReleaseClosed"
+                        data-access-control="SaveReleaseIssuesCommand" data-restriction-mode="hide">
+                        Issues</button>
+                </div>
             </div>
         </div>
         <div class="list-loader" data-ng-show="vm.state.isBusy">

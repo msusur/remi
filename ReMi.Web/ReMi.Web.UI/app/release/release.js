@@ -133,7 +133,7 @@
                         .ToArray();;
                 })
             .then(function () { return localData.businessUnitsPromise(); })
-            .then(function(businessUnits) {
+            .then(function (businessUnits) {
                 vm.businessUnits = businessUnits;
             });
         }
@@ -306,8 +306,8 @@
 
             if (vm.businessUnits) {
                 vm.releasePackage = Enumerable.From(vm.businessUnits)
-                    .SelectMany(function(x) { return x.Packages; })
-                    .Where(function(x) { return x.Name === rel.Products[0]; })
+                    .SelectMany(function (x) { return x.Packages; })
+                    .Where(function (x) { return x.Name === rel.Products[0]; })
                     .FirstOrDefault();
             }
 
@@ -591,7 +591,7 @@
             if (!vm.currentReleaseWindow
                 || !vm.currentReleaseWindow.Plugins
                 || vm.currentReleaseWindow.Plugins.length === 0)
-            return false;
+                return false;
 
             return Enumerable.From(vm.currentReleaseWindow.Plugins)
                 .Any(function (x) { return x.PluginType && x.PluginType.indexOf(pluginType) >= 0; });
@@ -603,21 +603,18 @@
                 'releaseApprovers',
                 'releaseContent',
                 'releaseParticipant',
-                'releaseProcess',
                 'signOff'
             ],
             Hotfix: [
                 'checkList',
                 'releaseApprovers',
                 'releaseParticipant',
-                'releaseProcess',
                 'signOff'
             ],
             ChangeRequest: [
                 'checkList',
                 'releaseApprovers',
                 'releaseParticipant',
-                'releaseProcess',
                 'signOff'
             ],
             Pci: [
@@ -650,7 +647,6 @@
             ],
             Automated: [
                 'releaseContent',
-                'releaseProcess',
                 'signOff'
             ],
         };

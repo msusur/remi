@@ -7,19 +7,21 @@ describe("Release Process Controller", function () {
 
         mocks = {
             common: {
-                logger: jasmine.createSpyObj('logger', ['getLogger']),
-                activateController: jasmine.createSpy('activateController').and.returnValue({ then: jasmine.createSpy('then') }),
-                handleEvent: window.jasmine.createSpy('handleEvent')
-            },
-            config: { events: { notificationReceived: 'notifications.received', loggedIn: 'auth.loggedIn' } },
-            remiapi: jasmine.createSpyObj('remiapi', [
-                'getMetrics', 'updateMetrics', 'saveReleaseIssues']),
-            authService: jasmine.createSpyObj('authService', ['identity', 'isLoggedIn']),
-            notifications: jasmine.createSpyObj('notifications', ['subscribe', 'unsubscribe'])
+                logger: jasmine.createSpyObj("logger", ["getLogger"]),
+                activateController: jasmine.createSpy("activateController").and.returnValue({ then: jasmine.createSpy("then") }),
+                handleEvent: window.jasmine.createSpy("handleEvent"),
+                getParentScope: window.jasmine.createSpy("getParentScope").and.returnValue({ vm: {} })
+    },
+            config: { events: { notificationReceived: "notifications.received", loggedIn: "auth.loggedIn" } },
+            remiapi: jasmine.createSpyObj("remiapi", [
+                "getMetrics", "updateMetrics", "saveReleaseIssues"]),
+            authService: jasmine.createSpyObj("authService", ["identity", "isLoggedIn"]),
+            notifications: jasmine.createSpyObj("notifications", ["subscribe", "unsubscribe"])
         };
 
-        logger = window.jasmine.createSpyObj('logger', ['console', 'error', 'info', 'warn']);
+        logger = window.jasmine.createSpyObj("logger", ["console", "error", "info", "warn"]);
         mocks.common.logger.getLogger.and.returnValue(logger);
+        mocks.remiapi.post = jasmine.createSpyObj("remiapi.post", ["failRelease"]);
 
         inject(function ($controller, _$q_, _$rootScope_, _$filter_) {
             $q = _$q_;
@@ -27,25 +29,25 @@ describe("Release Process Controller", function () {
             mocks.$filter = _$filter_;
             mocks.$scope = $rootScope.$new();
             mocks.$scope.registerWidget = function (name) { return true; };
-            spyOn(mocks.$scope, 'registerWidget');
+            spyOn(mocks.$scope, "registerWidget");
 
-            sut = $controller('releaseProcess', mocks);
+            sut = $controller("releaseProcess", mocks);
         });
     });
 
     it("should call initialization methods when activated", function () {
         expect(sut).toBeDefined();
-        expect(mocks.common.logger.getLogger).toHaveBeenCalledWith('releaseProcess');
-        expect(mocks.common.activateController).toHaveBeenCalledWith(jasmine.any(Array), 'releaseProcess', mocks.$scope);
+        expect(mocks.common.logger.getLogger).toHaveBeenCalledWith("releaseProcess");
+        expect(mocks.common.activateController).toHaveBeenCalledWith(jasmine.any(Array), "releaseProcess", mocks.$scope);
 
-        expect(mocks.common.handleEvent).toHaveBeenCalledWith('releaseProcess.isParticipantEvent', sut.releaseProcessParticipationHandler, mocks.$scope);
-        expect(mocks.common.handleEvent).toHaveBeenCalledWith('release.ReleaseWindowLoadedEvent', jasmine.any(Function), mocks.$scope);
-        expect(mocks.common.handleEvent).toHaveBeenCalledWith('notifications.received', jasmine.any(Function), mocks.$scope);
+        expect(mocks.common.handleEvent).toHaveBeenCalledWith("releaseProcess.isParticipantEvent", sut.releaseProcessParticipationHandler, mocks.$scope);
+        expect(mocks.common.handleEvent).toHaveBeenCalledWith("release.ReleaseWindowLoadedEvent", jasmine.any(Function), mocks.$scope);
+        expect(mocks.common.handleEvent).toHaveBeenCalledWith("notifications.received", jasmine.any(Function), mocks.$scope);
     });
 
     it("should allow manage release passing for Admin", function () {
         mocks.authService.isLoggedIn = true;
-        mocks.authService.identity.role = 'Admin';
+        mocks.authService.identity.role = "Admin";
 
         var result = sut.allowManaging();
 
@@ -54,7 +56,7 @@ describe("Release Process Controller", function () {
 
     it("should allow manage release passing for ReleaseEngineer", function () {
         mocks.authService.isLoggedIn = true;
-        mocks.authService.identity.role = 'Release engineer';
+        mocks.authService.identity.role = "Release engineer";
 
         var result = sut.allowManaging();
 
@@ -63,7 +65,7 @@ describe("Release Process Controller", function () {
 
     it("should allow manage release passing for ExecutiveManager", function () {
         mocks.authService.isLoggedIn = true;
-        mocks.authService.identity.role = 'Executive manager';
+        mocks.authService.identity.role = "Executive manager";
 
         var result = sut.allowManaging();
 
@@ -72,7 +74,7 @@ describe("Release Process Controller", function () {
 
     it("should allow manage release passing for PO", function () {
         mocks.authService.isLoggedIn = true;
-        mocks.authService.identity.role = 'Product owner';
+        mocks.authService.identity.role = "Product owner";
 
         var result = sut.allowManaging();
 
@@ -81,45 +83,45 @@ describe("Release Process Controller", function () {
 
 
     it("should initialize controller, when gets release window id", function () {
-        spyOn(sut, 'getMetrics');
-        var releaseWindow = { ExternalId: 'external id' };
+        spyOn(sut, "getMetrics");
+        var releaseWindow = { ExternalId: "external id" };
 
         sut.releaseWindowLoadedEventHandler(releaseWindow);
 
         expect(sut.isReleaseClosed).toEqual(false);
         expect(sut.state.bindedToReleaseWindow).toEqual(true);
         expect(sut.getMetrics).toHaveBeenCalledWith(releaseWindow.ExternalId);
-        expect(mocks.notifications.subscribe).toHaveBeenCalledWith('MetricsUpdatedEvent', { 'ReleaseWindowId': 'external id' });
+        expect(mocks.notifications.subscribe).toHaveBeenCalledWith("MetricsUpdatedEvent", { 'ReleaseWindowId': "external id" });
     });
 
     it("should initialize controller, when gets release window id and window was already loaded", function () {
-        spyOn(sut, 'getMetrics');
-        var releaseWindow = { ExternalId: 'external id' };
-        sut.releaseWindow = { ExternalId: '1' };
+        spyOn(sut, "getMetrics");
+        var releaseWindow = { ExternalId: "external id" };
+        sut.releaseWindow = { ExternalId: "1" };
 
         sut.releaseWindowLoadedEventHandler(releaseWindow);
 
         expect(sut.isReleaseClosed).toEqual(false);
         expect(sut.state.bindedToReleaseWindow).toEqual(true);
         expect(sut.getMetrics).toHaveBeenCalledWith(releaseWindow.ExternalId);
-        expect(mocks.notifications.unsubscribe).toHaveBeenCalledWith('MetricsUpdatedEvent');
-        expect(mocks.notifications.subscribe).toHaveBeenCalledWith('MetricsUpdatedEvent', { 'ReleaseWindowId': 'external id' });
+        expect(mocks.notifications.unsubscribe).toHaveBeenCalledWith("MetricsUpdatedEvent");
+        expect(mocks.notifications.subscribe).toHaveBeenCalledWith("MetricsUpdatedEvent", { 'ReleaseWindowId': "external id" });
     });
 
     it("should switch controller to unbind state, when gets empty release window", function () {
         sut.releaseWindowLoadedEventHandler();
 
-        expect(mocks.notifications.unsubscribe).toHaveBeenCalledWith('MetricsUpdatedEvent');
+        expect(mocks.notifications.unsubscribe).toHaveBeenCalledWith("MetricsUpdatedEvent");
         expect(sut.state.bindedToReleaseWindow).toEqual(false);
     });
 
     it("should get metrics", function () {
         var deferred = $q.defer();
         mocks.remiapi.getMetrics.and.returnValue(deferred.promise);
-        var data = { Metrics: ['a', 'b'] };
-        spyOn(sut, 'evaluateMetrics');
+        var data = { Metrics: ["a", "b"] };
+        spyOn(sut, "evaluateMetrics");
         mocks.authService.isLoggedIn = true;
-        sut.releaseWindow = { ExternalId: '1' };
+        sut.releaseWindow = { ExternalId: "1" };
 
         sut.getMetrics();
         deferred.resolve(data);
@@ -128,27 +130,27 @@ describe("Release Process Controller", function () {
         expect(sut.evaluateMetrics).toHaveBeenCalled();
         expect(sut.state.display).toEqual(true);
         expect(sut.state.isBusy).toEqual(false);
-        expect(sut.metrics).toEqual(['a', 'b']);
+        expect(sut.metrics).toEqual(["a", "b"]);
     });
 
     it("should reject getting metrics", function () {
         var deferred = $q.defer();
         mocks.remiapi.getMetrics.and.returnValue(deferred.promise);
         mocks.authService.isLoggedIn = true;
-        sut.releaseWindow = { ExternalId: '1' };
+        sut.releaseWindow = { ExternalId: "1" };
 
         sut.getMetrics();
-        deferred.reject('error');
+        deferred.reject("error");
         mocks.$scope.$digest();
 
         expect(sut.state.isBusy).toEqual(false);
-        expect(logger.error).toHaveBeenCalledWith('Cannot get metrics');
-        expect(logger.console).toHaveBeenCalledWith('error');
+        expect(logger.error).toHaveBeenCalledWith("Cannot get metrics");
+        expect(logger.console).toHaveBeenCalledWith("error");
     });
 
     it("should hide issues", function () {
-        sut.issuesBackUp = 'backup';
-        sut.releaseWindow = { Issues: '' };
+        sut.issuesBackUp = "backup";
+        sut.releaseWindow = { Issues: "" };
 
         sut.hideIssuesModal();
 
@@ -156,16 +158,16 @@ describe("Release Process Controller", function () {
     });
 
     it("should show issues", function () {
-        sut.issuesBackUp = '';
-        sut.releaseWindow = { StartTime: '2014-06-12 16:03:11.743' , Issues: 'issue'};
+        sut.issuesBackUp = "";
+        sut.releaseWindow = { StartTime: "2014-06-12 16:03:11.743" , Issues: "issue"};
 
         sut.showIssues();
 
-        expect(sut.issuesBackUp).toEqual('issue');
+        expect(sut.issuesBackUp).toEqual("issue");
     });
 
     it("should handle release process participation event", function () {
-        spyOn(sut, 'evaluateMetrics');
+        spyOn(sut, "evaluateMetrics");
 
         sut.releaseProcessParticipationHandler();
 
@@ -176,7 +178,7 @@ describe("Release Process Controller", function () {
     it("should update metrics", function () {
         var deferred = $q.defer();
         mocks.remiapi.updateMetrics.and.returnValue(deferred.promise);
-        sut.releaseWindow = { ExternalId: '1' };
+        sut.releaseWindow = { ExternalId: "1" };
         sut.metrics = [{ Order: 2 }, { Order: 3 }];
 
         sut.updateMetrics({Order: 2});
@@ -189,25 +191,25 @@ describe("Release Process Controller", function () {
     it("should reject updating metrics", function () {
         var deferred = $q.defer();
         mocks.remiapi.updateMetrics.and.returnValue(deferred.promise);
-        sut.releaseWindow = { ExternalId: '1' };
+        sut.releaseWindow = { ExternalId: "1" };
         sut.metrics = [{ Order: 2 }, { Order: 3 }];
 
         sut.updateMetrics({ Order: 2 });
-        deferred.reject('error');
+        deferred.reject("error");
         mocks.$scope.$digest();
 
         expect(sut.state.isBusy).toEqual(false);
-        expect(logger.error).toHaveBeenCalledWith('Cannot perform action');
-        expect(logger.console).toHaveBeenCalledWith('error');
+        expect(logger.error).toHaveBeenCalledWith("Cannot perform action");
+        expect(logger.console).toHaveBeenCalledWith("error");
     });
 
     it("should update release state", function () {
         var notification = {
-            name: 'MetricsUpdatedEvent',
-            data: { Metric: { MetricType: 'a', ExecutedOn: '2014-06-12 16:03:11.743', ExternalId: '11' } },
+            name: "MetricsUpdatedEvent",
+            data: { Metric: { MetricType: "a", ExecutedOn: "2014-06-12 16:03:11.743", ExternalId: "11" } },
         };
-        spyOn(sut, 'evaluateMetrics');
-        sut.metrics = [{ExternalId: '11'}];
+        spyOn(sut, "evaluateMetrics");
+        sut.metrics = [{ExternalId: "11"}];
 
         sut.serverNotificationHandler(notification);
 
@@ -217,11 +219,11 @@ describe("Release Process Controller", function () {
 
     it("should evaluate metrics", function () {
         sut.metrics = [
-            { ExecutedOn: 'aaa', active: true },
+            { ExecutedOn: "aaa", active: true },
             { ExecutedOn: null, active: false },
             { ExecutedOn: null, active: false }
         ];
-        spyOn(sut, 'allowManaging');
+        spyOn(sut, "allowManaging");
         sut.allowManaging.and.returnValue(true);
 
         sut.evaluateMetrics();
@@ -234,23 +236,23 @@ describe("Release Process Controller", function () {
 
     it("should update release issues", function () {
         var notification = {
-            name: 'ReleaseIssuesUpdatedEvent',
-            data: { Issues: 'test' }
+            name: "ReleaseIssuesUpdatedEvent",
+            data: { Issues: "test" }
         };
-        sut.releaseWindow = { Issues: '', StartTime: '2014-06-12 16:03:11.743' };
+        sut.releaseWindow = { Issues: "", StartTime: "2014-06-12 16:03:11.743" };
 
         sut.serverNotificationHandler(notification);
 
-        expect(sut.releaseWindow.Issues).toEqual('test');
-        expect(sut.issuesBackUp).toEqual('test');
-        expect(logger.info).toHaveBeenCalledWith('Release issues updated');
+        expect(sut.releaseWindow.Issues).toEqual("test");
+        expect(sut.issuesBackUp).toEqual("test");
+        expect(logger.info).toHaveBeenCalledWith("Release issues updated");
     });
 
     it("should save issues", function () {
         var deferred = $q.defer();
         mocks.remiapi.saveReleaseIssues.and.returnValue(deferred.promise);
-        sut.releaseWindow = { ExternalId: '1', Issues: 'smth', StartTime: '2014-06-12 16:03:11.743' };
-        spyOn(sut, 'allowManaging');
+        sut.releaseWindow = { ExternalId: "1", Issues: "smth", StartTime: "2014-06-12 16:03:11.743" };
+        spyOn(sut, "allowManaging");
         sut.allowManaging.and.returnValue(true);
 
         sut.saveIssues();
@@ -258,27 +260,80 @@ describe("Release Process Controller", function () {
         mocks.$scope.$digest();
 
         expect(sut.state.isBusy).toEqual(false);
-        expect(sut.issuesBackUp).toEqual('smth');
+        expect(sut.issuesBackUp).toEqual("smth");
         expect(sut.allowManaging).toHaveBeenCalled();
     });
 
     it("should reject saving issues", function () {
         var deferred = $q.defer();
         mocks.remiapi.saveReleaseIssues.and.returnValue(deferred.promise);
-        sut.releaseWindow = { ExternalId: '1', StartTime: '2014-06-12 16:03:11.743', Issues: 'smth' };
-        spyOn(sut, 'hideIssuesModal');
-        spyOn(sut, 'allowManaging');
+        sut.releaseWindow = { ExternalId: "1", StartTime: "2014-06-12 16:03:11.743", Issues: "smth" };
+        spyOn(sut, "hideIssuesModal");
+        spyOn(sut, "allowManaging");
         sut.allowManaging.and.returnValue(true);
 
         sut.saveIssues();
-        deferred.reject('error');
+        deferred.reject("error");
         mocks.$scope.$digest();
 
         expect(sut.state.isBusy).toEqual(false);
-        expect(logger.error).toHaveBeenCalledWith('Cannot save issues');
-        expect(logger.console).toHaveBeenCalledWith('error');
+        expect(logger.error).toHaveBeenCalledWith("Cannot save issues");
+        expect(logger.console).toHaveBeenCalledWith("error");
         expect(sut.hideIssuesModal).toHaveBeenCalled();
         expect(sut.allowManaging).toHaveBeenCalled();
+    });
+
+    describe("failRelease", function() {
+
+        it("should show warning, when called without signature", function () {
+            var res = sut.failRelease();
+            expect(res).toBe(null);
+        });
+
+        it("should call remiapi.post.failRelease and resolve differ, when command executed successfuly", function () {
+            var deferred = $q.defer();
+            var signatureDeferred = $q.defer();
+            sut.releaseWindow = { ExternalId: "Window" };
+
+            mocks.remiapi.post.failRelease.and.returnValue(deferred.promise);
+            var resolved = false, rejected = false;
+            signatureDeferred.promise.then(function () { resolved = true; }, function () { rejected = true; });
+
+            sut.failRelease({ deferred: signatureDeferred, userName: "user Name", password: "Password", Issues: "smth" });
+            deferred.resolve();
+            mocks.$scope.$digest();
+
+            expect(resolved).toBeTruthy();
+            expect(rejected).toBeFalsy();
+            expect(mocks.remiapi.post.failRelease).toHaveBeenCalledWith({
+                ReleaseWindowId: "Window",
+                Issues: "smth",
+                Password: "Password",
+                UserName: "user Name"
+            });
+        });
+
+        it("should call remiapi.post.failRelease and reject differ, when command result with an error", function () {
+            var deferred = $q.defer();
+            var signatureDeferred = $q.defer();
+            sut.releaseWindow = { ExternalId: "Window" };
+            mocks.remiapi.post.failRelease.and.returnValue(deferred.promise);
+            var resolved = false, rejected = false;
+            signatureDeferred.promise.then(function () { resolved = true; }, function () { rejected = true; });
+
+            sut.failRelease({ deferred: signatureDeferred, userName: "user Name", password: "Password", Issues: "smth" });
+            deferred.reject();
+            mocks.$scope.$digest();
+
+            expect(resolved).toBeFalsy();
+            expect(rejected).toBeTruthy();
+            expect(mocks.remiapi.post.failRelease).toHaveBeenCalledWith({
+                ReleaseWindowId: "Window",
+                Issues: "smth",
+                Password: "Password",
+                UserName: "user Name"
+            });
+        });
     });
 });
 

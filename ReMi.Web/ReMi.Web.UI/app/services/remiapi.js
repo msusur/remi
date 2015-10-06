@@ -196,6 +196,7 @@
             //release execution
             checkQaStatus: "CheckQaStatusCommand",
             rePopulateMeasurements: "RePopulateDeploymentMeasurementsCommand",
+            failRelease: "FailReleaseCommand",
 
             //productRegistration
             createProductRequestType: "CreateProductRequestTypeCommand",
