@@ -902,7 +902,6 @@ describe("Release Controller", function () {
         controller.registerWidget('releaseContent');
         controller.registerWidget('releaseParticipant');
         controller.registerWidget('signOff');
-        controller.registerWidget('releaseProcess');
         return controller.registerWidget('checkList');
     }
 
