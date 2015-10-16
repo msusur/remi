@@ -2,16 +2,18 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ReMi.TestUtils</id>
-    <version>1.0.0.2</version>
+    <version>1.0.1.3</version>
     <authors>Wonga Technology Limited</authors>
     <owners>Wonga Technology Limited</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ReMi Core</description>
     <releaseNotes>Package ReMi Utils for tests</releaseNotes>
     <copyright>Copyright Wonga Technology Limited 2015</copyright>
+    <projectUrl>https://github.com/wongatech/remi</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/wongatech/remi/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <dependencies>
       <group targetFramework=".NETFramework4.5">
-        <dependency id="ReMi.Core" version="1.0.0.0" />
+        <dependency id="ReMi.Core" version="1.0.1.0" />
         <dependency id="ReMi.Utils" version="1.0.0.1" />
         <dependency id="Autofac" version="3.4.0" />
         <dependency id="AutoMapper" version="3.3.1" />

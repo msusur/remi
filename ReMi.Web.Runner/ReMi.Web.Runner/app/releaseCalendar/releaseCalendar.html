@@ -8,41 +8,36 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="widget wlightblue">
-                        <div data-remi-widget-header="" title="{{vm.title}}"></div>
-                        <div class="widget-content user">
-                            <div class="calendar-label">
-                                <label>{{vm.calendar.getTitle()}}</label>
-                            </div>
-                            <div class="calendar-navigation" data-ng-click="vm.refresh()">
-                                <button class="btn btn-default">
-                                    <span class="glyphicon glyphicon-refresh"></span>
-                                    Refresh
-                                </button>
-                                <div class="btn-group">
-                                    <button data-calendar-nav="prev" data-ng-click="vm.calendar.navigate('prev')" class="btn btn-primary">&lt;&lt; Prev</button>
-                                    <button data-calendar-nav="today" data-ng-click="vm.calendar.navigate('today')" class="btn">Today</button>
-                                    <button data-calendar-nav="next" data-ng-click="vm.calendar.navigate('next')" class="btn btn-primary">Next &gt;&gt;</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button data-ng-class="{ active: vm.calendar.options.view === 'year' }"
-                                            data-calendar-view="year" data-ng-click="vm.calendar.setView('year')" class="btn btn-warning">
-                                        Year</button>
-                                    <button data-ng-class="{ active: vm.calendar.options.view === 'month' }"
-                                            data-calendar-view="month" data-ng-click="vm.calendar.setView('month')" class="btn btn-warning active">
-                                        Month</button>
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                            <section class="calendar-secion">
-                                <div id="calendar" data-calendar="" data-data="vm.calendarData"
-                                    data-configuration="{tmplPath: 'app/common/directives/tmpls/calendar/'}"
-                                    data-ng-model="vm.calendar" data-contextmenu="vm.contextmenu" data-is-busy="vm.state.isBusy"
-                                    data-view-changed="vm.viewChanged" data-event-click="vm.eventClick">
-                                </div>
-                            </section>
+                    <div class="calendar-label">
+                        <label>Release Calendar {{vm.calendar.getTitle()}}</label>
+                    </div>
+                    <div class="calendar-navigation" data-ng-click="vm.refresh()">
+                        <button class="btn btn-default">
+                            <span class="glyphicon glyphicon-refresh"></span>
+                            Refresh
+                        </button>
+                        <div class="btn-group">
+                            <button data-calendar-nav="prev" data-ng-click="vm.calendar.navigate('prev')" class="btn btn-primary">&lt;&lt; Prev</button>
+                            <button data-calendar-nav="today" data-ng-click="vm.calendar.navigate('today')" class="btn">Today</button>
+                            <button data-calendar-nav="next" data-ng-click="vm.calendar.navigate('next')" class="btn btn-primary">Next &gt;&gt;</button>
+                        </div>
+                        <div class="btn-group">
+                            <button data-ng-class="{ active: vm.calendar.options.view === 'year' }"
+                                data-calendar-view="year" data-ng-click="vm.calendar.setView('year')" class="btn btn-warning">
+                                Year</button>
+                            <button data-ng-class="{ active: vm.calendar.options.view === 'month' }"
+                                data-calendar-view="month" data-ng-click="vm.calendar.setView('month')" class="btn btn-warning active">
+                                Month</button>
                         </div>
                     </div>
+                    <div class="clear"></div>
+                    <section class="calendar-secion">
+                        <div id="calendar" data-calendar="" data-data="vm.calendarData"
+                            data-configuration="{tmplPath: 'app/common/directives/tmpls/calendar/'}"
+                            data-ng-model="vm.calendar" data-contextmenu="vm.contextmenu" data-is-busy="vm.state.isBusy"
+                            data-view-changed="vm.viewChanged" data-event-click="vm.eventClick">
+                        </div>
+                    </section>
                 </div>
             </div>
         </section>

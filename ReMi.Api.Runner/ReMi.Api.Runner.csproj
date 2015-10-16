@@ -142,96 +142,132 @@
       <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Api, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.Api.dll</HintPath>
+    <Reference Include="ReMi.Api, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.Api.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.BusinessEntities, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.BusinessEntities.dll</HintPath>
+    <Reference Include="ReMi.BusinessEntities, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.BusinessEntities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.BusinessLogic, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.BusinessLogic.dll</HintPath>
+    <Reference Include="ReMi.BusinessLogic, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.BusinessLogic.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.CommandHandlers, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.CommandHandlers.dll</HintPath>
+    <Reference Include="ReMi.CommandHandlers, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.CommandHandlers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Commands, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.Commands.dll</HintPath>
+    <Reference Include="ReMi.Commands, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.Commands.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.CommandValidators, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.CommandValidators.dll</HintPath>
+    <Reference Include="ReMi.CommandValidators, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.CommandValidators.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Common.Constants, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.Common.Constants.dll</HintPath>
+    <Reference Include="ReMi.Common.Constants, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.Common.Constants.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Common.Cqrs.FluentValidation, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.Common.Cqrs.FluentValidation.dll</HintPath>
+    <Reference Include="ReMi.Common.Cqrs.FluentValidation, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.Common.Cqrs.FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Common.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Utils.1.0.0.0\lib\net45\ReMi.Common.Logging.dll</HintPath>
+    <Reference Include="ReMi.Common.Logging, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Common.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Common.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Utils.1.0.0.0\lib\net45\ReMi.Common.Utils.dll</HintPath>
+    <Reference Include="ReMi.Common.Utils, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Common.Utils.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Common.WebApi, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.Common.WebApi.dll</HintPath>
+    <Reference Include="ReMi.Common.WebApi, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.Common.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Core.1.0.0.0\lib\net45\ReMi.Contracts.dll</HintPath>
+    <Reference Include="ReMi.Contracts, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Core.1.0.1.4\lib\net45\ReMi.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.DataAccess, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.DataAccess.dll</HintPath>
+    <Reference Include="ReMi.DataAccess, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.DataAccess.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.DataEntities, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.DataEntities.dll</HintPath>
+    <Reference Include="ReMi.DataEntities, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.DataEntities.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.DataEntityMaps, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.DataEntityMaps.dll</HintPath>
+    <Reference Include="ReMi.DataEntityMaps, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.DataEntityMaps.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.EventHandlers, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.EventHandlers.dll</HintPath>
+    <Reference Include="ReMi.EventHandlers, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.EventHandlers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Events, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.Events.dll</HintPath>
+    <Reference Include="ReMi.Events, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.Events.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Plugin.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Utils.1.0.0.0\lib\net45\ReMi.Plugin.Common.dll</HintPath>
+    <Reference Include="ReMi.Plugin.Common, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Plugin.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Plugin.Composites, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.Plugin.Composites.dll</HintPath>
+    <Reference Include="ReMi.Plugin.Composites, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.Plugin.Composites.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Plugin.Ldap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Plugin.Ldap.1.0.0.0\lib\net45\ReMi.Plugin.Ldap.dll</HintPath>
+    <Reference Include="ReMi.Plugin.Email, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Plugin.Email.1.0.1.1\lib\net45\ReMi.Plugin.Email.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Queries, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.Queries.dll</HintPath>
+    <Reference Include="ReMi.Plugin.EmailMock, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Plugin.Email.1.0.1.1\lib\net45\ReMi.Plugin.EmailMock.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.QueryHandlers, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.QueryHandlers.dll</HintPath>
+    <Reference Include="ReMi.Plugin.Gerrit, Version=1.0.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Plugin.Gerrit.1.0.1.3\lib\net45\ReMi.Plugin.Gerrit.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.QueryValidators, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Api.1.0.0.2\lib\net45\ReMi.QueryValidators.dll</HintPath>
+    <Reference Include="ReMi.Plugin.Go, Version=1.0.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Plugin.Go.1.0.1.3\lib\net45\ReMi.Plugin.Go.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Plugin.Jenkins, Version=1.0.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Plugin.Jenkins.1.0.1.3\lib\net45\ReMi.Plugin.Jenkins.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Plugin.Jira, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Plugin.Jira.1.0.1.2\lib\net45\ReMi.Plugin.Jira.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Plugin.Ldap, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Plugin.Ldap.1.0.1.1\lib\net45\ReMi.Plugin.Ldap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Plugin.QaStats, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Plugin.QaStats.1.0.1.1\lib\net45\ReMi.Plugin.QaStats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Plugin.ZenDesk, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Plugin.ZenDesk.1.0.1.1\lib\net45\ReMi.Plugin.ZenDesk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.Queries, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.Queries.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.QueryHandlers, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.QueryHandlers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ReMi.QueryValidators, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.QueryValidators.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2013.4.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\SSH.NET.2013.4.7\lib\net40\Renci.SshNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -2,16 +2,18 @@
 <package>
   <metadata>
     <id>ReMi.Plugin.Jira</id>
-    <version>1.0.0.1</version>
+    <version>1.0.1.2</version>
     <authors>Wonga Technology Limited</authors>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ReMi Jira Plugin</description>
     <releaseNotes>Package ReMi.Plugin.Jira</releaseNotes>
     <copyright>Copyright Wonga Technology Limited 2015</copyright>
+    <projectUrl>https://github.com/wongatech/remi</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/wongatech/remi/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <dependencies>
       <group targetFramework="net45">
-        <dependency id="ReMi.Core" version="1.0.0.0" />
-        <dependency id="ReMi.Utils" version="1.0.0.0" />
+        <dependency id="ReMi.Core" version="1.0.1.0" />
+        <dependency id="ReMi.Utils" version="1.0.1.0" />
       </group>
     </dependencies>
   </metadata>

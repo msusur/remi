@@ -2,12 +2,14 @@
 <package>
   <metadata>
     <id>ReMi.Api</id>
-    <version>1.0.0.13</version>
+    <version>1.0.1.15</version>
     <authors>Wonga Technology Limited</authors>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ReMi API</description>
     <releaseNotes>Package ReMi.Api</releaseNotes>
     <copyright>Copyright Wonga Technology Limited 2015</copyright>
+    <projectUrl>https://github.com/wongatech/remi</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/wongatech/remi/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <dependencies>
       <group targetFramework="net45">
         <dependency id="Autofac" version="3.4.0" />
@@ -46,8 +48,8 @@
         <dependency id="Owin" version="1.0" />
         <dependency id="RestSharp" version="104.4.0" />
         <dependency id="System.Spatial" version="5.6.0" />
-        <dependency id="ReMi.Core" version="[1.0.0.1]" />
-        <dependency id="ReMi.Utils" version="[1.0.0.1]" />
+        <dependency id="ReMi.Core" version="[1.0.1.4]" />
+        <dependency id="ReMi.Utils" version="[1.0.1.2]" />
       </group>
     </dependencies>
   </metadata>

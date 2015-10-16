@@ -2,16 +2,18 @@
 <package>
   <metadata>
     <id>ReMi.Plugin.Ldap</id>
-    <version>1.0.0.0</version>
+    <version>1.0.1.1</version>
     <authors>Wonga Technology Limited</authors>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ReMi LDAP Plugin</description>
     <releaseNotes>Package ReMi.Plugin.Ldap</releaseNotes>
     <copyright>Copyright Wonga Technology Limited 2015</copyright>
+    <projectUrl>https://github.com/wongatech/remi</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/wongatech/remi/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <dependencies>
       <group targetFramework="net45">
-        <dependency id="ReMi.Core" version="1.0.0.0" />
-        <dependency id="ReMi.Utils" version="1.0.0.0" />
+        <dependency id="ReMi.Core" version="1.0.1.0" />
+        <dependency id="ReMi.Utils" version="1.0.1.0" />
         <dependency id="Autofac" version="3.4.0" />
         <dependency id="Autofac.Extras.Attributed" version="3.2.1" />
         <dependency id="AutoMapper" version="3.3.1" />

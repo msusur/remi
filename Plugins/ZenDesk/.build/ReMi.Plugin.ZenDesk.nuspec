@@ -2,16 +2,18 @@
 <package>
   <metadata>
     <id>ReMi.Plugin.ZenDesk</id>
-    <version>1.0.0.3</version>
+    <version>1.0.1.1</version>
     <authors>Wonga Technology Limited</authors>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ReMi ZenDesk Plugin</description>
     <releaseNotes>Package ReMi.Plugin.ZenDesk</releaseNotes>
     <copyright>Copyright Wonga Technology Limited 2015</copyright>
+    <projectUrl>https://github.com/wongatech/remi</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/wongatech/remi/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <dependencies>
       <group targetFramework="net45">
-        <dependency id="ReMi.Core" version="1.0.0.0" />
-        <dependency id="ReMi.Utils" version="1.0.0.0" />
+        <dependency id="ReMi.Core" version="1.0.1.0" />
+        <dependency id="ReMi.Utils" version="1.0.1.0" />
       </group>
     </dependencies>
   </metadata>
