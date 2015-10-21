@@ -19,6 +19,8 @@ namespace ReMi.Contracts.Plugins.Data
         [EnumDescription("Help Desk Service")]
         HelpDesk = 32,
         [EnumDescription("Deployment Tool")]
-        DeploymentTool = 64
+        DeploymentTool = 64,
+        [EnumDescription("Cache Service")]
+        CacheService = 128
     }
 }

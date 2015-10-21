@@ -305,6 +305,11 @@ namespace ReMi.Api
                 .PropertiesAutowired()
                 .SingleInstance();
 
+            builder.RegisterType<CacheServiceComposite>()
+                .AsImplementedInterfaces()
+                .PropertiesAutowired()
+                .SingleInstance();
+
             var pluginConfiguration = new PluginConfiguration();
             builder.Register<IPluginConfiguration>(x => pluginConfiguration)
                 .SingleInstance();

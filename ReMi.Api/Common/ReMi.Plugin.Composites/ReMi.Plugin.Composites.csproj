@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseComposit.cs" />
+    <Compile Include="Services\CacheServiceComposite.cs" />
     <Compile Include="Services\CheckQaStatusComposite.cs" />
     <Compile Include="Entities\PluginServiceWithCofiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

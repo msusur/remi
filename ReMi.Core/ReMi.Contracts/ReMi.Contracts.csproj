@@ -60,6 +60,7 @@
     <Compile Include="Enums\EnumDescriptionAttribute.cs" />
     <Compile Include="Enums\EnumOrderAttribute.cs" />
     <Compile Include="Plugins\Data\Authentication\Account.cs" />
+    <Compile Include="Plugins\Data\CacheService\CacheEntry.cs" />
     <Compile Include="Plugins\Data\DeploymentTool\JobMetric.cs" />
     <Compile Include="Plugins\Data\DeploymentTool\ReleaseJob.cs" />
     <Compile Include="Plugins\Data\Email\CalendarEvent.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Plugins\Data\SourceControl\SourceControlChange.cs" />
     <Compile Include="Plugins\Data\SourceControl\SourceControlRetrieveMode.cs" />
     <Compile Include="Plugins\Services\Authentication\IAuthenticationService.cs" />
+    <Compile Include="Plugins\Services\CacheService\ICacheService.cs" />
     <Compile Include="Plugins\Services\DeploymentTool\IDeploymentTool.cs" />
     <Compile Include="Plugins\Services\Email\IEmailService.cs" />
     <Compile Include="Plugins\Services\HelpDesk\IHelpDeskService.cs" />
