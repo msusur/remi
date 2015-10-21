@@ -2,7 +2,8 @@ param([String]$nugetRepo, [String]$apiKey)
 
 Get-Module | % { if($_.Name -eq "NuGetRemi") { Remove-Module NuGetReMi}}
 Import-Module .\NuGetReMi.psm1 -disablenamechecking
-
+Get-Module | % { if($_.Name -eq "GitHelper") { Remove-Module GitHelper}}
+Import-Module .\GitHelper.psm1 -disablenamechecking
 $nuspecPath = $(Join-Path $(Get-Location) ..\Plugins\Jira\.build)
 $nuspecName = "ReMi.Plugin.Jira.nuspec"
 $nugetConfig = $(Join-Path $(Get-Location) ..\.nuget\NuGet.config)
@@ -23,3 +24,5 @@ PublishPackage $nugetRepo $nuspecName $nuspecPath $nugetConfig $apiKey
 
 RemoveNuGetPackages $nuspecPath
 
+$project = $nuspecName.Substring(0, $nuspecName.LastIndexOf(".nuspec"))
+CommitPackage $project $version

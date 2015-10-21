@@ -2,6 +2,8 @@ param([String]$nugetRepo, [String]$apiKey)
 
 Get-Module | % { if($_.Name -eq "NuGetRemi") { Remove-Module NuGetReMi}}
 Import-Module .\NuGetReMi.psm1 -disablenamechecking
+Get-Module | % { if($_.Name -eq "GitHelper") { Remove-Module GitHelper}}
+Import-Module .\GitHelper.psm1 -disablenamechecking
 
 $nuspecPath = $(Join-Path $(Get-Location) ..\ReMi.Web\.build)
 $nuspecName = "ReMi.Web.nuspec"
@@ -28,3 +30,5 @@ PublishPackage $nugetRepo $nuspecName $nuspecPath $nugetConfig $apiKey
 
 RemoveNuGetPackages $nuspecPath $true
 
+$project = $nuspecName.Substring(0, $nuspecName.LastIndexOf(".nuspec"))
+CommitPackage $project $version
