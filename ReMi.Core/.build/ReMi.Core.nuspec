@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>ReMi.Core</id>
-    <version>1.0.1.4</version>
+    <version>1.0.1.5</version>
     <authors>Wonga Technology Limited</authors>
     <description>ReMi Core</description>
     <releaseNotes>Package ReMi Core</releaseNotes>

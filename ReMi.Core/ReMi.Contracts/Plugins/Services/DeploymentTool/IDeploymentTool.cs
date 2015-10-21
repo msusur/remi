@@ -9,5 +9,7 @@ namespace ReMi.Contracts.Plugins.Services.DeploymentTool
         IEnumerable<ReleaseJob> GetReleaseJobs(IEnumerable<Guid> packageIds);
 
         IEnumerable<JobMetric> GetMetrics(IDictionary<Guid, IDictionary<Guid, int?>> packagesWithJobsAndLastBuildNumber);
+
+        bool AllowGettingDeployTime(Guid packageId);
     }
 }
