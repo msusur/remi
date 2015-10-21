@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{E7362E
 		.build\content\web.config.uninstall.xdt = .build\content\web.config.uninstall.xdt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReMi.Plugin.Jira.Tests", "ReMi.Plugin.Jira.Tests\ReMi.Plugin.Jira.Tests.csproj", "{A5329ACC-7F13-44AB-AA23-65ABA43EC948}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{C29D13F8-D883-47CF-A21E-AC1606B4B2B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C29D13F8-D883-47CF-A21E-AC1606B4B2B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C29D13F8-D883-47CF-A21E-AC1606B4B2B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5329ACC-7F13-44AB-AA23-65ABA43EC948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5329ACC-7F13-44AB-AA23-65ABA43EC948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5329ACC-7F13-44AB-AA23-65ABA43EC948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5329ACC-7F13-44AB-AA23-65ABA43EC948}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

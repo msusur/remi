@@ -5,4 +5,4 @@ Import-Module .\BuildReMi.psm1 -disablenamechecking
 $solutionName = "ReMi.Core"
 
 BuildSolution $solutionName
-RunNUnitTests $solutionName
+#RunNUnitTests $solutionName
