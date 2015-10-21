@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ReMi.Contracts.Plugins.Data;
+using ReMi.Plugin.Go.BusinessLogic;
 
 namespace ReMi.Plugin.Go
 {
@@ -13,6 +14,9 @@ namespace ReMi.Plugin.Go
 
         [PluginConfiguration("GO pipelines", PluginConfigurationType.Json)]
         public IEnumerable<GoPipelineConfiguration> GoPipelines { get; set; }
+
+        [PluginConfiguration("Auto Deploy Time", PluginConfigurationType.Enum)]
+        public GettingDeployTimeMode AllowGettingDeployTime { get; set; }
 
         public string GoServerUrl { get; set; }
     }

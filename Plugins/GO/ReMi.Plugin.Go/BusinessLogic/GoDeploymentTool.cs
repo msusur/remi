@@ -59,5 +59,15 @@ namespace ReMi.Plugin.Go.BusinessLogic
                 return result.Values.ToArray();
             }
         }
+
+        public bool AllowGettingDeployTime(Guid packageId)
+        {
+            using (var gateway = PackageConfigurationGatewayFactory())
+            {
+                var packageConfigurations = gateway.GetPackageConfiguration(packageId);
+                return packageConfigurations != null
+                    && packageConfigurations.AllowGettingDeployTime == GettingDeployTimeMode.Allow;
+            }
+        }
     }
 }

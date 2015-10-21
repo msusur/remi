@@ -2,10 +2,11 @@
     "use strict";
 
     var controllerId = "deploymentJobsMeasurements";
-    angular.module("app").controller(controllerId, ["remiapi", "common", "$scope", "localData", "$filter", deploymentJobsMeasurements]);
+    angular.module("app").controller(controllerId, deploymentJobsMeasurements);
 
-    function deploymentJobsMeasurements(remiapi, common, $scope, localData, $filter) {
+    function deploymentJobsMeasurements(remiapi, common, $scope, localData, $filter, notifications, config) {
         var logger = common.logger.getLogger(controllerId);
+        var deploymentMeasurementsPopulatedEvent = "DeploymentMeasurementsPopulatedEvent";
 
         var vm = this;
         vm.state = {
@@ -46,12 +47,18 @@
 
         vm.releaseWindowLoadedEventHandler = releaseWindowLoadedEventHandler;
         common.handleEvent("release.ReleaseWindowLoadedEvent", vm.releaseWindowLoadedEventHandler, $scope);
+        common.handleEvent(config.events.notificationReceived, serverNotificationHandler, $scope);
+        $scope.$on("$destroy", scopeDestroyHandler);
 
         activate();
 
         function activate() {
             common.activateController([init()], controllerId, $scope)
                 .then(function () { logger.console("Activated Deploy Jobs Measurements View"); });
+        }
+
+        function scopeDestroyHandler() {
+            notifications.unsubscribe(deploymentMeasurementsPopulatedEvent);
         }
 
         function init() {
@@ -132,6 +139,9 @@
             vm.deploymentJobsMeasurements = [];
 
             if (releaseWindow) {
+                if (!!vm.releaseWindow) {
+                    notifications.unsubscribe(deploymentMeasurementsPopulatedEvent);
+                }
                 vm.releaseWindowId = releaseWindow.ExternalId;
                 vm.releaseWindowType = releaseWindow.ReleaseType;
 
@@ -142,6 +152,7 @@
                     vm.getDeploymentJobsMeasurements();
 
                 logger.console("Binded to release window " + releaseWindow.ExternalId);
+                notifications.subscribe(deploymentMeasurementsPopulatedEvent, { 'ReleaseWindowId': releaseWindow.ExternalId });
             } else {
                 vm.releaseWindowId = "";
                 vm.releaseWindowType = "";
@@ -149,6 +160,7 @@
                 vm.state.bindedToReleaseWindow = false;
                 vm.isVisible = false;
 
+                notifications.unsubscribe(deploymentMeasurementsPopulatedEvent);
                 logger.console("Unbind release window ");
             }
         }
@@ -168,6 +180,13 @@
                     logger.error(error);
                     vm.state.isBusy = false;
                 });
+        }
+
+        function serverNotificationHandler(notification) {
+            if (notification.name === deploymentMeasurementsPopulatedEvent) {
+                vm.isVisible = true;
+                vm.getDeploymentJobsMeasurements();
+            }
         }
     }
 })()

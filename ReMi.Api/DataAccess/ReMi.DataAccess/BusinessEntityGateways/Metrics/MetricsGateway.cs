@@ -86,15 +86,18 @@ namespace ReMi.DataAccess.BusinessEntityGateways.Metrics
             Guid? externalId = null)
         {
             DataMetric existingMetric = null;
-            ReleaseWindow release = null;
+            var release = ReleaseWindowRepository.GetSatisfiedBy(x => x.ExternalId == releaseWindowId);
+            if (release == null)
+                throw new EntityNotFoundException(typeof(ReleaseWindow), releaseWindowId);
+
             if (externalId != null && !Guid.Empty.Equals(externalId))
             {
                 existingMetric = MetricsRepository.GetSatisfiedBy(o => o.ExternalId == externalId);
             }
             if (existingMetric == null)
             {
-                release = ReleaseWindowRepository.GetSatisfiedBy(x => x.ExternalId == releaseWindowId);
-                existingMetric = release.Metrics.FirstOrDefault(x => x.MetricType == metricType);
+                existingMetric = MetricsRepository.GetSatisfiedBy(x =>
+                    x.ReleaseWindow.ExternalId == releaseWindowId && x.MetricType == metricType);
             }
 
             if (existingMetric != null)

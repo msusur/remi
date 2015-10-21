@@ -15,6 +15,7 @@ namespace ReMi.Plugin.Go.DataAccess.DataEntities
         [Index(IsUnique = true)]
         public Guid PackageId { get; set; }
 
+        public bool AllowGettingDeployTime { get; set; }
         public int? GoServerConfigurationId { get; set; }
         public virtual GoServerConfiguration GoServerConfiguration { get; set; }
 

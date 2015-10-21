@@ -6,6 +6,7 @@ using ReMi.Common.Utils;
 using ReMi.Common.Utils.Repository;
 using ReMi.Contracts.Plugins.Data;
 using ReMi.Plugin.Common.PluginsConfiguration;
+using ReMi.Plugin.Jenkins.BusinessLogic;
 using ReMi.Plugin.Jenkins.DataAccess.DataEntities;
 using ReMi.Plugin.Jenkins.Exceptions;
 
@@ -84,6 +85,8 @@ namespace ReMi.Plugin.Jenkins.DataAccess.Gateways
 
             var configuration = PackageConfigurationRepository
                 .GetSatisfiedBy(x => x.PackageId == packageConfiguration.PackageId);
+            configuration.TimeZone = packageConfiguration.TimeZone;
+            configuration.AllowGettingDeployTime = packageConfiguration.AllowGettingDeployTime != GettingDeployTimeMode.Forbid;
 
             if (!string.IsNullOrEmpty(packageConfiguration.JenkinsServer))
             {
@@ -112,6 +115,7 @@ namespace ReMi.Plugin.Jenkins.DataAccess.Gateways
         {
             JenkinsServerConfigurationRepository.Dispose();
             PackageConfigurationRepository.Dispose();
+            PackageJenkinsJobConfigurationRepository.Dispose();
 
             base.OnDisposing();
         }

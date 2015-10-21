@@ -1,5 +1,6 @@
 using AutoMapper;
 using ReMi.Contracts.Plugins.Data;
+using ReMi.Plugin.Jenkins.BusinessLogic;
 using ReMi.Plugin.Jenkins.DataAccess.DataEntities;
 
 namespace ReMi.Plugin.Jenkins.AutoMapper
@@ -17,7 +18,9 @@ namespace ReMi.Plugin.Jenkins.AutoMapper
                 .ForMember(target => target.JenkinsServers, options => options.Ignore());
             Mapper.CreateMap<NameValuePair, JenkinsServerConfiguration>();
             Mapper.CreateMap<JenkinsJobConfiguration, PackageJenkinsJobConfiguration>();
-            Mapper.CreateMap<PluginPackageConfigurationEntity, PackageConfiguration>();
+            Mapper.CreateMap<PluginPackageConfigurationEntity, PackageConfiguration>()
+                .ForMember(target => target.AllowGettingDeployTime, options => options.MapFrom(source =>
+                    source.AllowGettingDeployTime == GettingDeployTimeMode.Allow));
         }
     }
 }

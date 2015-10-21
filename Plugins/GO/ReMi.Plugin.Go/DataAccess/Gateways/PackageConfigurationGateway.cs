@@ -6,6 +6,7 @@ using ReMi.Common.Utils;
 using ReMi.Common.Utils.Repository;
 using ReMi.Contracts.Plugins.Data;
 using ReMi.Plugin.Common.PluginsConfiguration;
+using ReMi.Plugin.Go.BusinessLogic;
 using ReMi.Plugin.Go.DataAccess.DataEntities;
 using ReMi.Plugin.Go.Exceptions;
 
@@ -84,6 +85,8 @@ namespace ReMi.Plugin.Go.DataAccess.Gateways
 
             var configuration = PackageConfigurationRepository
                 .GetSatisfiedBy(x => x.PackageId == packageConfiguration.PackageId);
+            configuration.AllowGettingDeployTime
+                = packageConfiguration.AllowGettingDeployTime == GettingDeployTimeMode.Allow;
 
             if (!string.IsNullOrEmpty(packageConfiguration.GoServer))
             {

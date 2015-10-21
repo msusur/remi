@@ -80,8 +80,8 @@
       <HintPath>..\packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Common.Utils.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Contracts, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ReMi.Core.1.0.1.4\lib\net45\ReMi.Contracts.dll</HintPath>
+    <Reference Include="ReMi.Contracts, Version=1.0.1.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReMi.Core.1.0.1.5\lib\net45\ReMi.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ReMi.Plugin.Common, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
@@ -105,6 +105,7 @@
     <Compile Include="AutoMapper\JenkinsBusinessEntitiesToContractEntity.cs" />
     <Compile Include="AutoMapper\JenkinsBusinessEntitiesToDataEnities.cs" />
     <Compile Include="AutoMapper\JenkinsDataEntitiesToBusinessEnities.cs" />
+    <Compile Include="BusinessLogic\GettingDeployTimeMode.cs" />
     <Compile Include="BusinessLogic\JenkinsDeploymentTool.cs" />
     <Compile Include="DataAccess\DataEntities\GlobalConfiguration.cs" />
     <Compile Include="DataAccess\DataEntities\JenkinsServerConfiguration.cs" />
@@ -135,6 +136,10 @@
     <Compile Include="Migrations\201505180848057_AddTimeZoneConfiguration.Designer.cs">
       <DependentUpon>201505180848057_AddTimeZoneConfiguration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510220955581_AddAllowGettingDeployTime.cs" />
+    <Compile Include="Migrations\201510220955581_AddAllowGettingDeployTime.Designer.cs">
+      <DependentUpon>201510220955581_AddAllowGettingDeployTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="PluginConfiguration.cs" />
     <Compile Include="PluginConfigurationEntity.cs" />
     <Compile Include="PluginInitializer.cs" />
@@ -154,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505180848057_AddTimeZoneConfiguration.resx">
       <DependentUpon>201505180848057_AddTimeZoneConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510220955581_AddAllowGettingDeployTime.resx">
+      <DependentUpon>201510220955581_AddAllowGettingDeployTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

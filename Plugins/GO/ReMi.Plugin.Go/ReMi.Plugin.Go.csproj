@@ -82,9 +82,8 @@
       <HintPath>..\packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Common.Utils.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Contracts, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ReMi.Core.1.0.1.4\lib\net45\ReMi.Contracts.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ReMi.Contracts">
+      <HintPath>..\packages\ReMi.Core.1.0.1.5\lib\net45\ReMi.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="ReMi.Plugin.Common, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Plugin.Common.dll</HintPath>
@@ -107,6 +106,7 @@
     <Compile Include="AutoMapper\GoBusinessEntitiesToContractEntity.cs" />
     <Compile Include="AutoMapper\GoBusinessEntitiesToDataEnities.cs" />
     <Compile Include="AutoMapper\GoDataEntitiesToBusinessEnities.cs" />
+    <Compile Include="BusinessLogic\GettingDeployTimeMode.cs" />
     <Compile Include="BusinessLogic\GoDeploymentTool.cs" />
     <Compile Include="BusinessLogic\GoSourceControl.cs" />
     <Compile Include="DataAccess\DataEntities\GlobalConfiguration.cs" />
@@ -155,6 +155,10 @@
     <Compile Include="Migrations\201504271701197_InitializeDatabase.Designer.cs">
       <DependentUpon>201504271701197_InitializeDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510211824140_AddAllowGettingDeployTime.cs" />
+    <Compile Include="Migrations\201510211824140_AddAllowGettingDeployTime.Designer.cs">
+      <DependentUpon>201510211824140_AddAllowGettingDeployTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="PluginConfiguration.cs" />
     <Compile Include="PluginConfigurationEntity.cs" />
     <Compile Include="PluginInitializer.cs" />
@@ -173,6 +177,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201504271701197_InitializeDatabase.resx">
       <DependentUpon>201504271701197_InitializeDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510211824140_AddAllowGettingDeployTime.resx">
+      <DependentUpon>201510211824140_AddAllowGettingDeployTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

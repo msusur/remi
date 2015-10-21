@@ -118,7 +118,7 @@ describe("Release Process Controller", function () {
     it("should get metrics", function () {
         var deferred = $q.defer();
         mocks.remiapi.getMetrics.and.returnValue(deferred.promise);
-        var data = { Metrics: ["a", "b"] };
+        var data = { Metrics: ["a", "b"], AutomaticDeployTime: true };
         spyOn(sut, "evaluateMetrics");
         mocks.authService.isLoggedIn = true;
         sut.releaseWindow = { ExternalId: "1" };
@@ -131,6 +131,7 @@ describe("Release Process Controller", function () {
         expect(sut.state.display).toEqual(true);
         expect(sut.state.isBusy).toEqual(false);
         expect(sut.metrics).toEqual(["a", "b"]);
+        expect(sut.automaticDeployTime).toEqual(true);
     });
 
     it("should reject getting metrics", function () {
