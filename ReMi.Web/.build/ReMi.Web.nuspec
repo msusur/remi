@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ReMi.Web</id>
-    <version>1.0.1.6</version>
+    <version>1.0.1.7</version>
     <authors>Release Engineering team</authors>
     <owners>Lisa Lambert</owners>
     <description>ReMi Web UI</description>
