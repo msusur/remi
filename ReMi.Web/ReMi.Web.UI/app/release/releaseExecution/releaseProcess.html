@@ -18,22 +18,39 @@
                     </li>
                 </ul>
             </div>
+            <div role="alert" style="margin-top: 10px; padding: 5px; background-color: #ffffe0"
+                 data-ng-if="vm.automaticDeployTime">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <i class="fa fa-info-circle" style="color: #FFCC66; margin-right: 5px"></i>
+                        Start and Finish deploy are automatically calculated, based on measurements, retrieved from Deploy Tool.
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="widget-foot">
-            <div class="row" style="padding-right: 3%;">
-                <div class="pull-right">
-                    <button class="btn btn-info"
-                        data-account-signature=""
-                        data-default-user-name="{{vm.account.email}}"
-                        data-description="Issues"
-                        data-ng-click="vm.failRelease(data)"
-                        data-ng-disabled="vm.state.isBusy || vm.isReleaseClosed"
-                        data-access-control="FailReleaseCommand"
-                        data-restriction-mode="disable">
-                        Close relese and mark as failed</button>
-                    <button class="btn btn-default" data-ng-click="vm.isReleaseClosed || vm.showIssues()" data-ng-disabled="vm.state.isBusy || vm.isReleaseClosed"
-                        data-access-control="SaveReleaseIssuesCommand" data-restriction-mode="hide">
-                        Issues</button>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="pull-left">
+                        <button class="btn btn-info"
+                            data-account-signature=""
+                            data-default-user-name="{{vm.account.email}}"
+                            data-description="Issues"
+                            data-ng-click="vm.failRelease(data)"
+                            data-ng-disabled="vm.state.isBusy || vm.isReleaseClosed"
+                            data-access-control="FailReleaseCommand"
+                            data-restriction-mode="hide">
+                            <i class="fa fa-warning" style="color: red"></i>Close release and mark as failed
+                        </button>
+                        <button class="btn btn-default" data-ng-click="vm.showIssues()" data-ng-disabled="vm.state.isBusy"
+                            data-access-control="SaveReleaseIssuesCommand" data-restriction-mode="hide">
+                            Issues</button>
+                    </div>
+                    <div class="pull-right">
+                        <button class="btn btn-default" data-ng-click="vm.getMetrics()">
+                            <i class="fa fa-refresh"></i>Refresh
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

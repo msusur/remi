@@ -17,6 +17,8 @@ namespace ReMi.Plugin.Jenkins.DataAccess.DataEntities
 
         public TimeZone TimeZone { get; set; }
 
+        public bool? AllowGettingDeployTime { get; set; }
+
         public int? JenkinsServerConfigurationId { get; set; }
         public virtual JenkinsServerConfiguration JenkinsServerConfiguration { get; set; }
 

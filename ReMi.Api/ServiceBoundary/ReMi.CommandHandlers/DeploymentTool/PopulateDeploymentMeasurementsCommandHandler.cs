@@ -13,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Common.Logging;
+using ReMi.Contracts.Cqrs.Events;
+using ReMi.Events.Metrics;
 
 
 namespace ReMi.CommandHandlers.DeploymentTool
@@ -24,6 +26,7 @@ namespace ReMi.CommandHandlers.DeploymentTool
         public Func<IReleaseDeploymentMeasurementGateway> ReleaseDeploymentMeasurementGatewayFactory { get; set; }
         public IDeploymentTool DeploymentToolService { get; set; }
         public IMappingEngine MappingEngine { get; set; }
+        public IPublishEvent EventPublisher { get; set; }
 
         private static readonly ILog Logger = LogManager.GetCurrentClassLogger();
 
@@ -66,6 +69,12 @@ namespace ReMi.CommandHandlers.DeploymentTool
             }
 
             Logger.DebugFormat("Data is stored in DB: {0}", DateTime.Now);
+
+            EventPublisher.Publish(new DeploymentMeasurementsPopulatedEvent
+            {
+                Context = command.CommandContext.CreateChild<EventContext>(),
+                ReleaseWindowId = command.ReleaseWindowId
+            });
         }
     }
 

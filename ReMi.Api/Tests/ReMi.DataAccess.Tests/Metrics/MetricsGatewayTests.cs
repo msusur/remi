@@ -377,7 +377,7 @@ namespace ReMi.DataAccess.Tests.Metrics
             });
 
             _metricRepositoryMock.Verify(m => m.Insert(It.IsAny<DataMetric>()), Times.Exactly(2));
-            
+
             _metricRepositoryMock.Verify(
                 m => m.Insert(
                     It.Is<DataMetric>(x => x.MetricType == MetricType.FinishDeploy
@@ -550,7 +550,7 @@ namespace ReMi.DataAccess.Tests.Metrics
         }
 
         [Test]
-        public void CreateOrUpdateMetric_ShouldCreateUpdateMetricAndConvertDateToUtc_WhenMetricExistsAndTimeIsInLocal()
+        public void CreateOrUpdateMetric_ShouldUpdateMetricAndConvertDateToUtc_WhenMetricExistsAndTimeIsInLocal()
         {
             var releases = SetupReleaseWindows(1, 5);
             var release = releases.First();
@@ -575,6 +575,37 @@ namespace ReMi.DataAccess.Tests.Metrics
                     m.ExecutedOn == metric.ExecutedOn.Value.ToUniversalTime()
                     && m.ExecutedOn.Value.Kind == DateTimeKind.Utc
                     && m.ExternalId == metric.ExternalId
+                ))
+            );
+        }
+
+        [Test]
+        public void CreateOrUpdateMetric_ShouldFindAndUpdateMetric_WhenMetricTypeAndReleaseWindowIdIsGiven()
+        {
+            var releases = SetupReleaseWindows(1, 5);
+            var release = releases.First();
+
+            var metric = Builder<Metric>.CreateNew()
+                .With(o => o.MetricType, RandomData.RandomEnum<MetricType>())
+                .With(o => o.ExecutedOn, RandomData.RandomDateTime())
+                .With(o => o.ExternalId, Guid.NewGuid())
+                .Build();
+            var dataMetric = new DataMetric
+            {
+                MetricType = metric.MetricType,
+                ExecutedOn = RandomData.RandomDateTime(),
+                ReleaseWindow = new ReleaseWindow { ExternalId = release.ExternalId }
+            };
+
+            _metricRepositoryMock.SetupEntities(new[] { dataMetric });
+
+            Sut.CreateOrUpdateMetric(release.ExternalId, metric.MetricType, metric.ExecutedOn);
+
+            _metricRepositoryMock.Verify(o =>
+                o.Update(It.Is<DataMetric>(m =>
+                    m.ExecutedOn == metric.ExecutedOn.Value.ToUniversalTime()
+                    && m.ExecutedOn.Value.Kind == DateTimeKind.Utc
+                    && m.MetricType == metric.MetricType
                 ))
             );
         }

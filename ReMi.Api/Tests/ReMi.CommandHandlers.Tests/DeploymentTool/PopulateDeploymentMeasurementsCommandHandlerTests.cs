@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using FizzWare.NBuilder;
 using Moq;
@@ -12,11 +13,13 @@ using ReMi.CommandHandlers.DeploymentTool;
 using ReMi.Commands.DeploymentTool;
 using ReMi.TestUtils.UnitTests;
 using ReMi.Contracts.Cqrs.Commands;
+using ReMi.Contracts.Cqrs.Events;
 using ReMi.Contracts.Plugins.Data.DeploymentTool;
 using ReMi.Contracts.Plugins.Services.DeploymentTool;
 using ReMi.DataAccess.BusinessEntityGateways.Products;
 using ReMi.DataAccess.BusinessEntityGateways.ReleaseExecution;
 using ReMi.DataAccess.BusinessEntityGateways.ReleasePlan;
+using ReMi.Events.Metrics;
 using ReleaseJob = ReMi.BusinessEntities.DeploymentTool.ReleaseJob;
 
 namespace ReMi.CommandHandlers.Tests.DeploymentTool
@@ -29,6 +32,7 @@ namespace ReMi.CommandHandlers.Tests.DeploymentTool
         private Mock<IReleaseJobGateway> _releaseJobGatewayMock;
         private Mock<IMappingEngine> _mappingEngineMock;
         private Mock<IProductGateway> _packageGatewayMock;
+        private Mock<IPublishEvent> _publishEventMock;
 
 
         protected override PopulateDeploymentMeasurementsCommandHandler ConstructSystemUnderTest()
@@ -39,7 +43,8 @@ namespace ReMi.CommandHandlers.Tests.DeploymentTool
                 DeploymentToolService = _deploymentToolMock.Object,
                 ReleaseDeploymentMeasurementGatewayFactory = () => _releaseDeploymentMeasurementGatewayMock.Object,
                 ReleaseJobGatewayFactory = () => _releaseJobGatewayMock.Object,
-                PackageGatewayFactory = () => _packageGatewayMock.Object
+                PackageGatewayFactory = () => _packageGatewayMock.Object,
+                EventPublisher = _publishEventMock.Object
             };
         }
 
@@ -50,6 +55,7 @@ namespace ReMi.CommandHandlers.Tests.DeploymentTool
             _releaseDeploymentMeasurementGatewayMock = new Mock<IReleaseDeploymentMeasurementGateway>(MockBehavior.Strict);
             _releaseJobGatewayMock = new Mock<IReleaseJobGateway>(MockBehavior.Strict);
             _mappingEngineMock = new Mock<IMappingEngine>(MockBehavior.Strict);
+            _publishEventMock = new Mock<IPublishEvent>(MockBehavior.Strict);
 
             base.TestInitialize();
         }
@@ -103,7 +109,11 @@ namespace ReMi.CommandHandlers.Tests.DeploymentTool
             var command = new PopulateDeploymentMeasurementsCommand
             {
                 ReleaseWindowId = Guid.NewGuid(),
-                CommandContext = new CommandContext { UserId = Guid.NewGuid() }
+                CommandContext = new CommandContext
+                {
+                    UserId = Guid.NewGuid(),
+                    Id = Guid.NewGuid()
+                },
             };
             var jobs = Builder<ReleaseJob>.CreateListOfSize(5).Build();
             var package = Builder<Product>.CreateNew().Build();
@@ -130,6 +140,12 @@ namespace ReMi.CommandHandlers.Tests.DeploymentTool
             _packageGatewayMock.Setup(x => x.Dispose());
             _releaseDeploymentMeasurementGatewayMock.Setup(x => x.Dispose());
 
+            _publishEventMock.Setup(x => x.Publish(It.Is<DeploymentMeasurementsPopulatedEvent>(e =>
+                e.ReleaseWindowId == command.ReleaseWindowId
+                && e.Context.ParentId == command.CommandContext.Id
+                )))
+                .Returns((Task[])null);
+
             Sut.Handle(command);
 
             _releaseJobGatewayMock.Verify(x => x.GetReleaseJobs(It.IsAny<Guid>(), It.IsAny<bool>()), Times.Once);
@@ -138,6 +154,7 @@ namespace ReMi.CommandHandlers.Tests.DeploymentTool
             _releaseDeploymentMeasurementGatewayMock.Verify(x => x.StoreDeploymentMeasurements(
                 It.IsAny<IEnumerable<JobMeasurement>>(), It.IsAny<Guid>(), It.IsAny<Guid>()),
                 Times.Once);
+            _publishEventMock.Verify(x => x.Publish(It.IsAny<IEvent>()), Times.Once);
         }
     }
 }

@@ -27,6 +27,7 @@
         vm.allowSiteUp = false;
         vm.allowStartDeploy = false;
         vm.allowFinishDeploy = false;
+        vm.automaticDeployTime = false;
         var allowManageAsProcessParticipant = false;
 
         vm.serverNotificationHandler = serverNotificationHandler;
@@ -97,6 +98,7 @@
             return remiapi
                 .getMetrics(vm.releaseWindow.ExternalId)
                 .then(function (data) {
+                    vm.automaticDeployTime = data.AutomaticDeployTime;
                     vm.metrics = $filter("orderBy")(data.Metrics, "Order");
                     vm.state.display = (data.Metrics.length > 0) && authService.isLoggedIn;
                     vm.evaluateMetrics();

@@ -61,5 +61,15 @@ namespace ReMi.Plugin.Jenkins.BusinessLogic
                 return result.Values.ToArray();
             }
         }
+
+        public bool AllowGettingDeployTime(Guid packageId)
+        {
+            using (var gateway = PackageConfigurationGatewayFactory())
+            {
+                var packageConfiguration = gateway.GetPackageConfiguration(packageId);
+                return packageConfiguration != null
+                    && packageConfiguration.AllowGettingDeployTime == GettingDeployTimeMode.Allow;
+            }
+        }
     }
 }

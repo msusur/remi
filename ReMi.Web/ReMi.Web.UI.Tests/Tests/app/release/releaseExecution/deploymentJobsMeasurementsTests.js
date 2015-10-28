@@ -1,6 +1,6 @@
 describe("DeploymentJobsMeasurements Controller", function () {
     var sut, mocks, logger;
-    var $q, $rootScope;
+    var $q, $rootScope, events = {};
 
     beforeEach(function () {
         module("app", function ($provide) { $provide.value("authService", {}) });
@@ -12,7 +12,7 @@ describe("DeploymentJobsMeasurements Controller", function () {
                 handleEvent: window.jasmine.createSpy("handleEvent"),
                 getParentScope: window.jasmine.createSpy("getParentScope").and.returnValue({ vm: {} })
             },
-            config: { events: { notificationReceived: "notifications.received", loggedIn: "auth.loggedIn" } },
+            config: { events: { notificationReceived: "notifications.received" } },
             remiapi: {
                 get: window.jasmine.createSpyObj("get", ["getDeploymentJobsMeasurements"]),
                 post: window.jasmine.createSpyObj("post", ["rePopulateMeasurements"])
@@ -24,6 +24,9 @@ describe("DeploymentJobsMeasurements Controller", function () {
 
         logger = window.jasmine.createSpyObj("logger", ["console", "error", "info", "warn"]);
         mocks.common.logger.getLogger.and.returnValue(logger);
+        mocks.common.handleEvent.and.callFake(function (name, handler, scope) {
+            events[name] = { handler: handler, scope: scope };
+        });
 
         inject(function ($controller, _$q_, _$rootScope_) {
             $q = _$q_;
@@ -125,6 +128,30 @@ describe("DeploymentJobsMeasurements Controller", function () {
 
             expect(sut.state.isBusy).toEqual(false);
             expect(sut.refreshMeasurements).not.toHaveBeenCalled();
+        });
+    });
+
+    describe("onDestroy", function () {
+        it("should unsubscribe all event notifications, when controller is destroyed", function () {
+            expect(mocks.notifications.unsubscribe).not.toHaveBeenCalled();
+
+            mocks.$scope.$broadcast("$destroy");
+
+            expect(mocks.notifications.unsubscribe).toHaveBeenCalledWith("DeploymentMeasurementsPopulatedEvent");
+        });
+    });
+
+    describe("serverNotificationHandler", function () {
+        it("should make window visible and get measurements, when DeploymentMeasurementsPopulatedEvent arrives", function () {
+            var evt = events[mocks.config.events.notificationReceived];
+
+            spyOn(sut, "getDeploymentJobsMeasurements");
+
+            evt.handler({ name: "DeploymentMeasurementsPopulatedEvent" });
+
+            expect(evt.scope).toEqual(mocks.$scope);
+            expect(sut.isVisible).toEqual(true);
+            expect(sut.getDeploymentJobsMeasurements).toHaveBeenCalled();
         });
     });
 });

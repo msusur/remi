@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ReMi.Contracts.Plugins.Data;
+using ReMi.Plugin.Jenkins.BusinessLogic;
 
 namespace ReMi.Plugin.Jenkins
 {
@@ -16,6 +17,9 @@ namespace ReMi.Plugin.Jenkins
 
         [PluginConfiguration("Time zone", PluginConfigurationType.Enum)]
         public TimeZone TimeZone { get; set; }
+
+        [PluginConfiguration("Auto Deploy Time", PluginConfigurationType.Enum)]
+        public GettingDeployTimeMode AllowGettingDeployTime { get; set; }
 
         public string JenkinsServerUrl { get; set; }
     }

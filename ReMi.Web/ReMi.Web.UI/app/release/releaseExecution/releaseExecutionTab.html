@@ -16,8 +16,7 @@
     <div class="row" data-ng-if="vm.state.isBindedToRelease
         && vm.hasPlugin('DeploymentTool')
         && vm.currentReleaseWindow.ReleaseType != 'Hotfix'
-        && !vm.isCurrentReleaseWindowMaintenance
-        && vm.currentReleaseWindow.ReleaseType != 'Automated'">
+        && !vm.isCurrentReleaseWindowMaintenance">
         <div class="col-md-12">
             <div data-ng-include="'/app/release/releaseExecution/deploymentJobsMeasurements.html'"></div>
         </div>

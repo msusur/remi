@@ -92,8 +92,8 @@
       <HintPath>..\..\packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Common.Utils.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Contracts, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ReMi.Core.1.0.1.4\lib\net45\ReMi.Contracts.dll</HintPath>
+    <Reference Include="ReMi.Contracts, Version=1.0.1.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Core.1.0.1.5\lib\net45\ReMi.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ReMi.Plugin.Common, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
@@ -129,6 +129,8 @@
     <Compile Include="Configuration\RemoveBusinessUnitCommandHandlerTests.cs" />
     <Compile Include="Configuration\UpdateProductHandlerTests.cs" />
     <Compile Include="DeploymentTool\RePopulateDeploymentMeasurementsCommandHandlerTests.cs" />
+    <Compile Include="Metrics\CalculateDeployTimeCommandHandlerTests.cs" />
+    <Compile Include="Metrics\UpdateMetricsWithDateTimeCommandHandlerTests.cs" />
     <Compile Include="Plugins\AddPackagePluginConfigurationCommandHandlerTests.cs" />
     <Compile Include="Plugins\AssignGlobalPluginCommandHandlerTests.cs" />
     <Compile Include="Plugins\AssignPackagePluginCommandHandlerTests.cs" />
@@ -165,7 +167,7 @@
     <Compile Include="SourceControl\StoreSourceControlChangesCommandHandlerTests.cs" />
     <Compile Include="Configuration\RemoveCommandFromRoleCommandHandlerTests.cs" />
     <Compile Include="DeploymentTool\PopulateDeploymentMeasurementsCommandHandlerTests.cs" />
-    <Compile Include="Metrics\MetricsHandlerTests.cs" />
+    <Compile Include="Metrics\UpdateMetricsHandlerTests.cs" />
     <Compile Include="ProductRequests\UpdateProductRequestRegistrationCommandHandlerTests.cs" />
     <Compile Include="ProductRequests\CreateProductRequestRegistrationCommandHandlerTests.cs" />
     <Compile Include="ProductRequests\DeleteProductRequestGroupCommandHandlerTests.cs" />

@@ -11,7 +11,7 @@ using ReMi.Events.Metrics;
 
 namespace ReMi.CommandHandlers.Tests.Metrics
 {
-    public class MetricsHandlerTests : TestClassFor<UpdateMetricsCommandHandler>
+    public class UpdateMetricsHandlerTests : TestClassFor<UpdateMetricsCommandHandler>
     {
         private Mock<IMetricsGateway> _metricsGatewayMock;
         private Mock<IPublishEvent> _eventPublisherMock;

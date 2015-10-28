@@ -25,5 +25,11 @@ namespace ReMi.Plugin.Composites.Services
                 .SelectMany(x => x)
                 .ToArray();
         }
+
+        public bool AllowGettingDeployTime(Guid packageId)
+        {
+            var service = GetPluginService(packageId, PluginType.DeploymentTool);
+            return service != null && service.AllowGettingDeployTime(packageId);
+        }
     }
 }
