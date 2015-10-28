@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>ReMi.Plugin.Jenkins</id>
-    <version>1.0.1.3</version>
+    <version>1.0.1.4</version>
     <authors>Wonga Technology Limited</authors>
     <description>ReMi Jenkins Plugin</description>
     <releaseNotes>Package ReMi.Plugin.Jenkins</releaseNotes>
