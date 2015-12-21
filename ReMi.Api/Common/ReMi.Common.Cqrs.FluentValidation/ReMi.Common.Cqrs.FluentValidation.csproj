@@ -47,8 +47,8 @@
     <Reference Include="FluentValidation">
       <HintPath>..\..\packages\FluentValidation.5.1.0.0\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
-    <Reference Include="ReMi.Contracts, Version=1.0.1.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ReMi.Core.1.0.1.5\lib\net45\ReMi.Contracts.dll</HintPath>
+        <Reference Include="ReMi.Contracts">
+      <HintPath>..\..\packages\ReMi.Core.1.0.1.6\lib\net45\ReMi.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
