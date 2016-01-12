@@ -63,8 +63,8 @@
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Contracts, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ReMi.Core.1.0.1.4\lib\net45\ReMi.Contracts.dll</HintPath>
+    <Reference Include="ReMi.Contracts, Version=1.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReMi.Core.1.0.1.7\lib\net45\ReMi.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

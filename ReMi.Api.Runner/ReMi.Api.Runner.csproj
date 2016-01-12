@@ -174,20 +174,20 @@
       <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.Common.Cqrs.FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Common.Logging, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Common.Logging.dll</HintPath>
+    <Reference Include="ReMi.Common.Logging, Version=1.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Utils.1.0.1.7\lib\net45\ReMi.Common.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Common.Utils, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Common.Utils.dll</HintPath>
+    <Reference Include="ReMi.Common.Utils, Version=1.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Utils.1.0.1.7\lib\net45\ReMi.Common.Utils.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ReMi.Common.WebApi, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.Common.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Contracts, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Core.1.0.1.4\lib\net45\ReMi.Contracts.dll</HintPath>
+    <Reference Include="ReMi.Contracts, Version=1.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Core.1.0.1.7\lib\net45\ReMi.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ReMi.DataAccess, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">
@@ -210,8 +210,8 @@
       <HintPath>packages\ReMi.Api.1.0.1.14\lib\net45\ReMi.Events.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Plugin.Common, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Plugin.Common.dll</HintPath>
+    <Reference Include="ReMi.Plugin.Common, Version=1.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReMi.Utils.1.0.1.7\lib\net45\ReMi.Plugin.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ReMi.Plugin.Composites, Version=1.0.1.14, Culture=neutral, processorArchitecture=MSIL">

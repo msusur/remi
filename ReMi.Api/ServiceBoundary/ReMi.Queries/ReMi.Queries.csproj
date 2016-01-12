@@ -68,20 +68,20 @@
       <HintPath>..\..\packages\Newtonsoft.Json.5.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Common.Logging, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Common.Logging.dll</HintPath>
+    <Reference Include="ReMi.Common.Logging, Version=1.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Utils.1.0.1.7\lib\net45\ReMi.Common.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Common.Utils, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Common.Utils.dll</HintPath>
+    <Reference Include="ReMi.Common.Utils, Version=1.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Utils.1.0.1.7\lib\net45\ReMi.Common.Utils.dll</HintPath>
       <Private>True</Private>
     </Reference>
-        <Reference Include="ReMi.Contracts">
-      <HintPath>..\..\packages\ReMi.Core.1.0.1.6\lib\net45\ReMi.Contracts.dll</HintPath>
+    <Reference Include="ReMi.Contracts, Version=1.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Core.1.0.1.7\lib\net45\ReMi.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReMi.Plugin.Common">
-      <HintPath>..\..\packages\ReMi.Utils.1.0.1.2\lib\net45\ReMi.Plugin.Common.dll</HintPath>
+    <Reference Include="ReMi.Plugin.Common, Version=1.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ReMi.Utils.1.0.1.7\lib\net45\ReMi.Plugin.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
